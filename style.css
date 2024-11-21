@@ -156,10 +156,6 @@ section {
   min-height: fit-content;
 }
 
-.section-container {
-  display: flex;
-}
-
 /* PROFILE SECTION */
 
 #profile {
@@ -224,6 +220,7 @@ section {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  margin-top: 1rem;
 }
 
 .btn {
@@ -331,13 +328,28 @@ section {
   border-radius: 2rem;
   border: rgb(53, 53, 53) 0.1rem solid;
   border-color: rgb(163, 163, 163);
+  /* gap: 1rem; */
+  /* Grid properties for centering */
+  display: grid;
+  place-items: center; /* Centers horizontally and vertically */
+  text-align: center}
+
+.text-details-container {
   text-align: center;
+  justify-content: center;
 }
 
 .section-container {
-  gap: 4rem;
+  gap: 4rem; /* Maintain horizontal spacing between elements */
   height: 80%;
+  display: flex;
+
+  /* Flexbox properties for horizontal alignment */
+  flex-direction: row; /* Lay items out in a row */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Align items vertically along the same axis */
 }
+
 
 /* EXPERIENCE SECTION */
 
@@ -468,8 +480,8 @@ article .icon {
 
 .text-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 }
 
 ul {
