@@ -328,11 +328,23 @@ section {
   border-radius: 2rem;
   border: rgb(53, 53, 53) 0.1rem solid;
   border-color: rgb(163, 163, 163);
+  gap: 1rem;
+}
+
+.details-container-centred {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  flex: 1;
+  background: white;
+  border-radius: 2rem;
+  border: rgb(53, 53, 53) 0.1rem solid;
+  border-color: rgb(163, 163, 163);
   /* gap: 1rem; */
   /* Grid properties for centering */
   display: grid;
   place-items: center; /* Centers horizontally and vertically */
-  text-align: center}
+  text-align: center
+}
 
 .text-details-container {
   text-align: center;
