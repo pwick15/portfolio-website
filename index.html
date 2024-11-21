@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+  </head>
+  <body>
+    <nav id="desktop-nav">
+      <div class="logo"></div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#honours">Honours</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo"></div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#interests" onclick="toggleMenu()">Interests</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
+    <section id="profile">
+      <div class="section__pic-container">
+        <img src="./assets/profile-pic.png" alt="profile picture" />
+      </div>
+      <div class="section__text">
+        <p class="section__text__p1">Hello, I'm</p>
+        <h1 class="title">Punjaya Wickramasinghe</h1>
+        <p class="section__text__p2">Mechatronics Engineer
+        </p>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2"
+            onclick="window.open('./assets/punjaya-resume.pdf')"
+          >
+            Download CV
+          </button>
+          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+            Contact Info
+          </button>
+        </div>
+        <div id="socials-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="My LinkedIn profile"
+            class="icon"
+            onclick="location.href='https://www.linkedin.com/in/punjayawick15/'"
+          />
+          <img
+            src="./assets/github.png"
+            alt="My GitHub profile"
+            class="icon"
+            onclick="location.href='https://github.com/pwick15'"
+          />
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+      <div class="section-container">
+        <div class="section__pic-container">
+          <img
+            src="./assets/about-pic.png"
+            alt="Profile picture"
+            class="about-pic"
+          />
+        </div>
+        <div class="about-details-container">
+          <div class="about-details-spec-containers about-containers">
+            <div class="details-container">
+              <img
+                src="./assets/experience.png"
+                alt="Experience icon"
+                class="icon"
+              />
+              <h3>Experience</h3>
+              <p></p>Computer Vision | AI<br />Embedded Systems<br />Control Systems <br />Software Development<br />Data Analysis | Visualisation</p>
+            </div>
+            <div class="details-container">
+              <img
+                src="./assets/education.png"
+                alt="Education icon"
+                class="icon"
+              />
+              <h3>Education</h3>
+              <p>BEng (R&D) @ ANU<br />Mechatronics | CS <br />First Class Honours<br />6.72/7 GPA <br />99.20 ATAR</p>
+            </div>
+          </div>
+          <div class="text-container">
+            <div class="text-details-container">
+              <b>Introduction</b>
+              <ul>
+                <li> 
+                  Mechatronics Engineer passionate about the intersection of software, electronics, and control systems.
+                </li>
+                <li> 
+                  Engineering excites me as it combines theory and real-world application to solve meaningful problems.
+                </li>
+                <li> 
+                  Constantly inspired to learn, create, and innovate.    
+                </li>
+              </ul>
+            </div>
+            <div  class="text-details-container">
+              <b>Mission</b>
+              <ul>
+                <li> 
+                  Aspiring to create impactful engineering solutions, especially for humanitarian efforts in Sri Lanka.
+                </li>
+                <li> 
+                  Passionate about using robotics to improve quality of life.
+                </li>
+                <li> 
+                  Values-driven and thrive in mission-aligned environments.
+                </li>
+              </ul>
+            </div>
+            <div class="text-details-container">
+              <b>Interests</b>
+              <ul>
+                <li> 
+                  Lifelong learner with a strong growth mindset, confident in tackling new challenges.
+                </li>
+                <li> 
+                  Enjoys exploring music, attending concerts, and traveling to experience new cultures.
+                </li>
+                <li> 
+                  Loves playing and following sports like tennis, swimming, cricket, and badminton.
+                </li>
+              </ul>
+            </div>
+            <div class="text-details-container">
+              <b>In My Spare Time</b>
+              <ul>
+                <li> 
+                  Huge football fan, dedicated to playing and watching the game (FC Barcelona supporter).
+                </li>
+                <li> 
+                  Finds joy in service and giving back, fueled by purpose-driven activities.
+                </li>
+                <li> 
+                  Strongly connected to Buddhist values like gratitude and impermanence, which guide my outlook on life.
+                </li>
+              </ul>
+            </div>
+
+            
+            
+
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#experience'"
+      />
+    </section>
+    <section id="experience">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Experience</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <h2 class="experience-sub-title">Computer Vision and AI</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/icon_c++.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>C++</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-opencv.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>OpenCV</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-Python.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Python</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-PyTorch.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>PyTorch</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-TensorFlow.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>TensorFlow</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title">Embedded Systems</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/icon-ros.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>ROS</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-c.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>C</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article class="article-long-container">
+                <img
+                  src="./assets/icon-comms-protocol.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>UART | I2C | CAN | UDP</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-hdl.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Verilog</h3>
+                  <p>Entry-Level</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-altium.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Altium</h3>
+                  <p>Entry-Level</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title">Control Systems</h2>
+            <div class="article-container">
+              <article width="17rem">
+                <img
+                  src="./assets/icon-gps-denied.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>GPS-Denied Navigation</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-algorithm.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Algorithm Implementation</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-slam.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>SLAM</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-ardupilot.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>ArduPilot</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-state-machine.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>State Machines</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title">Software Development</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/icon-Git.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Git</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-Linux.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Linux</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article class="article-long-container">
+                <img
+                  src="./assets/icon-html-css-js.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>HTML | CSS | JS</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-Docker.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Docker</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-Vim.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Vim</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title">Data Analysis and Visualisation</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/icon-Pandas.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Pandas</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-seaborn.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Seaborn</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-Ploty.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Plotly</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-Matplotlib.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Matplotlib</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/icon-NumPy.svg"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Numpy</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#projects'"
+      />
+    </section>
+    <section id="projects">
+      <p class="section__text__p1">Browse My Recent</p>
+      <h1 class="title">Projects</h1>
+      <div class="experience-details-container">
+        <div class="about-projects-spec-containers about-containers">
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/ai-change-detection.png"
+                alt="Project 2"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">AI Change Detection System</h2>
+            <p>Near real-time change detection on the edge</p>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/bms.jpg"
+                alt="Project 3"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Battery Management System</h2>
+            <p>Automating safe charging</p>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/gps-denied-forest.jpeg"
+                alt="Project 3"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">GPS-Denied Navigation</h2>
+            <p>Integrated and tuned open source GPS-denied state estimator</p>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/games-connect4-snake.jpeg"
+                alt="Project 3"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Games in Python</h2>
+            <i>COMPLETE</i>
+            <p>Connect 4, Pong, Snake</p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/pwick15/games'"
+              >
+                GitHub
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/portfolio-website.jpeg"
+                alt="Project 3"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Portfolio Website</h2>
+            <i>COMPLETE</i>
+            <p>Website designed with HTML, CSS, JS</p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/pwick15/portfolio-website'"
+              >
+                GitHub
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/combined-xi-builder2.png"
+                alt="Project 1"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Football Combined XI Builder</h2>
+            <i>IN PROGRESS</i>
+            <p>Fans can generate the best combined XI of two teams of their choosing</p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/pwick15/combined-xi-builder'"
+              >
+                GitHub
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#contact'"
+      />
+    </section>
+    <section id="honours">
+      <p class="section__text__p1">Check Out My</p>
+      <h1 class="title">Honours</h1>
+      <div class="section-container">
+        <div class="honours__pic-container">
+          <img 
+            src="./assets/ai-awards-me-blured.svg"
+            alt="Profile picture"
+            class="awards-pic"
+          />
+        </div>
+        <div class="honours-details-container">
+          <div class="honours-containers">
+            <div class="details-container">
+              <img
+                src="./assets/experience.png"
+                alt="Experience icon"
+                class="icon"
+              />
+              <h3>Australian AI Awards Finalist 2024</h3>
+              <p>AI Innovator in Defence and National Security</p>
+              <div class="btn-container">
+                <button
+                  class="btn btn-color-2"
+                  onclick="location.href='https://australianaiawards.com.au/winners/2024-winners-and-finalists'"
+                  >More Info
+                </button>
+              </div>
+            </div>
+            <div class="details-container">
+              <img
+                src="./assets/education.png"
+                alt="Education icon"
+                class="icon"
+              />
+              <h3>Publication in European Journal of Control</h3>
+              <p>Constructive synchronous observer design for inertial navigation with delayed GNSS measurements</p>
+              <div class="btn-container">
+                <button
+                  class="btn btn-color-2"
+                  onclick="location.href='https://www.sciencedirect.com/science/article/pii/S0947358024001079'"
+                  >View Paper
+                </button>
+              </div>
+            </div>
+            <div class="details-container">
+              <img
+                src="./assets/experience.png"
+                alt="Experience icon"
+                class="icon"
+              />
+              <h3>CECS R&D Excellence Scholarship</h3>
+              <p>Awarded to excellent 1st year students at ANU</p>
+            </div>
+            <div class="details-container">
+              <img
+                src="./assets/experience.png"
+                alt="Experience icon"
+                class="icon"
+              />
+              <h3>CECC Dickins Scholarship</h3>
+              <p>Awarded to high-performing Engineering Honours students at ANU</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#experience'"
+      />
+    </section>
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img
+            src="./assets/email.png"
+            alt="Email icon"
+            class="icon contact-icon email-icon"
+          />
+          <p><a href="mailto:punjayawick@gmail.com">punjayawick@gmail.com</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
+          />
+          <p><a href="https://www.linkedin.com/in/punjayawick15/">punjayawick15</a></p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <nav>
+        <div class="nav-links-container">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#honours">Honours</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>Copyright &#169; 2024 Punjaya Wickramasinghe. All Rights Reserved.</p>
+      <p>Icons: icons8, techicons, flaticon</p>
+      <p>Images: ChatGPT, Microsoft Copilot, Google</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
