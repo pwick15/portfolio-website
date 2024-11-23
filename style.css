@@ -7,8 +7,16 @@
   padding: 0;
 }
 
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+
 body {
   font-family: "Poppins", sans-serif;
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
 }
 
 html {
@@ -148,12 +156,26 @@ a:hover {
 
 /* SECTIONS */
 
+
 section {
   padding-top: 4vh;
-  /* height: 96vh; */
+  height: 100vh;
   margin: 0 10rem;
   box-sizing: border-box;
   min-height: fit-content;
+  scroll-snap-align: start;
+  /* scroll-snap-stop: always; */
+  /* scroll-snap-type: y mandatory; */
+}
+
+#nav-section {
+  padding: 0;
+  max-height: 5vh;
+  /* height: 10vh; */
+}
+
+#desktop-nav {
+  max-height: 10vh;
 }
 
 /* PROFILE SECTION */
@@ -162,7 +184,7 @@ section {
   display: flex;
   justify-content: center;
   gap: 5rem;
-  height: 80vh;
+  height: 100vh;
 }
 
 .section__pic-container {
@@ -268,7 +290,7 @@ section {
 #about {
   position: relative;
   gap: 5rem;
-  height: 110vh;
+  /* height: 110vh; */
 }
 
 .about-containers {
@@ -353,7 +375,7 @@ section {
 
 .section-container {
   gap: 4rem; /* Maintain horizontal spacing between elements */
-  height: 80%;
+  /* height: 80%; */
   display: flex;
 
   /* Flexbox properties for horizontal alignment */
@@ -368,7 +390,7 @@ section {
 #experience {
   position: relative;
   gap: 5rem;
-  height: 110vh;
+  /* height: 110vh; */
   margin-bottom: 5rem;
 }
 
@@ -417,7 +439,7 @@ article .icon {
 #projects {
   position: relative;
   gap: 5rem;
-  height: 110vh;
+  /* height: 110vh; */
   margin-bottom: 5rem;
 }
 
@@ -445,7 +467,7 @@ article .icon {
 #honours {
   position: relative;
   gap: 5rem;
-  height: 110vh;
+  /* height: 110vh; */
 }
 
 

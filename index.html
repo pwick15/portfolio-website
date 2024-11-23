@@ -9,35 +9,37 @@
     <link rel="stylesheet" href="mediaqueries.css" />
   </head>
   <body>
-    <nav id="desktop-nav">
-      <div class="logo"></div>
-      <div>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#honours">Honours</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-    <nav id="hamburger-nav">
-      <div class="logo"></div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
+    <section id="nav-section">
+      <nav id="desktop-nav">
+        <div class="logo"></div>
+        <div>
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#honours">Honours</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
         </div>
-        <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#interests" onclick="toggleMenu()">Interests</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+      </nav>
+      <nav id="hamburger-nav">
+        <div class="logo"></div>
+        <div class="hamburger-menu">
+          <div class="hamburger-icon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="menu-links">
+            <li><a href="#about" onclick="toggleMenu()">About</a></li>
+            <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+            <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+            <li><a href="#interests" onclick="toggleMenu()">Interests</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </section>
     <section id="profile">
       <div class="section__pic-container">
         <img src="./assets/profile-pic.png" alt="profile picture" />
@@ -110,8 +112,8 @@
             <div class="text-details-container">
               <h2>Introduction</h2>
               <p>
-                Fascinated by the intersection between <b>software and electronics</b>, my main interest is in all things <b>robotics</b>. 
-                A chronic learner with the <b>growth mindset</b> needed to tackle any challenge and innovate.
+                Fascinated by the intersection between <b>software and electronics</b>. Interest is in all things <b>robotics</b>. 
+                A lifelong learner with the <b>growth mindset</b> needed to tackle any challenge and innovate.
               </p>
             </div>
             <div class="text-details-container">
@@ -125,7 +127,8 @@
             <div class="text-details-container">
               <h2>Interests</h2>
               <p>
-                Hugely passionate <b>football</b> fan (Visca el Barça) with other interests in music and travel. 
+                Hugely passionate <b>football</b> fan (Visca el Barça).
+                I also love music and travel. 
                 Strongly connected to <b>Buddhist values</b> like gratitude and impermanence, which guide my outlook on life.
               </p>
             </div>
@@ -561,13 +564,6 @@
       <p class="section__text__p1">Check Out My</p>
       <h1 class="title">Honours</h1>
       <div class="section-container">
-        <div class="honours__pic-container">
-          <img 
-            src="./assets/ai-awards-me-blured.svg"
-            alt="Profile picture"
-            class="awards-pic"
-          />
-        </div>
         <div class="honours-details-container">
           <div class="honours-containers">
             <div class="details-container-centred">
@@ -621,6 +617,13 @@
               <p>Awarded to high-performing Engineering Honours students at ANU</p>
             </div>
           </div>
+        </div>
+        <div class="honours__pic-container">
+          <img 
+            src="./assets/ai-awards-me-blured.svg"
+            alt="Profile picture"
+            class="awards-pic"
+          />
         </div>
       </div>
       <img
