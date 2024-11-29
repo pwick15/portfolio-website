@@ -1,4 +1,9 @@
 @media screen and (max-width: 1400px) {
+  body {
+    scroll-snap-type: none; /* Disables scroll snapping */
+    overflow-y: auto; /* Ensure scrolling works smoothly */
+  }
+
   #profile {
     height: 83vh;
     margin-bottom: 6rem;
@@ -13,6 +18,11 @@
 }
 
 @media screen and (max-width: 1200px) {
+
+  body {
+    scroll-snap-type: none; /* Disables scroll snapping */
+    overflow-y: auto; /* Ensure scrolling works smoothly */
+  }
   #desktop-nav {
     display: none;
   }
@@ -64,6 +74,10 @@
 }
 
 @media screen and (max-width: 600px) {
+  body {
+    scroll-snap-type: none; /* Disables scroll snapping */
+    overflow-y: auto; /* Ensure scrolling works smoothly */
+  }
   #contact,
   footer {
     height: 40vh;
