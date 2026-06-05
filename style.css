@@ -141,9 +141,10 @@ nav#desktop-nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0;
   z-index: 100;
   transition: var(--transition-smooth);
+  overflow: hidden;
 }
 
 .logo {
@@ -1236,22 +1237,35 @@ footer p {
   }
   nav#desktop-nav {
     width: 92%;
-    padding: 0 1rem;
-    height: 50px;
+    padding: 0;
+    height: 54px;
     top: 15px;
   }
   .nav-links {
-    gap: 1.5rem;
+    gap: 1.1rem;
     width: 100%;
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    justify-content: flex-start;
-    padding: 0 0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(66, 133, 244, 0.4) transparent;
+    justify-content: center;
+    padding: 0 0.5rem 4px;
+    box-sizing: border-box;
+  }
+  .nav-links a {
+    font-size: 0.82rem;
   }
   .nav-links::-webkit-scrollbar {
-    display: none;
+    display: block;
+    height: 3px;
+  }
+  .nav-links::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .nav-links::-webkit-scrollbar-thumb {
+    background: rgba(66, 133, 244, 0.4);
+    border-radius: 99px;
   }
 }
 
