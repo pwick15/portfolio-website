@@ -99,59 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ==========================================
-// 4. TSPARTICLES INTERACTIVE BACKGROUND
-// ==========================================
-document.addEventListener("DOMContentLoaded", () => {
-  tsParticles.load("tsparticles", {
-    fpsLimit: 60,
-    background: {
-      color: { value: "transparent" }
-    },
-    particles: {
-      number: {
-        value: 150,
-        density: { enable: true, value_area: 800 }
-      },
-      color: { value: ["#ffffff", "#4285f4", "#a855f7"] },
-      links: {
-        enable: true,
-        color: "#ffffff",
-        distance: 150,
-        opacity: 0.2,
-        width: 1
-      },
-      move: {
-        enable: true,
-        speed: 1.5,
-        direction: "none",
-        random: true,
-        straight: false,
-        outModes: "out"
-      },
-      size: {
-        value: { min: 1, max: 3 }
-      },
-      opacity: {
-        value: { min: 0.3, max: 0.7 }
-      }
-    },
-    interactivity: {
-      events: {
-        onHover: { enable: true, mode: "grab" },
-        onClick: { enable: true, mode: "push" },
-        resize: true
-      },
-      modes: {
-        grab: { distance: 200, links: { opacity: 0.5 } },
-        push: { quantity: 4 }
-      }
-    },
-    detectRetina: true
-  });
-});
-
-
-// ==========================================
 // 5. MINIMALIST TYPOGRAPHIC RAG ENGINE
 // ==========================================
 
