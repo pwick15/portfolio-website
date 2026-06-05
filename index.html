@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="mediaqueries.css" />
   </head>
   <body>
+    <canvas id="interactive-canvas"></canvas>
     <!-- DESKTOP NAVIGATION -->
     <nav id="desktop-nav">
       <div class="logo" onclick="location.href='#profile'">
@@ -49,13 +50,14 @@
 
     <!-- HERO / PROFILE SECTION -->
     <section id="profile">
-      <div class="profile-info reveal">
+      <div class="hero-container reveal">
         <div class="section__pic-container">
           <img src="./assets/profile-pic.png" alt="Punjaya Wickramasinghe Profile Picture" />
         </div>
         <p class="section__text__p1">Hello, I'm</p>
         <h1 class="title">Punjaya Wickramasinghe</h1>
         <p class="section__text__p2" id="typed-text"><span class="typing-cursor"></span></p>
+        
         <div class="btn-container">
           <button
             class="btn btn-color-1"
@@ -67,6 +69,7 @@
             Contact Info
           </button>
         </div>
+        
         <div id="socials-container">
           <img
             src="./assets/linkedin.png"
@@ -81,41 +84,39 @@
             onclick="window.open('https://github.com/pwick15', '_blank')"
           />
         </div>
-      </div>
 
-      <!-- CENTER-STAGE AI RAG CHAT CONSOLE -->
-      <div class="ai-console-wrapper reveal">
-        <div class="ai-console">
-          <div class="ai-console-header">
-            <div class="ai-console-title">
-              <span>🤖</span> Punjaya's AI RAG Assistant
-            </div>
-            <div class="ai-status">
-              <span class="status-dot"></span> Online
-            </div>
+        <!-- MINIMALIST GLOWING CHAT BAR -->
+        <div class="ai-chat-bar-container">
+          <div class="ai-chat-bar">
+            <span class="chat-bar-icon">🤖</span>
+            <input type="text" class="chat-bar-input" id="chat-input" placeholder="Ask my AI anything about my work..." onkeypress="handleKeyPress(event)" />
+            <button class="chat-bar-send" onclick="sendMessage()">
+              <svg viewBox="0 0 24 24">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+              </svg>
+            </button>
           </div>
-          <div class="ai-console-body">
-            <div class="chat-history" id="chat-history">
-              <div class="chat-msg bot">
-                <div class="msg-bubble">
-                  Hello! I'm Punjaya's AI Assistant. Ask me anything about his experience, publications, or projects, or click a prompt below!
-                </div>
-                <div class="msg-meta">Just now</div>
-              </div>
+          
+          <!-- Minimal Starter Prompts -->
+          <div class="starter-links" id="starter-chips">
+            <span class="starter-link" onclick="sendPrompt('What are your AI & Computer Vision skills?')">AI & CV Skills</span>
+            <span class="divider">•</span>
+            <span class="starter-link" onclick="sendPrompt('Tell me about your research papers')">Research Papers</span>
+            <span class="divider">•</span>
+            <span class="starter-link" onclick="sendPrompt('What robotics projects have you built?')">Robotics Projects</span>
+          </div>
+        </div>
+
+        <!-- TYPOGRAPHIC AI RESPONSE PANEL -->
+        <div class="ai-response-panel" id="ai-response-panel">
+          <div class="response-header">
+            <div class="response-title">
+              <span>🤖</span> AI Response
             </div>
-            <div class="starter-chips" id="starter-chips">
-              <button class="starter-chip" onclick="sendPrompt('What are your AI & Computer Vision skills?')">AI & CV Skills</button>
-              <button class="starter-chip" onclick="sendPrompt('Tell me about your research papers')">Research Papers</button>
-              <button class="starter-chip" onclick="sendPrompt('What robotics projects have you built?')">Robotics Projects</button>
-            </div>
-            <div class="chat-input-wrapper">
-              <input type="text" class="chat-input" id="chat-input" placeholder="Ask anything about my background..." onkeypress="handleKeyPress(event)" />
-              <button class="chat-send-btn" onclick="sendMessage()">
-                <svg viewBox="0 0 24 24">
-                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
-                </svg>
-              </button>
-            </div>
+            <button class="response-clear-btn" onclick="clearResponse()">Clear</button>
+          </div>
+          <div class="response-content" id="chat-history">
+            <!-- Streaming RAG response goes here -->
           </div>
         </div>
       </div>

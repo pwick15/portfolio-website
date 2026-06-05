@@ -3,7 +3,8 @@
    1. Mobile Navigation Hamburger Menu Toggle
    2. Scroll Reveal Observer (entrance animations)
    3. Hero Subtitle Typing Effect
-   4. Local Mock RAG AI Chatbot Engine (AWS Ready)
+   4. Interactive Constellation Physics Canvas (Gemini Style)
+   5. Minimalist AI prompt search and typographic response panel
 */
 
 // ==========================================
@@ -16,7 +17,6 @@ function toggleMenu() {
   icon.classList.toggle("open");
 }
 
-// Close mobile menu when clicking a link
 document.querySelectorAll(".menu-links a").forEach(link => {
   link.addEventListener("click", () => {
     const menu = document.querySelector(".menu-links");
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
-        observer.unobserve(entry.target); // Reveal only once
+        observer.unobserve(entry.target);
       }
     });
   }, {
@@ -62,9 +62,9 @@ let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
 const typedTextSpan = document.getElementById("typed-text");
-const typingSpeed = 70; // ms
-const erasingSpeed = 40; // ms
-const newWordDelay = 2000; // ms to display word
+const typingSpeed = 60;
+const erasingSpeed = 30;
+const newWordDelay = 2000;
 
 function typeEffect() {
   if (!typedTextSpan) return;
@@ -83,38 +83,267 @@ function typeEffect() {
 
   if (!isDeleting && charIndex === currentWord.length) {
     isDeleting = true;
-    delay = newWordDelay; // wait before deleting
+    delay = newWordDelay;
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false;
-    wordIndex = (wordIndex + 1) % words.length; // move to next word
-    delay = 500; // brief pause before starting new word
+    wordIndex = (wordIndex + 1) % words.length;
+    delay = 500;
   }
 
   setTimeout(typeEffect, delay);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  setTimeout(typeEffect, 1000);
+  setTimeout(typeEffect, 800);
 });
 
+
 // ==========================================
-// 4. MOCK RAG AI ENGINE (AWS-READY)
+// 4. INTERACTIVE PHYSICS CANVAS (GEMINI ABOUT)
 // ==========================================
 
-// AWS INTEGRATION SETTINGS
-// To connect your live AWS instance:
-// 1. Set USE_MOCK_RAG = false;
-// 2. Set AWS_API_ENDPOINT to your AWS API Gateway/Lambda endpoint.
+const PALETTES = [
+  // Palette 0: Cool tech colors (cyan/blue/purple)
+  {
+    primary: [66, 133, 244], // #4285f4
+    colors: [[66, 133, 244], [168, 85, 247], [14, 165, 233]]
+  },
+  // Palette 1: Amber Gold
+  {
+    primary: [245, 158, 11], // #f59e0b
+    colors: [[245, 158, 11], [239, 68, 68], [249, 115, 22]]
+  },
+  // Palette 2: Emerald Mint
+  {
+    primary: [16, 185, 129], // #10b981
+    colors: [[16, 185, 129], [6, 182, 212], [52, 211, 153]]
+  },
+  // Palette 3: Elegant Silver
+  {
+    primary: [255, 255, 255], // #ffffff
+    colors: [[255, 255, 255], [161, 161, 166], [81, 81, 84]]
+  }
+];
+
+let activePaletteIndex = 0;
+let mouse = { x: null, y: null, px: null, py: null, radius: 160 };
+let isDragging = false;
+
+// Apply active palette primary color to CSS variables for dynamic accent shifts
+function applyPaletteToCSS(palette) {
+  const primaryRGB = `rgb(${palette.primary[0]}, ${palette.primary[1]}, ${palette.primary[2]})`;
+  document.documentElement.style.setProperty('--primary', primaryRGB);
+  document.documentElement.style.setProperty(
+    '--primary-glow', 
+    `rgba(${palette.primary[0]}, ${palette.primary[1]}, ${palette.primary[2]}, 0.08)`
+  );
+}
+
+class Particle {
+  constructor(canvasWidth, canvasHeight) {
+    this.canvasWidth = canvasWidth;
+    this.canvasHeight = canvasHeight;
+    this.reset();
+  }
+
+  reset() {
+    this.baseX = Math.random() * this.canvasWidth;
+    this.baseY = Math.random() * this.canvasHeight;
+    this.x = this.baseX;
+    this.y = this.baseY;
+    this.vx = 0;
+    this.vy = 0;
+    this.size = Math.random() * 2 + 1; // size between 1 and 3px
+    this.angle = Math.random() * Math.PI * 2;
+    this.floatSpeed = Math.random() * 0.015 + 0.005;
+    this.floatDistance = Math.random() * 10 + 5;
+    
+    // Assign a color index
+    this.colorIndex = Math.floor(Math.random() * 3);
+    const startPalette = PALETTES[activePaletteIndex].colors[this.colorIndex];
+    this.currentRGB = [...startPalette];
+  }
+
+  update(canvasWidth, canvasHeight) {
+    this.canvasWidth = canvasWidth;
+    this.canvasHeight = canvasHeight;
+
+    // 1. Smoothly Morph Colors to Active Palette
+    const targetRGB = PALETTES[activePaletteIndex].colors[this.colorIndex];
+    this.currentRGB[0] += (targetRGB[0] - this.currentRGB[0]) * 0.05;
+    this.currentRGB[1] += (targetRGB[1] - this.currentRGB[1]) * 0.05;
+    this.currentRGB[2] += (targetRGB[2] - this.currentRGB[2]) * 0.05;
+
+    // 2. Wave-like floating drift
+    this.angle += this.floatSpeed;
+    const floatX = Math.sin(this.angle) * this.floatDistance;
+    const floatY = Math.cos(this.angle) * this.floatDistance;
+    const currentBaseX = this.baseX + floatX;
+    const currentBaseY = this.baseY + floatY;
+
+    // 3. Mouse Interaction (Repulsion & Drag Physics)
+    if (mouse.x !== null) {
+      const dx = this.x - mouse.x;
+      const dy = this.y - mouse.y;
+      const distance = Math.hypot(dx, dy);
+
+      if (distance < mouse.radius) {
+        const force = (mouse.radius - distance) / mouse.radius;
+        const pushAngle = Math.atan2(dy, dx);
+        
+        // Push force away from mouse
+        this.vx += Math.cos(pushAngle) * force * 1.5;
+        this.vy += Math.sin(pushAngle) * force * 1.5;
+
+        // Mouse Drag Fluidity: pull particles along with mouse velocity
+        if (mouse.px !== null && isDragging) {
+          const mouseVx = mouse.x - mouse.px;
+          const mouseVy = mouse.y - mouse.py;
+          this.vx += mouseVx * force * 0.12;
+          this.vy += mouseVy * force * 0.12;
+        }
+      }
+    }
+
+    // 4. Spring Return Force to Base Position
+    const returnForceX = (currentBaseX - this.x) * 0.008;
+    const returnForceY = (currentBaseY - this.y) * 0.008;
+    this.vx += returnForceX;
+    this.vy += returnForceY;
+
+    // 5. Apply Friction and Move
+    this.vx *= 0.90;
+    this.vy *= 0.90;
+    this.x += this.vx;
+    this.y += this.vy;
+  }
+
+  draw(ctx) {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${Math.round(this.currentRGB[0])}, ${Math.round(this.currentRGB[1])}, ${Math.round(this.currentRGB[2])}, 0.5)`;
+    ctx.fill();
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById("interactive-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  
+  let particles = [];
+  const particleCount = 85;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    // Regenerate particles
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle(canvas.width, canvas.height));
+    }
+  }
+
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+
+  // Track mouse coordinates
+  window.addEventListener("mousemove", (e) => {
+    mouse.px = mouse.x;
+    mouse.py = mouse.y;
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  window.addEventListener("mousedown", (e) => {
+    isDragging = true;
+  });
+
+  window.addEventListener("mouseup", () => {
+    isDragging = false;
+  });
+
+  window.addEventListener("mouseleave", () => {
+    mouse.x = null;
+    mouse.y = null;
+    isDragging = false;
+  });
+
+  // Cycle palette on neutral click
+  window.addEventListener("click", (e) => {
+    // Prevent cycling if user clicked on button, link, search bar, or chip
+    if (e.target.closest("input, button, a, .starter-link, .icon")) {
+      return;
+    }
+    
+    activePaletteIndex = (activePaletteIndex + 1) % PALETTES.length;
+    applyPaletteToCSS(PALETTES[activePaletteIndex]);
+  });
+
+  // Main animation frame loop
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Update and draw particles
+    particles.forEach(p => p.update(canvas.width, canvas.height));
+
+    // Draw lines between nearby particles
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist < 110) {
+          const alpha = (110 - dist) / 110 * 0.12;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          
+          // Mix line color based on the two connected particles
+          const r = Math.round((particles[i].currentRGB[0] + particles[j].currentRGB[0]) / 2);
+          const g = Math.round((particles[i].currentRGB[1] + particles[j].currentRGB[1]) / 2);
+          const b = Math.round((particles[i].currentRGB[2] + particles[j].currentRGB[2]) / 2);
+          
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    particles.forEach(p => p.draw(ctx));
+    
+    // Smooth reset of mouse previous coordinates to prevent large inertia jumps
+    if (mouse.px !== null) {
+      mouse.px += (mouse.x - mouse.px) * 0.1;
+      mouse.py += (mouse.y - mouse.py) * 0.1;
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+  
+  // Set initial color variables
+  applyPaletteToCSS(PALETTES[activePaletteIndex]);
+});
+
+
+// ==========================================
+// 5. MINIMALIST TYPOGRAPHIC RAG ENGINE
+// ==========================================
+
 const USE_MOCK_RAG = true;
 const AWS_API_ENDPOINT = "https://your-api-id.execute-api.us-east-1.amazonaws.com/prod/chat";
 
-// Local RAG database compiled from website/resume content
 const RAG_DATABASE = [
   {
     keywords: ["skills", "skill", "technologies", "programming", "languages", "c++", "python", "pytorch", "tensorflow", "opencv", "verilog", "altium", "ros", "ros2"],
     response: "Punjaya's skillset spans across Mechatronics, CS, and AI. Highlights include:\n\n" +
               "• **Computer Vision & AI**: Python, OpenCV (Experienced), PyTorch, TensorFlow, C++ (Intermediate).\n" +
-              "• **Embedded Systems**: ROS/ROS2, C, UART | I2C | CAN | UDP (Intermediate), Verilog, Altium (Entry).\n" +
+              "• **Embedded Systems**: ROS/ROS2, C, UART | I2C | CAN | UDP (Intermediate), Verilog, Altium Designer.\n" +
               "• **Control Systems**: GPS-Denied Navigation, State Estimation, SLAM, ArduPilot, State Machines.\n" +
               "• **Software Dev**: Git, Linux, Vim/Neovim, Docker, HTML/CSS/JS.\n" +
               "• **Data Analysis**: NumPy, Pandas, Plotly, Matplotlib, Seaborn."
@@ -123,11 +352,11 @@ const RAG_DATABASE = [
     keywords: ["paper", "publication", "publications", "research", "journal", "european journal", "ejoc", "observer", "navigation", "gnss"],
     response: "Punjaya co-authored a peer-reviewed research paper in the **European Journal of Control (2024)** titled:\n\n" +
               "*\"Constructive synchronous observer design for inertial navigation with delayed GNSS measurements\"*.\n\n" +
-              "This work presents the first observer for Inertial Navigation Systems (INS) with delayed GNSS measurements to feature almost global asymptotic and local exponential stability. You can view the paper using the button in the **Honours** or **Projects** sections!"
+              "This work presents the first observer for Inertial Navigation Systems (INS) with delayed GNSS measurements to feature almost global asymptotic and local exponential stability. You can view the paper in the **Honours** or **Projects** sections!"
   },
   {
     keywords: ["awards", "award", "finalist", "national security", "defence", "australian ai awards", "scholars", "scholarship", "cecs", "dickins"],
-    response: "Punjaya has received notable honours:\n\n" +
+    response: "Punjaya has received notable academic and professional awards:\n\n" +
               "• **Australian AI Awards Finalist 2024**: Named a national finalist for *AI Innovator in Defence and National Security*.\n" +
               "• **CECS R&D Excellence Scholarship**: Awarded to high-performing research-stream engineering students at ANU.\n" +
               "• **CECC Dickins Scholarship**: Awarded to high-achieving Honours students at ANU."
@@ -162,25 +391,15 @@ const RAG_DATABASE = [
   }
 ];
 
-// Fallback response when no keywords match
-const FALLBACK_RESPONSE = "I'm not sure about that specific query. I can tell you about Punjaya's:\n\n" +
+const FALLBACK_RESPONSE = "I couldn't find a direct match for that query. I can tell you about Punjaya's:\n\n" +
                           "• **Research Papers** (EJoC inertial navigation observer paper)\n" +
                           "• **AI Awards Finalist 2024** nomination\n" +
                           "• **Core Skills** (Python, C++, PyTorch, ROS, Control systems)\n" +
                           "• **Engineering Projects** (Change detection, BMS, AirSim simulator)\n" +
                           "• **Education** (First Class Honours, GPA 6.72/7 at ANU)\n" +
                           "• **Contact info**\n\n" +
-                          "Try clicking one of the prompt chips below, or ask a question containing these terms!";
+                          "Try asking another question, or click one of the suggestion chips!";
 
-// Helper to scroll the chat history to the bottom
-function scrollToBottom() {
-  const chatHistory = document.getElementById("chat-history");
-  if (chatHistory) {
-    chatHistory.scrollTop = chatHistory.scrollHeight;
-  }
-}
-
-// Trigger query when starter chips are clicked
 function sendPrompt(promptText) {
   const chatInput = document.getElementById("chat-input");
   if (chatInput) {
@@ -189,14 +408,22 @@ function sendPrompt(promptText) {
   }
 }
 
-// Handle hitting Enter in the input bar
 function handleKeyPress(event) {
   if (event.key === "Enter") {
     sendMessage();
   }
 }
 
-// Main function to send message and trigger the RAG query
+function clearResponse() {
+  const panel = document.getElementById("ai-response-panel");
+  const content = document.getElementById("chat-history");
+  const input = document.getElementById("chat-input");
+  
+  if (panel) panel.style.display = "none";
+  if (content) content.innerHTML = "";
+  if (input) input.value = "";
+}
+
 async function sendMessage() {
   const chatInput = document.getElementById("chat-input");
   if (!chatInput) return;
@@ -204,127 +431,62 @@ async function sendMessage() {
   const query = chatInput.value.trim();
   if (query === "") return;
   
-  // Clear input
-  chatInput.value = "";
-  
-  // Append user message
-  appendMessage(query, "user");
-  scrollToBottom();
+  // Show response panel
+  const panel = document.getElementById("ai-response-panel");
+  if (panel) panel.style.display = "block";
   
   // Add typing indicator
-  const typingIndicator = appendTypingIndicator();
-  scrollToBottom();
+  const content = document.getElementById("chat-history");
+  content.innerHTML = `
+    <div class="typing-indicator">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  `;
   
   try {
     let answerText = "";
     
     if (USE_MOCK_RAG) {
-      // Run local keyword matching mock
+      // Mock search query
       answerText = queryMockRAG(query);
-      // Simulate artificial network delay
       await new Promise(resolve => setTimeout(resolve, 800));
     } else {
-      // Execute live AWS fetch
+      // Live AWS fetch
       const response = await fetch(AWS_API_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: query })
       });
       if (!response.ok) {
-        throw new Error("AWS network response was not ok");
+        throw new Error("AWS request failed");
       }
       const data = await response.json();
-      answerText = data.response || "Received empty response from AWS RAG server.";
+      answerText = data.response || "No response received.";
     }
     
-    // Remove typing indicator and stream response
-    removeTypingIndicator(typingIndicator);
+    // Clear typing and stream the response
+    content.innerHTML = "";
     await streamResponse(answerText);
     
   } catch (error) {
-    console.error("RAG Error:", error);
-    removeTypingIndicator(typingIndicator);
-    await streamResponse("Sorry, I encountered an error connecting to the RAG database. Please check my contact details or try again later!");
+    console.error("RAG error:", error);
+    content.innerHTML = "Sorry, I had trouble connecting to the RAG database. Please check my contact details or try again later!";
   }
 }
 
-// Append a message bubble to the chat box
-function appendMessage(text, sender) {
-  const chatHistory = document.getElementById("chat-history");
-  if (!chatHistory) return;
-  
-  const msgDiv = document.createElement("div");
-  msgDiv.className = `chat-msg ${sender}`;
-  
-  // Format basic markdown bolding/bullets into HTML
-  let formattedText = text
-    .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
-    .replace(/\*(.*?)\*/g, '<i>$1</i>')
-    .replace(/\n/g, '<br>')
-    .replace(/• /g, '• ');
-
-  msgDiv.innerHTML = `
-    <div class="msg-bubble">${formattedText}</div>
-    <div class="msg-meta">${sender === 'user' ? 'You' : 'AI Assistant'} • Just now</div>
-  `;
-  
-  chatHistory.appendChild(msgDiv);
-}
-
-// Add typing bubble
-function appendTypingIndicator() {
-  const chatHistory = document.getElementById("chat-history");
-  if (!chatHistory) return null;
-  
-  const indicatorDiv = document.createElement("div");
-  indicatorDiv.className = "chat-msg bot";
-  indicatorDiv.innerHTML = `
-    <div class="msg-bubble">
-      <div class="typing-indicator">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  `;
-  chatHistory.appendChild(indicatorDiv);
-  return indicatorDiv;
-}
-
-// Remove typing bubble
-function removeTypingIndicator(indicatorDiv) {
-  if (indicatorDiv && indicatorDiv.parentNode) {
-    indicatorDiv.parentNode.removeChild(indicatorDiv);
-  }
-}
-
-// Stream the response string character-by-character
 async function streamResponse(fullText) {
-  const chatHistory = document.getElementById("chat-history");
-  if (!chatHistory) return;
+  const content = document.getElementById("chat-history");
+  if (!content) return;
   
-  const msgDiv = document.createElement("div");
-  msgDiv.className = "chat-msg bot";
-  
-  // Prepare HTML structure
-  msgDiv.innerHTML = `
-    <div class="msg-bubble"></div>
-    <div class="msg-meta">AI Assistant • Just now</div>
-  `;
-  chatHistory.appendChild(msgDiv);
-  
-  const bubble = msgDiv.querySelector(".msg-bubble");
-  
-  // Stream words/characters to avoid raw HTML tags rendering sequentially
-  // To stream cleanly while supporting markdown bold/italic/links, we'll split by chars/words
-  // or just render it quickly word-by-word. Word-by-word is faster and safer for formatting.
   const wordsArray = fullText.split(" ");
   let currentHTML = "";
   
   for (let i = 0; i < wordsArray.length; i++) {
     currentHTML += wordsArray[i] + " ";
     
-    // Parse formatting on current buffer
+    // Parse markdown tags
     let tempText = currentHTML
       .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
       .replace(/\*(.*?)\*/g, '<i>$1</i>')
@@ -332,19 +494,15 @@ async function streamResponse(fullText) {
       .replace(/\n/g, '<br>')
       .replace(/• /g, '• ');
       
-    bubble.innerHTML = tempText;
-    scrollToBottom();
+    content.innerHTML = tempText;
     
-    // Typing speed control
-    await new Promise(resolve => setTimeout(resolve, 40));
+    // Typing delay
+    await new Promise(resolve => setTimeout(resolve, 35));
   }
 }
 
-// Query local mock search index
 function queryMockRAG(query) {
   const lowercaseQuery = query.toLowerCase();
-  
-  // Check matching keywords
   for (const doc of RAG_DATABASE) {
     for (const keyword of doc.keywords) {
       if (lowercaseQuery.includes(keyword)) {
@@ -352,6 +510,5 @@ function queryMockRAG(query) {
       }
     }
   }
-  
   return FALLBACK_RESPONSE;
 }
