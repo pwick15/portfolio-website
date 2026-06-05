@@ -107,6 +107,22 @@ a:hover {
 
 /* STICKY DESKTOP NAV */
 
+@keyframes navGlow {
+  0% {
+    background-position: 0% 50%;
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  50% {
+    background-position: 100% 50%;
+    border-color: rgba(66, 133, 244, 0.25);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25), 0 0 15px rgba(66, 133, 244, 0.10);
+  }
+  100% {
+    background-position: 0% 50%;
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
 nav#desktop-nav {
   position: fixed;
   top: 20px;
@@ -115,7 +131,9 @@ nav#desktop-nav {
   width: 85%;
   max-width: 900px;
   height: 60px;
-  background: rgba(15, 25, 45, 0.45);
+  background: linear-gradient(125deg, rgba(15, 25, 45, 0.45), rgba(30, 50, 90, 0.35), rgba(15, 25, 45, 0.45));
+  background-size: 200% 200%;
+  animation: navGlow 8s ease-in-out infinite;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -126,7 +144,6 @@ nav#desktop-nav {
   padding: 0 2rem;
   z-index: 100;
   transition: var(--transition-smooth);
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
 }
 
 .logo {
@@ -186,7 +203,9 @@ nav#desktop-nav {
   right: 20px;
   width: 55px;
   height: 55px;
-  background: rgba(15, 25, 45, 0.45);
+  background: linear-gradient(125deg, rgba(15, 25, 45, 0.45), rgba(30, 50, 90, 0.35), rgba(15, 25, 45, 0.45));
+  background-size: 200% 200%;
+  animation: navGlow 8s ease-in-out infinite;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -194,7 +213,6 @@ nav#desktop-nav {
   justify-content: center;
   align-items: center;
   z-index: 100;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
 }
 
 .hamburger-menu {
@@ -331,8 +349,8 @@ section {
 
 .section__pic-container {
   display: flex;
-  width: 130px;
-  height: 130px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -494,7 +512,6 @@ section {
   transition: var(--transition-smooth);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03);
   position: relative;
-  overflow: hidden;
 }
 
 .ai-chat-bar:hover {
@@ -506,26 +523,6 @@ section {
   background: rgba(255, 255, 255, 0.05);
   animation: pulseGlow 2.5s ease-in-out infinite;
   outline: none;
-}
-
-.chat-ripple {
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  animation: rippleEffect 0.6s cubic-bezier(0.1, 0.8, 0.3, 1);
-  background: rgba(66, 133, 244, 0.25);
-  pointer-events: none;
-  width: 120px;
-  height: 120px;
-  margin-left: -60px;
-  margin-top: -60px;
-}
-
-@keyframes rippleEffect {
-  to {
-    transform: scale(6);
-    opacity: 0;
-  }
 }
 
 .chat-bar-icon {
@@ -1236,6 +1233,10 @@ footer p {
     font-size: 2rem;
     margin-bottom: 2rem;
   }
+  .section__pic-container {
+    width: 160px;
+    height: 160px;
+  }
   .hero-container .title {
     font-size: 2.2rem;
   }
@@ -1274,33 +1275,9 @@ footer p {
   }
 }
 
-/* PREMIUM GLOSSY CARD SHINE EFFECT */
-.project-card, .details-container, .contact-card, .honour-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.project-card::after, .details-container::after, .contact-card::after, .honour-card::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -80%;
-  width: 30%;
-  height: 200%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.12) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  transform: rotate(30deg);
-  opacity: 0;
-  pointer-events: none;
-  transition: none;
-}
-
-.project-card:hover::after, .details-container:hover::after, .contact-card:hover::after, .honour-card:hover::after {
-  opacity: 1;
-  left: 150%;
-  transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+/* SOFT HALO HOVER EFFECT */
+.project-card:hover, .details-container:hover, .contact-card:hover, .honour-card:hover {
+  border-color: rgba(66, 133, 244, 0.3) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45), 0 0 25px rgba(66, 133, 244, 0.1) !important;
 }

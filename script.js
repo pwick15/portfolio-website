@@ -280,34 +280,6 @@ function queryMockRAG(query) {
   return FALLBACK_RESPONSE;
 }
 
-// ==========================================
-// 6. CHAT BAR RIPPLE CLICK EFFECT
-// ==========================================
-document.addEventListener("DOMContentLoaded", () => {
-  const chatBar = document.querySelector('.ai-chat-bar');
-  if (chatBar) {
-    chatBar.addEventListener('click', function(e) {
-      // Don't trigger ripple if clicked input or send button directly
-      if (e.target.closest('input') || e.target.closest('button')) return;
-      
-      const ripple = document.createElement('span');
-      ripple.classList.add('chat-ripple');
-      
-      const rect = chatBar.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      ripple.style.left = `${x}px`;
-      ripple.style.top = `${y}px`;
-      
-      chatBar.appendChild(ripple);
-      
-      setTimeout(() => {
-        ripple.remove();
-      }, 600);
-    });
-  }
-});
 
 // ==========================================
 // 7. SCROLL-DRIVEN BACKGROUND GRADIENT
