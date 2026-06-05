@@ -181,14 +181,24 @@ function handleKeyPress(event) {
   }
 }
 
+let exchangeCount = 0;
+
 function clearResponse() {
   const panel = document.getElementById("ai-response-panel");
   const content = document.getElementById("chat-history");
   const input = document.getElementById("chat-input");
+  const chatBarContainer = document.querySelector(".ai-chat-bar-container");
   
   if (panel) panel.style.display = "none";
   if (content) content.innerHTML = "";
   if (input) input.value = "";
+
+  // Move chat bar back above the response panel
+  if (chatBarContainer && panel) {
+    panel.parentNode.insertBefore(chatBarContainer, panel);
+    chatBarContainer.classList.remove("shifted");
+  }
+  exchangeCount = 0;
 }
 
 async function sendMessage() {
@@ -201,26 +211,55 @@ async function sendMessage() {
   // Show response panel
   const panel = document.getElementById("ai-response-panel");
   if (panel) panel.style.display = "block";
+
+  // Shift chat bar below response panel dynamically
+  const chatBarContainer = document.querySelector(".ai-chat-bar-container");
+  if (chatBarContainer && panel) {
+    panel.parentNode.insertBefore(chatBarContainer, panel.nextSibling);
+    chatBarContainer.classList.add("shifted");
+  }
+
+  // Minimize previous exchanges
+  document.querySelectorAll(".chat-exchange").forEach(exch => {
+    exch.classList.add("minimized");
+    const act = exch.querySelector(".chat-header-action");
+    if (act) act.textContent = "[Show]";
+  });
+
+  // Create new chat exchange
+  exchangeCount++;
+  const currentId = exchangeCount;
   
-  // Add typing indicator
-  const content = document.getElementById("chat-history");
-  content.innerHTML = `
-    <div class="typing-indicator">
-      <span></span>
-      <span></span>
-      <span></span>
+  const newExchange = document.createElement("div");
+  newExchange.className = "chat-exchange";
+  newExchange.id = `exchange-${currentId}`;
+  newExchange.innerHTML = `
+    <div class="chat-header-row" onclick="toggleExchange(${currentId})">
+      <span class="chat-header-q">Q: "${query}"</span>
+      <span class="chat-header-action" id="action-${currentId}">[Hide]</span>
+    </div>
+    <div class="chat-body" id="body-${currentId}">
+      <div class="typing-indicator">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   `;
+
+  const content = document.getElementById("chat-history");
+  content.appendChild(newExchange);
+
+  // Clear input field immediately
+  chatInput.value = "";
   
   try {
     let answerText = "";
     
     if (USE_MOCK_RAG) {
-      // Mock search query
       answerText = queryMockRAG(query);
       await new Promise(resolve => setTimeout(resolve, 800));
     } else {
-      // Live AWS fetch
       const response = await fetch(AWS_API_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -234,18 +273,24 @@ async function sendMessage() {
     }
     
     // Clear typing and stream the response
-    content.innerHTML = "";
-    await streamResponse(answerText);
+    const bodyDiv = document.getElementById(`body-${currentId}`);
+    if (bodyDiv) {
+      bodyDiv.innerHTML = "";
+      await streamResponse(answerText, currentId);
+    }
     
   } catch (error) {
     console.error("RAG error:", error);
-    content.innerHTML = "Sorry, I had trouble connecting to the RAG database. Please check my contact details or try again later!";
+    const bodyDiv = document.getElementById(`body-${currentId}`);
+    if (bodyDiv) {
+      bodyDiv.innerHTML = "Sorry, I had trouble connecting to the RAG database. Please check my contact details or try again later!";
+    }
   }
 }
 
-async function streamResponse(fullText) {
-  const content = document.getElementById("chat-history");
-  if (!content) return;
+async function streamResponse(fullText, exchangeId) {
+  const bodyDiv = document.getElementById(`body-${exchangeId}`);
+  if (!bodyDiv) return;
   
   const wordsArray = fullText.split(" ");
   let currentHTML = "";
@@ -261,10 +306,35 @@ async function streamResponse(fullText) {
       .replace(/\n/g, '<br>')
       .replace(/• /g, '• ');
       
-    content.innerHTML = tempText;
+    bodyDiv.innerHTML = tempText;
     
     // Typing delay
     await new Promise(resolve => setTimeout(resolve, 35));
+  }
+}
+
+function toggleExchange(id) {
+  const exch = document.getElementById(`exchange-${id}`);
+  if (!exch) return;
+  
+  const isMinimized = exch.classList.contains("minimized");
+  const actionSpan = document.getElementById(`action-${id}`);
+  
+  if (isMinimized) {
+    // Minimize all other exchanges to keep UI clean
+    document.querySelectorAll(".chat-exchange").forEach(e => {
+      e.classList.add("minimized");
+      const act = e.querySelector(".chat-header-action");
+      if (act) act.textContent = "[Show]";
+    });
+    
+    // Expand this one
+    exch.classList.remove("minimized");
+    if (actionSpan) actionSpan.textContent = "[Hide]";
+  } else {
+    // Collapse this one
+    exch.classList.add("minimized");
+    if (actionSpan) actionSpan.textContent = "[Show]";
   }
 }
 
