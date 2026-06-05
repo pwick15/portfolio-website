@@ -309,3 +309,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// ==========================================
+// 7. SCROLL-DRIVEN BACKGROUND GRADIENT
+// ==========================================
+window.addEventListener('scroll', () => {
+  const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (documentHeight <= 0) return;
+  const scrollPercent = window.scrollY / documentHeight;
+  
+  // Shift background position based on scroll percentage
+  const xPos = scrollPercent * 100;
+  const yPos = scrollPercent * 100;
+  document.body.style.backgroundPosition = `${xPos}% ${yPos}%`;
+});
+
