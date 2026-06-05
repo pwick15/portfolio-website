@@ -99,235 +99,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ==========================================
-// 4. INTERACTIVE PHYSICS CANVAS (GEMINI ABOUT)
+// 4. TSPARTICLES INTERACTIVE BACKGROUND
 // ==========================================
-
-const PALETTES = [
-  // Palette 0: Cool tech colors (cyan/blue/purple)
-  {
-    primary: [66, 133, 244], // #4285f4
-    colors: [[66, 133, 244], [168, 85, 247], [14, 165, 233]]
-  },
-  // Palette 1: Amber Gold
-  {
-    primary: [245, 158, 11], // #f59e0b
-    colors: [[245, 158, 11], [239, 68, 68], [249, 115, 22]]
-  },
-  // Palette 2: Emerald Mint
-  {
-    primary: [16, 185, 129], // #10b981
-    colors: [[16, 185, 129], [6, 182, 212], [52, 211, 153]]
-  },
-  // Palette 3: Elegant Silver
-  {
-    primary: [255, 255, 255], // #ffffff
-    colors: [[255, 255, 255], [161, 161, 166], [81, 81, 84]]
-  }
-];
-
-let activePaletteIndex = 0;
-let mouse = { x: null, y: null, px: null, py: null, radius: 160 };
-let isDragging = false;
-
-// Apply active palette primary color to CSS variables for dynamic accent shifts
-function applyPaletteToCSS(palette) {
-  const primaryRGB = `rgb(${palette.primary[0]}, ${palette.primary[1]}, ${palette.primary[2]})`;
-  document.documentElement.style.setProperty('--primary', primaryRGB);
-  document.documentElement.style.setProperty(
-    '--primary-glow', 
-    `rgba(${palette.primary[0]}, ${palette.primary[1]}, ${palette.primary[2]}, 0.08)`
-  );
-}
-
-class Particle {
-  constructor(canvasWidth, canvasHeight) {
-    this.canvasWidth = canvasWidth;
-    this.canvasHeight = canvasHeight;
-    this.reset();
-  }
-
-  reset() {
-    this.baseX = Math.random() * this.canvasWidth;
-    this.baseY = Math.random() * this.canvasHeight;
-    this.x = this.baseX;
-    this.y = this.baseY;
-    this.vx = 0;
-    this.vy = 0;
-    this.size = Math.random() * 2 + 1; // size between 1 and 3px
-    this.angle = Math.random() * Math.PI * 2;
-    this.floatSpeed = Math.random() * 0.015 + 0.005;
-    this.floatDistance = Math.random() * 10 + 5;
-    
-    // Assign a color index
-    this.colorIndex = Math.floor(Math.random() * 3);
-    const startPalette = PALETTES[activePaletteIndex].colors[this.colorIndex];
-    this.currentRGB = [...startPalette];
-  }
-
-  update(canvasWidth, canvasHeight) {
-    this.canvasWidth = canvasWidth;
-    this.canvasHeight = canvasHeight;
-
-    // 1. Smoothly Morph Colors to Active Palette
-    const targetRGB = PALETTES[activePaletteIndex].colors[this.colorIndex];
-    this.currentRGB[0] += (targetRGB[0] - this.currentRGB[0]) * 0.05;
-    this.currentRGB[1] += (targetRGB[1] - this.currentRGB[1]) * 0.05;
-    this.currentRGB[2] += (targetRGB[2] - this.currentRGB[2]) * 0.05;
-
-    // 2. Wave-like floating drift
-    this.angle += this.floatSpeed;
-    const floatX = Math.sin(this.angle) * this.floatDistance;
-    const floatY = Math.cos(this.angle) * this.floatDistance;
-    const currentBaseX = this.baseX + floatX;
-    const currentBaseY = this.baseY + floatY;
-
-    // 3. Mouse Interaction (Repulsion & Drag Physics)
-    if (mouse.x !== null) {
-      const dx = this.x - mouse.x;
-      const dy = this.y - mouse.y;
-      const distance = Math.hypot(dx, dy);
-
-      if (distance < mouse.radius) {
-        const force = (mouse.radius - distance) / mouse.radius;
-        const pushAngle = Math.atan2(dy, dx);
-        
-        // Push force away from mouse
-        this.vx += Math.cos(pushAngle) * force * 1.5;
-        this.vy += Math.sin(pushAngle) * force * 1.5;
-
-        // Mouse Drag Fluidity: pull particles along with mouse velocity
-        if (mouse.px !== null && isDragging) {
-          const mouseVx = mouse.x - mouse.px;
-          const mouseVy = mouse.y - mouse.py;
-          this.vx += mouseVx * force * 0.12;
-          this.vy += mouseVy * force * 0.12;
-        }
-      }
-    }
-
-    // 4. Spring Return Force to Base Position
-    const returnForceX = (currentBaseX - this.x) * 0.008;
-    const returnForceY = (currentBaseY - this.y) * 0.008;
-    this.vx += returnForceX;
-    this.vy += returnForceY;
-
-    // 5. Apply Friction and Move
-    this.vx *= 0.90;
-    this.vy *= 0.90;
-    this.x += this.vx;
-    this.y += this.vy;
-  }
-
-  draw(ctx) {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(${Math.round(this.currentRGB[0])}, ${Math.round(this.currentRGB[1])}, ${Math.round(this.currentRGB[2])}, 0.5)`;
-    ctx.fill();
-  }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  const canvas = document.getElementById("interactive-canvas");
-  if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-  
-  let particles = [];
-  const particleCount = 85;
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    // Regenerate particles
-    particles = [];
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle(canvas.width, canvas.height));
-    }
-  }
-
-  window.addEventListener("resize", resizeCanvas);
-  resizeCanvas();
-
-  // Track mouse coordinates
-  window.addEventListener("mousemove", (e) => {
-    mouse.px = mouse.x;
-    mouse.py = mouse.y;
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  });
-
-  window.addEventListener("mousedown", (e) => {
-    isDragging = true;
-  });
-
-  window.addEventListener("mouseup", () => {
-    isDragging = false;
-  });
-
-  window.addEventListener("mouseleave", () => {
-    mouse.x = null;
-    mouse.y = null;
-    isDragging = false;
-  });
-
-  // Cycle palette on neutral click
-  window.addEventListener("click", (e) => {
-    // Prevent cycling if user clicked on button, link, search bar, or chip
-    if (e.target.closest("input, button, a, .starter-link, .icon")) {
-      return;
-    }
-    
-    activePaletteIndex = (activePaletteIndex + 1) % PALETTES.length;
-    applyPaletteToCSS(PALETTES[activePaletteIndex]);
-  });
-
-  // Main animation frame loop
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Update and draw particles
-    particles.forEach(p => p.update(canvas.width, canvas.height));
-
-    // Draw lines between nearby particles
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.hypot(dx, dy);
-
-        if (dist < 110) {
-          const alpha = (110 - dist) / 110 * 0.12;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          
-          // Mix line color based on the two connected particles
-          const r = Math.round((particles[i].currentRGB[0] + particles[j].currentRGB[0]) / 2);
-          const g = Math.round((particles[i].currentRGB[1] + particles[j].currentRGB[1]) / 2);
-          const b = Math.round((particles[i].currentRGB[2] + particles[j].currentRGB[2]) / 2);
-          
-          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
+  tsParticles.load("tsparticles", {
+    fpsLimit: 60,
+    background: {
+      color: { value: "transparent" }
+    },
+    particles: {
+      number: {
+        value: 150,
+        density: { enable: true, value_area: 800 }
+      },
+      color: { value: ["#ffffff", "#4285f4", "#a855f7"] },
+      links: {
+        enable: true,
+        color: "#ffffff",
+        distance: 150,
+        opacity: 0.2,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 1.5,
+        direction: "none",
+        random: true,
+        straight: false,
+        outModes: "out"
+      },
+      size: {
+        value: { min: 1, max: 3 }
+      },
+      opacity: {
+        value: { min: 0.3, max: 0.7 }
       }
-    }
-
-    particles.forEach(p => p.draw(ctx));
-    
-    // Smooth reset of mouse previous coordinates to prevent large inertia jumps
-    if (mouse.px !== null) {
-      mouse.px += (mouse.x - mouse.px) * 0.1;
-      mouse.py += (mouse.y - mouse.py) * 0.1;
-    }
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-  
-  // Set initial color variables
-  applyPaletteToCSS(PALETTES[activePaletteIndex]);
+    },
+    interactivity: {
+      events: {
+        onHover: { enable: true, mode: "grab" },
+        onClick: { enable: true, mode: "push" },
+        resize: true
+      },
+      modes: {
+        grab: { distance: 200, links: { opacity: 0.5 } },
+        push: { quantity: 4 }
+      }
+    },
+    detectRetina: true
+  });
 });
 
 
