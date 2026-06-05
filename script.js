@@ -7,26 +7,6 @@
    5. Minimalist AI prompt search and typographic response panel
 */
 
-// ==========================================
-// 1. MOBILE NAVIGATION TOGGLE
-// ==========================================
-function toggleMenu() {
-  const menu = document.querySelector(".menu-links");
-  const icon = document.querySelector(".hamburger-icon");
-  menu.classList.toggle("open");
-  icon.classList.toggle("open");
-}
-
-document.querySelectorAll(".menu-links a").forEach(link => {
-  link.addEventListener("click", () => {
-    const menu = document.querySelector(".menu-links");
-    const icon = document.querySelector(".hamburger-icon");
-    if (menu.classList.contains("open")) {
-      menu.classList.remove("open");
-      icon.classList.remove("open");
-    }
-  });
-});
 
 // ==========================================
 // 2. SCROLL REVEAL OBSERVER
