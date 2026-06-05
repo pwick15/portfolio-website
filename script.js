@@ -342,3 +342,64 @@ window.addEventListener('scroll', () => {
   document.body.style.backgroundPosition = `${xPos}% ${yPos}%`;
 });
 
+// ==========================================
+// 8. SCROLL SPY ACTIVE NAV LINK
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll(".nav-links a");
+  const navContainer = document.querySelector(".nav-links");
+
+  function scrollSpy() {
+    // Determine active section (looking at the top 1/3 of the viewport)
+    const scrollPosition = window.scrollY + window.innerHeight / 3;
+    let currentSectionId = "";
+
+    sections.forEach(sec => {
+      const sectionTop = sec.offsetTop;
+      const sectionHeight = sec.offsetHeight;
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        currentSectionId = sec.getAttribute("id");
+      }
+    });
+
+    if (currentSectionId) {
+      navLinks.forEach(link => {
+        const isHrefMatch = link.getAttribute("href") === `#${currentSectionId}`;
+        
+        if (isHrefMatch) {
+          if (!link.classList.contains("active")) {
+            link.classList.add("active");
+            
+            // Auto-center the active link on mobile
+            if (navContainer && window.innerWidth <= 600) {
+              const linkRect = link.getBoundingClientRect();
+              const containerRect = navContainer.getBoundingClientRect();
+              
+              // Mathematically bulletproof offset calculation relative to scroll container
+              const linkOffsetLeft = linkRect.left - containerRect.left + navContainer.scrollLeft;
+              const linkWidth = linkRect.width;
+              const containerWidth = containerRect.width;
+
+              navContainer.scrollTo({
+                left: linkOffsetLeft - (containerWidth / 2) + (linkWidth / 2),
+                behavior: 'smooth'
+              });
+            }
+          }
+        } else {
+          link.classList.remove("active");
+        }
+      });
+    }
+  }
+
+  // Bind spy to scroll and resize
+  window.addEventListener("scroll", scrollSpy);
+  window.addEventListener("resize", scrollSpy);
+  
+  // Initial run
+  scrollSpy();
+});
+
