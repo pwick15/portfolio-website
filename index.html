@@ -4,59 +4,66 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Punjaya's Portfolio</title>
+    <title>Punjaya Wickramasinghe | Mechatronics & AI Engineer Portfolio</title>
+    <meta name="description" content="Portfolio of Punjaya Wickramasinghe - Mechatronics Engineer & AI Specialist. First Class Honours from ANU. Australian AI Awards Finalist 2024." />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
   </head>
   <body>
-    <section id="nav-section">
-      <nav id="desktop-nav">
-        <div class="logo"></div>
-        <div>
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#honours">Honours</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-      <nav id="hamburger-nav">
-        <div class="logo"></div>
-        <div class="hamburger-menu">
-          <div class="hamburger-icon" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div class="menu-links">
-            <li><a href="#about" onclick="toggleMenu()">About</a></li>
-            <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-            <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-            <li><a href="#interests" onclick="toggleMenu()">Interests</a></li>
-            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-          </div>
-        </div>
-      </nav>
-    </section>
-    <section id="profile">
-      <div class="section__pic-container">
-        <img src="./assets/profile-pic.png" alt="profile picture" />
+    <!-- DESKTOP NAVIGATION -->
+    <nav id="desktop-nav">
+      <div class="logo" onclick="location.href='#profile'">
+        <span class="logo-icon">⚡</span>Punjaya
       </div>
-      <div class="section__text">
+      <div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Skills</a></li>
+          <li><a href="#honours">Honours</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- MOBILE NAVIGATION -->
+    <nav id="hamburger-nav">
+      <div class="logo" onclick="location.href='#profile'">
+        <span class="logo-icon">⚡</span>Punjaya
+      </div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Skills</a></li>
+          <li><a href="#honours" onclick="toggleMenu()">Honours</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- HERO / PROFILE SECTION -->
+    <section id="profile">
+      <div class="profile-info reveal">
+        <div class="section__pic-container">
+          <img src="./assets/profile-pic.png" alt="Punjaya Wickramasinghe Profile Picture" />
+        </div>
         <p class="section__text__p1">Hello, I'm</p>
         <h1 class="title">Punjaya Wickramasinghe</h1>
-        <p class="section__text__p2">Mechatronics Engineer
-        </p>
+        <p class="section__text__p2" id="typed-text"><span class="typing-cursor"></span></p>
         <div class="btn-container">
           <button
-            class="btn btn-color-2"
+            class="btn btn-color-1"
             onclick="window.open('./assets/PW_resume_2025_white_v0_3.pdf')"
           >
             Download CV
           </button>
-          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+          <button class="btn btn-color-2" onclick="location.href='#contact'">
             Contact Info
           </button>
         </div>
@@ -65,59 +72,101 @@
             src="./assets/linkedin.png"
             alt="My LinkedIn profile"
             class="icon"
-            onclick="location.href='https://www.linkedin.com/in/punjayawick15/'"
+            onclick="window.open('https://www.linkedin.com/in/punjayawick15/', '_blank')"
           />
           <img
             src="./assets/github.png"
             alt="My GitHub profile"
             class="icon"
-            onclick="location.href='https://github.com/pwick15'"
+            onclick="window.open('https://github.com/pwick15', '_blank')"
           />
         </div>
       </div>
+
+      <!-- CENTER-STAGE AI RAG CHAT CONSOLE -->
+      <div class="ai-console-wrapper reveal">
+        <div class="ai-console">
+          <div class="ai-console-header">
+            <div class="ai-console-title">
+              <span>🤖</span> Punjaya's AI RAG Assistant
+            </div>
+            <div class="ai-status">
+              <span class="status-dot"></span> Online
+            </div>
+          </div>
+          <div class="ai-console-body">
+            <div class="chat-history" id="chat-history">
+              <div class="chat-msg bot">
+                <div class="msg-bubble">
+                  Hello! I'm Punjaya's AI Assistant. Ask me anything about his experience, publications, or projects, or click a prompt below!
+                </div>
+                <div class="msg-meta">Just now</div>
+              </div>
+            </div>
+            <div class="starter-chips" id="starter-chips">
+              <button class="starter-chip" onclick="sendPrompt('What are your AI & Computer Vision skills?')">AI & CV Skills</button>
+              <button class="starter-chip" onclick="sendPrompt('Tell me about your research papers')">Research Papers</button>
+              <button class="starter-chip" onclick="sendPrompt('What robotics projects have you built?')">Robotics Projects</button>
+            </div>
+            <div class="chat-input-wrapper">
+              <input type="text" class="chat-input" id="chat-input" placeholder="Ask anything about my background..." onkeypress="handleKeyPress(event)" />
+              <button class="chat-send-btn" onclick="sendMessage()">
+                <svg viewBox="0 0 24 24">
+                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <!-- ABOUT SECTION -->
     <section id="about">
       <p class="section__text__p1">Get To Know More</p>
       <h1 class="title">About Me</h1>
       <div class="section-container">
-        <div class="section__pic-container">
+        <div class="about__pic-container reveal">
           <img
             src="./assets/about-pic.png"
             alt="Profile picture"
             class="about-pic"
+            loading="lazy"
           />
         </div>
         <div class="about-details-container">
-          <div class="about-details-spec-containers about-containers">
+          <div class="about-details-spec-containers reveal">
             <div class="details-container-centred">
               <img
                 src="./assets/experience.png"
                 alt="Experience icon"
                 class="icon"
+                loading="lazy"
               />
               <h3>Experience</h3>
-              <p></p>Computer Vision | AI<br />Embedded Systems<br />Control Systems <br />Software Development<br />Data Analysis | Visualisation</p>
+              <p>Computer Vision & AI<br />Embedded Systems<br />Control Systems <br />Software Development<br />Data Analysis & Visualisation</p>
             </div>
             <div class="details-container-centred">
               <img
                 src="./assets/education.png"
                 alt="Education icon"
                 class="icon"
+                loading="lazy"
               />
               <h3>Education</h3>
-              <p>BEng (R&D) @ ANU<br />Mechatronics | CS <br />First Class Honours<br />6.72/7 GPA <br />99.20 ATAR</p>
+              <p>BEng (R&D) @ ANU<br />Mechatronics | CS <br />First Class Honours<br />6.72/7 GPA | 99.20 ATAR</p>
             </div>
           </div>
-          <div class="text-container">
+          <div class="text-container reveal">
             <div class="text-details-container">
-              <h2>Introduction</h2>
+              <h2><span>💡</span> Introduction</h2>
               <p>
                 Fascinated by the intersection between <b>software and electronics</b>. Interest is in all things <b>robotics</b>. 
                 A lifelong learner with the <b>growth mindset</b> needed to tackle any challenge and innovate.
               </p>
             </div>
             <div class="text-details-container">
-              <h2>Mission</h2>
+              <h2><span>🚀</span> Mission</h2>
               <p>
                 Driven by a desire to create impactful robotics solutions to improve lives. 
                 <b>Values driven</b>.
@@ -125,7 +174,7 @@
               </p>
             </div>
             <div class="text-details-container">
-              <h2>Interests</h2>
+              <h2><span>⚽</span> Interests</h2>
               <p>
                 Hugely passionate <b>football</b> fan (Visca el Barça).
                 I also love music and travel. 
@@ -133,653 +182,509 @@
               </p>
             </div>
           </div>
-          
+        </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#experience'"
-      />
     </section>
+
+    <!-- PROJECTS SECTION -->
     <section id="projects">
       <p class="section__text__p1">Browse My Recent</p>
       <h1 class="title">Projects</h1>
-      <div class="experience-details-container">
-        <div class="about-projects-spec-containers about-containers">
-          <div class="details-container-centred color-container">
-            <div class="article-container">
-              <img
-                src="./assets/ai-change-detection.png"
-                alt="Project 2"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">AI Change Detection System</h2>
-            <div class="skills-container">
-              <div class="skill">Unsupervised Deep Learning</div>
-              <div class="skill">Data Pipeline</div>
-              <div class="skill">Image Processing</div>
-            </div>
-            <i>Near real-time AI change detection on the edge using both camera and LiDAR fused measurements</i>
+      <div class="projects-grid">
+        <!-- PROJECT 1 -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img src="./assets/ai-change-detection.png" alt="AI Change Detection System" class="project-img" loading="lazy" />
           </div>
-          <div class="details-container-centred color-container">
-            <div class="article-container">
-              <img
-                src="./assets/bms.jpg"
-                alt="Project 3"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Battery Management System</h2>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">AI Change Detection System</h2>
             <div class="skills-container">
-              <div class="skill">State Machines</div>
-              <div class="skill">Embedded Firmware Dev</div>
-              <div class="skill">I2C/PMBus Communication</div>
+              <span class="skill">Unsupervised Deep Learning</span>
+              <span class="skill">Data Pipeline</span>
+              <span class="skill">Image Processing</span>
             </div>
-            <i>Intelligent charging/discharging of batteries through precise monitoring and regulation to ensure safe and efficient </i>
+            <p>Near real-time AI change detection on the edge using both camera and LiDAR fused measurements.</p>
           </div>
-          <div class="details-container-centred color-container">
-            <div class="article-container">
-              <img
-                src="./assets/gps-denied-forest.jpeg"
-                alt="Project 3"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">GPS-Denied Navigation Integration</h2>
-            <div class="skills-container">
-              <div class="skill">Visual Inertial Navigation</div>
-              <div class="skill">Data Driven Evaluation</div>
-              <div class="skill">DevOps</div>
-            </div>
-            <i>Successfully tuned and integrated an open-source state estimator into AirSim simulator, for accurate navigation without GPS signals</i>
+        </div>
+
+        <!-- PROJECT 2 -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img src="./assets/bms.jpg" alt="Battery Management System" class="project-img" loading="lazy" />
           </div>
-          <div class="details-container-centred color-container">
-            <div class="article-container">
-              <img
-                src="./assets/rnd_aer_square.png"
-                alt="Project 1"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Acoustic Emotion Recognition with AI</h2>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Battery Management System</h2>
             <div class="skills-container">
-              <div class="skill">Machine Learning</div>
-              <div class="skill">Dataset Creation</div>
-              <div class="skill">Data Analysis and Visualisation</div>
+              <span class="skill">State Machines</span>
+              <span class="skill">Embedded Firmware Dev</span>
+              <span class="skill">I2C/PMBus</span>
             </div>
-            <i>Deep and traditional machine learning algorithms deployed to detect emotions through audio</i>
+            <p>Intelligent charging/discharging of batteries through precise monitoring and regulation to ensure safe and efficient operation.</p>
+          </div>
+        </div>
+
+        <!-- PROJECT 3 -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img src="./assets/gps-denied-forest.jpeg" alt="GPS-Denied Navigation Integration" class="project-img" loading="lazy" />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">GPS-Denied Navigation Integration</h2>
+            <div class="skills-container">
+              <span class="skill">Visual Inertial Navigation</span>
+              <span class="skill">Data Driven Evaluation</span>
+              <span class="skill">DevOps</span>
+            </div>
+            <p>Successfully tuned and integrated an open-source state estimator into AirSim simulator for accurate navigation without GPS signals.</p>
+          </div>
+        </div>
+
+        <!-- PROJECT 4 -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img src="./assets/rnd_aer_square.png" alt="Acoustic Emotion Recognition with AI" class="project-img" loading="lazy" />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Acoustic Emotion Recognition</h2>
+            <div class="skills-container">
+              <span class="skill">Machine Learning</span>
+              <span class="skill">Dataset Creation</span>
+              <span class="skill">Data Visualisation</span>
+            </div>
+            <p>Deep and traditional machine learning algorithms deployed to detect human emotions through audio signals.</p>
             <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="window.open('./assets/rnd_3706.pdf')"
-              >
-                Paper 1
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="window.open('./assets/rnd_3712.pdf')"
-              >
-                Paper 2
-              </button>
-              
+              <button class="btn btn-color-2" onclick="window.open('./assets/rnd_3706.pdf', '_blank')">Paper 1</button>
+              <button class="btn btn-color-2" onclick="window.open('./assets/rnd_3712.pdf', '_blank')">Paper 2</button>
             </div>
           </div>
-          <div class="details-container-centred color-container">
-            <div class="article-container">
-              <img
-                src="./assets/rnd_cins_square.jpg"
-                alt="Project 1"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Robust Inertial Navigation System</h2>
+        </div>
+
+        <!-- PROJECT 5 -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img src="./assets/rnd_cins_square.jpg" alt="Robust Inertial Navigation System" class="project-img" loading="lazy" />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Robust Inertial Navigation</h2>
             <div class="skills-container">
-              <div class="skill">Algorithm Implementation</div>
-              <div class="skill">Sensor Fusion</div>
-              <div class="skill">Mathematical Derivations</div>
+              <span class="skill">Algorithm Implementation</span>
+              <span class="skill">Sensor Fusion</span>
+              <span class="skill">Math Derivations</span>
             </div>
-            <i>The first observer for INS with delayed GNSS to feature almost global asymptotic and local exponential stability</i>
+            <p>The first observer for INS with delayed GNSS to feature almost global asymptotic and local exponential stability.</p>
             <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="window.open('./assets/rnd_4712.pdf')"
-              >
-                Paper
-              </button>
+              <button class="btn btn-color-2" onclick="window.open('./assets/rnd_4712.pdf', '_blank')">View Paper</button>
             </div>
           </div>
-          <div class="details-container-centred color-container">
-            <div class="article-container">
-              <img
-                src="./assets/rnd_mofs_transparent.png"
-                alt="Project 1"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Acetone Sensing with MOFs</h2>
+        </div>
+
+        <!-- PROJECT 6 -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img src="./assets/rnd_mofs_transparent.png" alt="Acetone Sensing with MOFs" class="project-img" loading="lazy" />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Acetone Sensing with MOFs</h2>
             <div class="skills-container">
-              <div class="skill">Meta-Analysis</div>
-              <div class="skill">Literature Review</div>
-              <div class="skill">Research Communication</div>
+              <span class="skill">Meta-Analysis</span>
+              <span class="skill">Literature Review</span>
+              <span class="skill">Research Comms</span>
             </div>
-            <i>The use of MOFs as filtration membranes to improve acetone detection in breath for non-invasive diabetic ketoacidosis monitoring</i>
+            <p>Use of MOFs as filtration membranes to improve acetone detection in breath for non-invasive diabetic monitoring.</p>
             <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="window.open('./assets/rnd_2706.pdf')"
-              >
-                Paper
-              </button>
+              <button class="btn btn-color-2" onclick="window.open('./assets/rnd_2706.pdf', '_blank')">View Paper</button>
             </div>
           </div>
-          <div class="details-container-centred color-container">
-            <div class="article-container">
-              <img
-                src="./assets/combined-xi-builder2.png"
-                alt="Project 1"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Combined XI Builder</h2>
+        </div>
+
+        <!-- PROJECT 7 -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img src="./assets/combined-xi-builder2.png" alt="Combined XI Builder" class="project-img" loading="lazy" />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Combined XI Builder</h2>
             <div class="skills-container">
-              <div class="skill">Web Scraping</div>
-              <div class="skill">Flask in Python</div>
-              <div class="skill">Web Dev</div>
+              <span class="skill">Web Scraping</span>
+              <span class="skill">Flask / Python</span>
+              <span class="skill">Web Dev</span>
             </div>
-            <i>A fan-centric tool that allows users to generate the best combined XI lineup from two football teams of their choosing.</i>
+            <p>A fan-centric tool allowing users to generate combined XI starting lineups from two custom football teams.</p>
             <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/pwick15/combined-xi-builder'"
-              >
-                GitHub
-              </button>
+              <button class="btn btn-color-2" onclick="window.open('https://github.com/pwick15/combined-xi-builder', '_blank')">GitHub</button>
             </div>
           </div>
-          <div class="details-container-centred color-container">
-            <div class="article-container">
-              <img
-                src="./assets/games-connect4-snake.jpeg"
-                alt="Project 3"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Games in Python</h2>
+        </div>
+
+        <!-- PROJECT 8 -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img src="./assets/games-connect4-snake.jpeg" alt="Games in Python" class="project-img" loading="lazy" />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Games in Python</h2>
             <div class="skills-container">
-              <div class="skill">Game Dev</div>
-              <div class="skill">OOP</div>
-              <div class="skill">Full Stack Dev</div>
+              <span class="skill">Game Dev</span>
+              <span class="skill">OOP</span>
+              <span class="skill">Python GUI</span>
             </div>
-            <i>Collection of classic games including Connect 4, Pong, and Snake, implemented in Python to showcase game development skills</i>
+            <p>Classic games (Connect 4, Pong, and Snake) implemented in Python to demonstrate solid OOP fundamentals.</p>
             <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/pwick15/games'"
-              >
-                GitHub
-              </button>
+              <button class="btn btn-color-2" onclick="window.open('https://github.com/pwick15/games', '_blank')">GitHub</button>
             </div>
           </div>
-          <div class="details-container-centred color-container">
-            <div class="article-container">
-              <img
-                src="./assets/portfolio-website.jpeg"
-                alt="Project 3"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Portfolio Website</h2>
+        </div>
+
+        <!-- PROJECT 9 -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img src="./assets/portfolio-website.jpeg" alt="Portfolio Website" class="project-img" loading="lazy" />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Portfolio Website</h2>
             <div class="skills-container">
-              <div class="skill">HTML</div>
-              <div class="skill">CSS</div>
-              <div class="skill">JS</div>
+              <span class="skill">HTML5 / CSS3</span>
+              <span class="skill">Vanilla JS</span>
+              <span class="skill">Responsive Web</span>
             </div>
-            <i>A personal portfolio website designed and developed using HTML, CSS, and JavaScript</i>
+            <p>A premium portfolio website designed and developed using HTML, CSS, and modern interactive JavaScript.</p>
             <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/pwick15/portfolio-website'"
-              >
-                GitHub
-              </button>
+              <button class="btn btn-color-2" onclick="window.open('https://github.com/pwick15/portfolio-website', '_blank')">GitHub</button>
             </div>
           </div>
         </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#contact'"
-      />
     </section>
-    <section id="honours">
-      <p class="section__text__p1">Check Out My</p>
-      <h1 class="title">Honours</h1>
-      <div class="section-container">
-        <div class="honours-details-container">
-          <div class="honours-containers">
-            <div class="details-container-centred">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>Australian AI Awards Finalist 2024</h3>
-              <p>AI Innovator in Defence and National Security</p>
-              <div class="btn-container">
-                <button
-                  class="btn btn-color-2"
-                  onclick="location.href='https://australianaiawards.com.au/winners/2024-winners-and-finalists'"
-                  >More Info
-                </button>
-              </div>
-            </div>
-            <div class="details-container-centred">
-              <img
-                src="./assets/education.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3> European Journal of Control</h3>
-              <p>Constructive synchronous observer design for inertial navigation with delayed GNSS measurements</p>
-              <div class="btn-container">
-                <button
-                  class="btn btn-color-2"
-                  onclick="location.href='https://www.sciencedirect.com/science/article/pii/S0947358024001079'"
-                  >View Paper
-                </button>
-              </div>
-            </div>
-            <div class="details-container-centred">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>CECS R&D Excellence Scholarship</h3>
-              <p>Awarded to high-performing 1st year Engineering students at ANU</p>
-            </div>
-            <div class="details-container-centred">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>CECC Dickins Scholarship</h3>
-              <p>Awarded to high-performing Engineering Honours students at ANU</p>
-            </div>
-          </div>
-        </div>
-        <div class="honours__pic-container">
-          <img 
-            src="./assets/ai-awards-me-blured.svg"
-            alt="Profile picture"
-            class="awards-pic"
-          />
-        </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#experience'"
-      />
-    </section>
+
+    <!-- SKILLS SECTION -->
     <section id="experience">
       <p class="section__text__p1">Explore My</p>
       <h1 class="title">Skills</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container">
-            <h2 class="experience-sub-title">Computer Vision and AI</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/icon_c++.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>C++</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-opencv.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>OpenCV</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-Python.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Python</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-PyTorch.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>PyTorch</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-TensorFlow.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>TensorFlow</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-            </div>
+      <div class="skills-grid">
+        <!-- CATEGORY 1 -->
+        <div class="details-container reveal">
+          <h2 class="experience-sub-title">Computer Vision & AI</h2>
+          <div class="article-container">
+            <article>
+              <img src="./assets/icon_c++.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>C++</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-opencv.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>OpenCV</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-Python.png" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>Python</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-PyTorch.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>PyTorch</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-TensorFlow.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>TensorFlow</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
           </div>
-          <div class="details-container">
-            <h2 class="experience-sub-title">Embedded Systems</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/icon-ros.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>ROS</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-c.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>C</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article class="article-long-container">
-                <img
-                  src="./assets/icon-comms-protocol.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>UART | I2C | CAN | UDP</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-hdl.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Verilog</h3>
-                  <p>Entry-Level</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-altium.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Altium</h3>
-                  <p>Entry-Level</p>
-                </div>
-              </article>
-            </div>
+        </div>
+
+        <!-- CATEGORY 2 -->
+        <div class="details-container reveal">
+          <h2 class="experience-sub-title">Embedded Systems</h2>
+          <div class="article-container">
+            <article>
+              <img src="./assets/icon-ros.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>ROS / ROS2</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-c.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>C</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-comms-protocol.png" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>UART | I2C | CAN | UDP</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-hdl.png" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>Verilog (FPGA)</h3>
+                <p>Entry-Level</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-altium.png" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>Altium Designer</h3>
+                <p>Entry-Level</p>
+              </div>
+            </article>
           </div>
-          <div class="details-container">
-            <h2 class="experience-sub-title">Control Systems</h2>
-            <div class="article-container">
-              <article width="17rem">
-                <img
-                  src="./assets/icon-gps-denied.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>GPS-Denied Navigation</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-algorithm.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Algorithm Implementation</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-slam.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>SLAM</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-ardupilot.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>ArduPilot</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-state-machine.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>State Machines</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-            </div>
+        </div>
+
+        <!-- CATEGORY 3 -->
+        <div class="details-container reveal">
+          <h2 class="experience-sub-title">Control Systems</h2>
+          <div class="article-container">
+            <article>
+              <img src="./assets/icon-gps-denied.png" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>GPS-Denied Nav</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-algorithm.png" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>State Estimation</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-slam.png" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>SLAM</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-ardupilot.png" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>ArduPilot</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-state-machine.png" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>State Machines</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
           </div>
-          <div class="details-container">
-            <h2 class="experience-sub-title">Software Development</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/icon-Git.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Git</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-Linux.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Linux</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article class="article-long-container">
-                <img
-                  src="./assets/icon-html-css-js.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>HTML | CSS | JS</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-Docker.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Docker</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-Vim.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Vim</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-            </div>
+        </div>
+
+        <!-- CATEGORY 4 -->
+        <div class="details-container reveal">
+          <h2 class="experience-sub-title">Software Development</h2>
+          <div class="article-container">
+            <article>
+              <img src="./assets/icon-Git.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>Git</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-Linux.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>Linux</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-html-css-js.png" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>HTML | CSS | JS</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-Docker.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>Docker</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-Vim.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>Vim / Neovim</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
           </div>
-          <div class="details-container">
-            <h2 class="experience-sub-title">Data Analysis and Visualisation</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/icon-Pandas.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Pandas</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-seaborn.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Seaborn</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-Ploty.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Plotly</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-Matplotlib.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Matplotlib</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/icon-NumPy.svg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Numpy</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-            </div>
+        </div>
+
+        <!-- CATEGORY 5 -->
+        <div class="details-container reveal">
+          <h2 class="experience-sub-title">Data Analysis</h2>
+          <div class="article-container">
+            <article>
+              <img src="./assets/icon-Pandas.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>Pandas</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-seaborn.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>Seaborn</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-Ploty.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>Plotly</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-Matplotlib.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>Matplotlib</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
+            <article>
+              <img src="./assets/icon-NumPy.svg" alt="Skill icon" class="icon" loading="lazy" />
+              <div>
+                <h3>NumPy</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
           </div>
         </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#projects'"
-      />
     </section>
+
+    <!-- HONOURS SECTION -->
+    <section id="honours">
+      <p class="section__text__p1">Check Out My</p>
+      <h1 class="title">Honours & Academic Work</h1>
+      <div class="honours-layout">
+        <div class="honours-grid">
+          <!-- AWARD 1 -->
+          <div class="honour-card reveal">
+            <div class="honour-icon-container">
+              <img src="./assets/experience.png" alt="Award icon" class="icon" loading="lazy" />
+            </div>
+            <div class="honour-info">
+              <h3>Australian AI Awards Finalist 2024</h3>
+              <p>Selected as a national finalist for <b>AI Innovator in Defence and National Security</b>.</p>
+              <div class="btn-container">
+                <button
+                  class="btn btn-color-2"
+                  onclick="window.open('https://australianaiawards.com.au/winners/2024-winners-and-finalists', '_blank')"
+                >
+                  More Info
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- AWARD 2 -->
+          <div class="honour-card reveal">
+            <div class="honour-icon-container">
+              <img src="./assets/education.png" alt="Journal icon" class="icon" loading="lazy" />
+            </div>
+            <div class="honour-info">
+              <h3>European Journal of Control (Publication)</h3>
+              <p>Co-authored: <i>"Constructive synchronous observer design for inertial navigation with delayed GNSS measurements"</i>.</p>
+              <div class="btn-container">
+                <button
+                  class="btn btn-color-2"
+                  onclick="window.open('https://www.sciencedirect.com/science/article/pii/S0947358024001079', '_blank')"
+                >
+                  View Paper
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- AWARD 3 -->
+          <div class="honour-card reveal">
+            <div class="honour-icon-container">
+              <img src="./assets/experience.png" alt="Scholarship icon" class="icon" loading="lazy" />
+            </div>
+            <div class="honour-info">
+              <h3>CECS R&D Excellence Scholarship</h3>
+              <p>Awarded to high-performing research-stream engineering students at the Australian National University (ANU).</p>
+            </div>
+          </div>
+
+          <!-- AWARD 4 -->
+          <div class="honour-card reveal">
+            <div class="honour-icon-container">
+              <img src="./assets/experience.png" alt="Scholarship icon" class="icon" loading="lazy" />
+            </div>
+            <div class="honour-info">
+              <h3>CECC Dickins Scholarship</h3>
+              <p>Awarded to high-performing Engineering Honours students at the Australian National University (ANU).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="honours__pic-container reveal">
+          <img 
+            src="./assets/awards-pic-optimized.png"
+            alt="AI Awards photo"
+            class="awards-pic"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
     <section id="contact">
       <p class="section__text__p1">Get in Touch</p>
       <h1 class="title">Contact Me</h1>
-      <div class="contact-info-upper-container">
-        <div class="contact-info-container">
-          <img
-            src="./assets/email.png"
-            alt="Email icon"
-            class="icon contact-icon email-icon"
-          />
-          <p><a href="mailto:punjayawick@gmail.com">punjayawick@gmail.com</a></p>
-        </div>
-        <div class="contact-info-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="LinkedIn icon"
-            class="icon contact-icon"
-          />
-          <p><a href="https://www.linkedin.com/in/punjayawick15/">punjayawick15</a></p>
+      <div class="contact-card reveal">
+        <p>I am open to discuss new opportunities in robotics, computer vision, embedded engineering, and AI systems. Feel free to reach out!</p>
+        <div class="contact-info-upper-container">
+          <div class="contact-info-container">
+            <img src="./assets/email.png" alt="Email icon" class="icon" />
+            <p><a href="mailto:punjayawick@gmail.com">punjayawick@gmail.com</a></p>
+          </div>
+          <div class="contact-info-container">
+            <img src="./assets/linkedin.png" alt="LinkedIn icon" class="icon" />
+            <p><a href="https://www.linkedin.com/in/punjayawick15/" target="_blank">punjayawick15</a></p>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- FOOTER -->
     <footer>
       <nav>
-        <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#honours">Honours</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Skills</a></li>
+          <li><a href="#honours">Honours</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
       </nav>
-      <p>Copyright &#169; 2024 Punjaya Wickramasinghe. All Rights Reserved.</p>
-      <p>Icons: icons8, techicons, flaticon</p>
-      <p>Images: ChatGPT, Microsoft Copilot, Google</p>
+      <p>Copyright &#169; 2026 Punjaya Wickramasinghe. All Rights Reserved.</p>
+      <p>Icons credit: icons8, techicons, flaticon. Images credit: DALL-E, Copilot.</p>
     </footer>
+
     <script src="script.js"></script>
   </body>
 </html>
