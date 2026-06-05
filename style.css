@@ -657,15 +657,36 @@ section {
   color: #ffffff;
 }
 
-.chat-header-action {
-  font-size: 0.8rem;
-  color: var(--accent);
-  opacity: 0.8;
+.chat-toggle-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   transition: var(--transition-fast);
+  outline: none;
 }
 
-.chat-header-action:hover {
-  opacity: 1;
+.chat-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.chevron-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: rotate(180deg);
+}
+
+.chat-exchange.minimized .chevron-icon {
+  transform: rotate(0deg);
 }
 
 .chat-body {

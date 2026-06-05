@@ -222,8 +222,6 @@ async function sendMessage() {
   // Minimize previous exchanges
   document.querySelectorAll(".chat-exchange").forEach(exch => {
     exch.classList.add("minimized");
-    const act = exch.querySelector(".chat-header-action");
-    if (act) act.textContent = "[Show]";
   });
 
   // Create new chat exchange
@@ -235,8 +233,12 @@ async function sendMessage() {
   newExchange.id = `exchange-${currentId}`;
   newExchange.innerHTML = `
     <div class="chat-header-row" onclick="toggleExchange(${currentId})">
-      <span class="chat-header-q">Q: "${query}"</span>
-      <span class="chat-header-action" id="action-${currentId}">[Hide]</span>
+      <span class="chat-header-q">${query}</span>
+      <button class="chat-toggle-btn">
+        <svg class="chevron-icon" viewBox="0 0 24 24">
+          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+        </svg>
+      </button>
     </div>
     <div class="chat-body" id="body-${currentId}">
       <div class="typing-indicator">
@@ -318,23 +320,18 @@ function toggleExchange(id) {
   if (!exch) return;
   
   const isMinimized = exch.classList.contains("minimized");
-  const actionSpan = document.getElementById(`action-${id}`);
   
   if (isMinimized) {
     // Minimize all other exchanges to keep UI clean
     document.querySelectorAll(".chat-exchange").forEach(e => {
       e.classList.add("minimized");
-      const act = e.querySelector(".chat-header-action");
-      if (act) act.textContent = "[Show]";
     });
     
     // Expand this one
     exch.classList.remove("minimized");
-    if (actionSpan) actionSpan.textContent = "[Hide]";
   } else {
     // Collapse this one
     exch.classList.add("minimized");
-    if (actionSpan) actionSpan.textContent = "[Show]";
   }
 }
 
