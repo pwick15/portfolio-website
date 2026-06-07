@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const rateLimit = require("express-rate-limit");
+const config = require("./config");
 const { generateChatResponse } = require("./services/aiService");
 
 const app = express();
@@ -8,16 +9,10 @@ const app = express();
 // Enable trust proxy for Cloud Run/proxies
 app.set("trust proxy", 1);
 
-// Configure strict CORS
-const allowedOrigins = [
-  'https://pwick15.github.io',
-  'http://localhost:5500',
-  'http://127.0.0.1:5500'
-];
-
+// Configure strict CORS using centralized configuration
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+    if (!origin || config.allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -42,7 +37,7 @@ app.use("/api/", apiLimiter);
 
 // Google reCAPTCHA v3 verification helper
 async function verifyRecaptcha(token) {
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  const secretKey = config.recaptchaSecret;
   
   // For local development or if not configured yet, warn and bypass
   if (!secretKey) {
@@ -102,7 +97,7 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 8080;
+const PORT = config.port;
 app.listen(PORT, () => {
   console.log(`Modular Zero-DB backend listening on port ${PORT}`);
 });

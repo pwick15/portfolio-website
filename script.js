@@ -80,12 +80,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ==========================================
-// 5. MINIMALIST TYPOGRAPHIC RAG ENGINE
+// 5. CONFIGURATION & AI CHAT ENGINE
 // ==========================================
 
-const USE_MOCK_RAG = false;
-const API_ENDPOINT = "https://portfolio-chatbot-963557792569.us-central1.run.app/api/chat";
+const CONFIG = {
+  USE_MOCK_RAG: false,
+  API_ENDPOINT: "https://portfolio-chatbot-963557792569.us-central1.run.app/api/chat",
+  RECAPTCHA_SITE_KEY: "6LdZQxItAAAAAKMVpimaDUZESK3_SEO8u-XmZB7I"
+};
+
 let chatHistory = [];
+
+// Dynamically inject reCAPTCHA v3 script tag using site key
+function injectRecaptchaScript() {
+  if (document.querySelector('script[src*="recaptcha/api.js"]')) return;
+  const script = document.createElement("script");
+  script.src = `https://www.google.com/recaptcha/api.js?render=${CONFIG.RECAPTCHA_SITE_KEY}`;
+  script.async = true;
+  script.defer = true;
+  document.head.appendChild(script);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  injectRecaptchaScript();
+});
 
 const RAG_DATABASE = [
   {
@@ -269,7 +287,7 @@ async function sendMessage() {
   try {
     let answerText = "";
     
-    if (USE_MOCK_RAG) {
+    if (CONFIG.USE_MOCK_RAG) {
       answerText = queryMockRAG(query);
       await new Promise(resolve => setTimeout(resolve, 800));
     } else {
@@ -279,7 +297,7 @@ async function sendMessage() {
         if (typeof grecaptcha !== "undefined") {
           recaptchaToken = await new Promise((resolve) => {
             grecaptcha.ready(() => {
-              grecaptcha.execute("6LdZQxItAAAAAKMVpimaDUZESK3_SEO8u-XmZB7I", { action: "submit" })
+              grecaptcha.execute(CONFIG.RECAPTCHA_SITE_KEY, { action: "submit" })
                 .then(resolve)
                 .catch((err) => {
                   console.warn("reCAPTCHA execution failed:", err);
@@ -294,7 +312,7 @@ async function sendMessage() {
         console.error("reCAPTCHA error:", e);
       }
 
-      const response = await fetch(API_ENDPOINT, {
+      const response = await fetch(CONFIG.API_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 

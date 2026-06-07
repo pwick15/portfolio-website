@@ -6,11 +6,13 @@ const path = require("path");
 const cvPath = path.join(__dirname, "../data/cv.txt");
 const cvContext = fs.readFileSync(cvPath, "utf8");
 
+const config = require("../config");
+
 // Initialize the official Google Gen AI SDK configured for Vertex AI
 const ai = new GoogleGenAI({
   vertexai: true,
-  project: process.env.GOOGLE_CLOUD_PROJECT || "project-f3658b98-4d0a-4964-a7f",
-  location: process.env.GOOGLE_CLOUD_LOCATION || "us-central1"
+  project: config.gcpProject,
+  location: config.gcpLocation
 });
 
 /**
