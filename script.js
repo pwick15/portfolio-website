@@ -273,13 +273,35 @@ async function sendMessage() {
       answerText = queryMockRAG(query);
       await new Promise(resolve => setTimeout(resolve, 800));
     } else {
+      // Get reCAPTCHA v3 token dynamically
+      let recaptchaToken = null;
+      try {
+        if (typeof grecaptcha !== "undefined") {
+          recaptchaToken = await new Promise((resolve) => {
+            grecaptcha.ready(() => {
+              grecaptcha.execute("6LdZQxItAAAAAKMVpimaDUZESK3_SEO8u-XmZB7I", { action: "submit" })
+                .then(resolve)
+                .catch((err) => {
+                  console.warn("reCAPTCHA execution failed:", err);
+                  resolve(null);
+                });
+            });
+          });
+        } else {
+          console.warn("reCAPTCHA script not loaded.");
+        }
+      } catch (e) {
+        console.error("reCAPTCHA error:", e);
+      }
+
       const response = await fetch(API_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
           message: query, 
           history: chatHistory,
-          webContext: scrapeWebsiteContent()
+          webContext: scrapeWebsiteContent(),
+          recaptchaToken: recaptchaToken
         })
       });
       if (!response.ok) {
