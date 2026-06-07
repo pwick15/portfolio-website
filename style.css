@@ -1279,3 +1279,21 @@ footer p {
   background: rgba(255, 255, 255, 0.04) !important;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45), 0 0 25px rgba(66, 133, 244, 0.1) !important;
 }
+
+/* ASK AI NAVBAR LINK GLOW & PULSE EFFECT */
+.nav-links a.ask-ai-nav {
+  color: var(--primary) !important;
+  font-weight: 600;
+}
+.nav-links a.ask-ai-nav::before {
+  content: "✦ ";
+  font-size: 0.85rem;
+  color: var(--primary);
+  opacity: 0.95;
+  margin-right: 0.2rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+.ai-chat-bar.pulse-highlight {
+  animation: pulseGlow 0.5s ease-in-out 3 !important;
+}

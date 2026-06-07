@@ -64,10 +64,11 @@ function typeEffect() {
   if (!isDeleting && charIndex === currentWord.length) {
     isDeleting = true;
     delay = newWordDelay;
-  } else if (isDeleting && charIndex === 0) {
+  } else if (isDeleting && charIndex < 0) {
     isDeleting = false;
     wordIndex = (wordIndex + 1) % words.length;
-    delay = 500;
+    charIndex = 0;
+    delay = 300; // shorter pause when empty before typing next word
   }
 
   setTimeout(typeEffect, delay);
@@ -428,4 +429,26 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial run
   scrollSpy();
 });
+
+// Function to scroll to hero and focus AI chat input
+function focusChat(event) {
+  event.preventDefault();
+  const profileSection = document.getElementById("profile");
+  if (profileSection) {
+    profileSection.scrollIntoView({ behavior: "smooth" });
+  }
+  const chatInput = document.getElementById("chat-input");
+  if (chatInput) {
+    setTimeout(() => {
+      chatInput.focus();
+      const chatBar = document.querySelector(".ai-chat-bar");
+      if (chatBar) {
+        chatBar.classList.add("pulse-highlight");
+        setTimeout(() => {
+          chatBar.classList.remove("pulse-highlight");
+        }, 1500);
+      }
+    }, 600);
+  }
+}
 
