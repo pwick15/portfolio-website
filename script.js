@@ -82,8 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
 // 5. MINIMALIST TYPOGRAPHIC RAG ENGINE
 // ==========================================
 
-const USE_MOCK_RAG = true;
-const AWS_API_ENDPOINT = "https://your-api-id.execute-api.us-east-1.amazonaws.com/prod/chat";
+const USE_MOCK_RAG = false;
+const API_ENDPOINT = "http://localhost:8080/api/chat";
+let chatHistory = [];
 
 const RAG_DATABASE = [
   {
@@ -179,6 +180,7 @@ function clearResponse() {
     chatBarContainer.classList.remove("shifted");
   }
   exchangeCount = 0;
+  chatHistory = [];
 }
 
 async function sendMessage() {
@@ -242,16 +244,20 @@ async function sendMessage() {
       answerText = queryMockRAG(query);
       await new Promise(resolve => setTimeout(resolve, 800));
     } else {
-      const response = await fetch(AWS_API_ENDPOINT, {
+      const response = await fetch(API_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: query })
+        body: JSON.stringify({ message: query, history: chatHistory })
       });
       if (!response.ok) {
-        throw new Error("AWS request failed");
+        throw new Error("API request failed");
       }
       const data = await response.json();
-      answerText = data.response || "No response received.";
+      answerText = data.reply || "No response received.";
+      
+      // Update chat history with this turn
+      chatHistory.push({ role: "user", parts: [{ text: query }] });
+      chatHistory.push({ role: "model", parts: [{ text: answerText }] });
     }
     
     // Clear typing and stream the response

@@ -1,2 +1,29 @@
+# Dependency folders
+node_modules/
+**/node_modules/
+
+# OS/System files
+.DS_Store
+Thumbs.db
+
+# IDE configuration folders
+.vscode/
+.idea/
+
+# Local configuration files
+.env
+.env*.local
+
+# Build outputs and caching directories
+dist/
+.vite/
+.npm/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Project-specific exclusions
 snap-scrolling-example
-.vite

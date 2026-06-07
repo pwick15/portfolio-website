@@ -1,0 +1,179 @@
+Here is the extracted and structured content of your CV, formatted cleanly in Markdown to optimize it for Retrieval-Augmented Generation (RAG) and semantic search parsing.
+
+---
+
+# Punjaya Wickramasinghe
+
+## Contact Information
+* **Role:** Mechatronics Engineer
+* **Phone:** +61 421 164 985
+* **Email:** punjayawick@gmail.com
+* **LinkedIn:** [linkedin.com/in/punjayawick15]
+* **GitHub:** [github.com/pwick15]
+* **Portfolio:** pwick15.github.io/portfolio-website
+* **Location:** ACT, Australia
+
+
+---
+
+## Work Experience
+
+### AI Engineer
+
+**Phoenix ICT Solutions** | 2025 – Present
+
+* **Tech Stack:** LangChain, Ollama, FastAPI, Docker, Django, Azure, Flutter
+* Engineering an AI application, leveraging LLMs to implement RAG (LangChain, FastAPI, Flutter, Azure).
+* Built robust frontend interface from initial wireframes to polished interactive design (Figma).
+* Implemented RAG optimization strategy which improved accuracy by 30% on average (LangSmith, OpenEvals).
+* Conducted thorough refactoring, unit testing, and UX improvements, ensuring stability, scalability, and maintainability.
+
+
+
+### Engineering Fellow
+
+**Engineering for Change & Resham Sutra** | 2025 – Present
+
+* **Tech Stack:** React Native, Figma, PHP, Python
+
+* Building AI voice features to improve UX for low-literacy users on India's top textile marketplace (React Native, PHP).
+* Applying human-centered design to create intuitive UX to overcoming language and literacy barriers (Figma).
+* Ensuring scalability of AI voice solutions to regional languages (Hindi, Marathi) to boost reach and engagement.
+* Optimizing performance for resource-limited environments.
+
+
+### Mechatronics Engineer
+
+**Geodrones Australia** | 2024
+
+* **Tech Stack:** C++, ROS, Gazebo, Docker, Altium, STM32, PyTorch
+* **Accolade:** Finalist, Australian AI Awards 2024
+* Deployed real-time drone-based AI system integrating camera/LiDAR for live change detection (C++, PyTorch).
+* Developed secure real-time task swapping, significantly enhancing drone operational flexibility (Docker).
+* Adapted open-source GPS-denied UAV state estimator for proprietary drones (ROS/Gazebo).
+* Designed PCBs & battery management system (Altium, STM32).
+* Pitched demo to industry VIPs at October Sky 2024.
+
+
+
+---
+
+## Research Experience
+
+### Novel INS System for Improved UAV State Estimation
+
+**ANU R&D Student** | 2023
+
+* **Tech Stack:** Lie Theory, Python, LaTeX
+* Co-authored paper in European Journal of Control - "Constructive synchronous observer design for inertial navigation with delayed GNSS measurements".
+* Achieved $86/100$ on thesis and seminar.
+* Advanced linear algebra to execute the implementation of a novel INS filter (ArduPilot, Python).
+* Fused sensor measurements (magnetometer, barometer, GPS velocity) to further enhance performance.
+* Results of my initial implementation were presented at the ArduPilot 2023 Conference.
+
+### Acoustic Emotion Recognition with Machine Learning
+
+**ANU R&D Student** | 2021
+
+* **Tech Stack:** sklearn, TensorFlow, Seaborn, GridSearchCV, librosa
+* Investigated spatial audio features for enhancing acoustic emotion recognition with ML (Python, MATLAB).
+* Achieved 91/100 on thesis and seminar.
+* Applied knowledge in spatial audio and HRTF concepts (librosa).
+* Data visualization and ML algorithm adaptation (Seaborn).
+* Implemented KNN, MLP and CNN (sklearn, TensorFlow).
+
+### Metal-Organic Frameworks for Acetone Breath Sensors
+
+**ANU R&D Student** | 2020
+
+* Achieved 88/100 on thesis and seminar.
+* Meta-analysis to find areas to improve acetone breath sensors.
+
+---
+
+## Other Experience
+
+### Testing Analyst
+
+**BixeLab** | 2021 – 2023
+
+* Conducted data analysis on biometric tests to curate client reports.
+* Automated processes and handled risk management.
+* Context: World's second NIST/FIDO accredited biometric testing lab. Worked in a small team of 15 demanding adaptability and learning agility.
+
+### Private Tutor
+
+**Math & Physics** | 2019 – Present
+
+* Tutored 55 students since 2019, Year 3 to 12, with diverse backgrounds.
+* Improved student grades from C/B to A average.
+* Simplified complex concepts for easy understanding and taught time management and self-sufficiency skills.
+* Focus on instilling lasting subject curiosity in students.
+
+---
+
+## Education
+
+### Bachelor of Engineering (Research & Development)
+
+**Australian National University (ANU)** | 2019 – 2023
+* **Majors:** Mechatronics & Computer Science
+* **GPA:** 6.72 / 7
+* **Honours:** First Class Honours
+* **Scholarships:** Excellence Scholarship (2019), CECC Dickins Scholarship (2023)
+
+
+
+### ATAR: 99.20 (≈ IB Score: $44/45$)
+
+**Narrabundah College** | 2018 – 2019
+
+---
+
+## Extracurricular Activities
+
+### Head of Social
+
+**ANU Engineers Association** | 2020 – 2021
+* Managed ANU's 3rd largest student body.
+* Led a team of 3 to run 5 social events, generating ~$2,000 in sales, exceeding previous year's sales.
+
+
+
+### Community Volunteer
+
+**Aus Sri Lankan Buddhist Association** | 2010 – Present
+
+* Master of Ceremonies (MC) at cultural events.
+* Regular volunteer assisting with community events (logistics, photographer).
+
+
+### National Premier League Football Player
+
+2013 – Present
+
+* Played highest level in Canberra until 2020.
+* Runners-up in 2019 (U18 NPL1) and semi-finalists in 2021 (U23 NPL2).
+* Consistently trained while managing a balanced lifestyle.
+
+
+---
+
+## References
+
+* **Darcy Slevin**
+* Software Lead / Supervisor at Geodrones Australia
+* Phone: +61 421 839 200
+* Email: darcy.slevin@gmail.com
+
+
+* **Dr. Marcus Chacos**
+* CEO at Provolution Health (Soccer coach, known for 10+ years)
+* Phone: +61 497 552 919
+* Email: marcus@genw.space
+
+
+* **Dr. Pieter Van Goor**
+* Postdoc Researcher at Twente University (Honours project supervisor)
+* Phone: +61 488 039 219
+* Email: p.ch.vangoor@utwente.nl
