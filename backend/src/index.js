@@ -5,6 +5,9 @@ const { generateChatResponse } = require("./services/aiService");
 
 const app = express();
 
+// Enable trust proxy for Cloud Run/proxies
+app.set("trust proxy", 1);
+
 // Configure strict CORS
 const allowedOrigins = [
   'https://pwick15.github.io',

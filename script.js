@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // ==========================================
 
 const USE_MOCK_RAG = false;
-const API_ENDPOINT = "http://localhost:8080/api/chat";
+const API_ENDPOINT = "https://portfolio-chatbot-963557792569.us-central1.run.app/api/chat";
 let chatHistory = [];
 
 const RAG_DATABASE = [
