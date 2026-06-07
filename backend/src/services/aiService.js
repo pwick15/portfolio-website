@@ -16,7 +16,7 @@ const ai = new GoogleGenAI({
 /**
  * Handles the conversation flow.
  */
-async function generateChatResponse(message, history = []) {
+async function generateChatResponse(message, history = [], webContext = "") {
   // Format incoming history into the structure the unified SDK expects
   const contents = history.map((turn) => ({
     role: turn.role,
@@ -29,11 +29,22 @@ async function generateChatResponse(message, history = []) {
     parts: [{ text: message }],
   });
 
+  // Construct system instruction with both CV and dynamic website context
+  let systemInstruction = `You are an AI assistant representing Punjaya Wickramasinghe (the website owner) based on his CV and portfolio website content.
+Use the provided CV context and website context to answer queries accurately. If details are not available in either, politely state that you do not have that information.
+
+CV Context:
+${cvContext}`;
+
+  if (webContext) {
+    systemInstruction += `\n\nWebsite Page Content:\n${webContext}`;
+  }
+
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash",
     contents: contents,
     config: {
-      systemInstruction: `You are an AI assistant representing the user based on their CV. Use the following CV context to answer queries accurately. If details aren't in the CV, politely state that.\n\nCV Context:\n${cvContext}`,
+      systemInstruction: systemInstruction,
     },
   });
 

@@ -42,14 +42,14 @@ app.use("/api/", apiLimiter);
 
 app.post("/api/chat", async (req, res) => {
   try {
-    const { message, history } = req.body;
+    const { message, history, webContext } = req.body;
 
     if (!message) {
       return res.status(400).json({ error: "Message is required" });
     }
 
     // Call our isolated AI layer
-    const reply = await generateChatResponse(message, history);
+    const reply = await generateChatResponse(message, history, webContext);
 
     res.json({ reply });
   } catch (error) {

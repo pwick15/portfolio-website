@@ -184,6 +184,34 @@ function clearResponse() {
   chatHistory = [];
 }
 
+// Scrapes the website's text content dynamically for the AI assistant context
+function scrapeWebsiteContent() {
+  const sections = document.querySelectorAll("section");
+  let contentText = "";
+  
+  sections.forEach(section => {
+    // Skip chatbot profile element text to avoid indexing chat history
+    if (section.id === "profile") {
+      const title = section.querySelector(".title");
+      if (title) contentText += `Profile Title: ${title.innerText}\n`;
+      return;
+    }
+    
+    // Clone section to remove interactive elements
+    const clone = section.cloneNode(true);
+    clone.querySelectorAll("button, script, style, nav, input, svg").forEach(el => el.remove());
+    
+    // Format text
+    const sectionName = section.id.toUpperCase();
+    const text = clone.innerText.replace(/\s+/g, " ").trim();
+    if (text) {
+      contentText += `Section: ${sectionName}\n${text}\n\n`;
+    }
+  });
+  
+  return contentText.trim();
+}
+
 async function sendMessage() {
   const chatInput = document.getElementById("chat-input");
   if (!chatInput) return;
@@ -248,7 +276,11 @@ async function sendMessage() {
       const response = await fetch(API_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: query, history: chatHistory })
+        body: JSON.stringify({ 
+          message: query, 
+          history: chatHistory,
+          webContext: scrapeWebsiteContent()
+        })
       });
       if (!response.ok) {
         if (response.status === 429) throw new Error("RATE_LIMIT_EXCEEDED");
