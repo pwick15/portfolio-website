@@ -1,10 +1,41 @@
 const express = require("express");
 const cors = require("cors");
+const rateLimit = require("express-rate-limit");
 const { generateChatResponse } = require("./services/aiService");
 
 const app = express();
-app.use(cors());
+
+// Configure strict CORS
+const allowedOrigins = [
+  'https://pwick15.github.io',
+  'http://localhost:5500',
+  'http://127.0.0.1:5500'
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  // Expose the rate limit headers to the frontend script!
+  exposedHeaders: ['RateLimit-Limit', 'RateLimit-Remaining', 'RateLimit-Reset']
+}));
+
 app.use(express.json());
+
+// Apply rate limiting: Max 20 requests per 10 minutes per IP
+const apiLimiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: 20, 
+  message: { error: "Too many requests. Please try again later." },
+  standardHeaders: true, // Send RateLimit-* headers
+  legacyHeaders: false, 
+});
+
+app.use("/api/", apiLimiter);
 
 app.post("/api/chat", async (req, res) => {
   try {

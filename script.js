@@ -250,6 +250,7 @@ async function sendMessage() {
         body: JSON.stringify({ message: query, history: chatHistory })
       });
       if (!response.ok) {
+        if (response.status === 429) throw new Error("RATE_LIMIT_EXCEEDED");
         throw new Error("API request failed");
       }
       const data = await response.json();
@@ -258,6 +259,21 @@ async function sendMessage() {
       // Update chat history with this turn
       chatHistory.push({ role: "user", parts: [{ text: query }] });
       chatHistory.push({ role: "model", parts: [{ text: answerText }] });
+      
+      // Handle Rate Limit UI Update
+      const remainingStr = response.headers.get("RateLimit-Remaining");
+      if (remainingStr) {
+        const remaining = parseInt(remainingStr, 10);
+        const warningEl = document.getElementById("rate-limit-warning");
+        if (warningEl) {
+          if (remaining <= 10) {
+            warningEl.style.display = "block";
+            warningEl.innerHTML = `You have ${remaining} queries left for this session (limited to prevent bot abuse).`;
+          } else {
+            warningEl.style.display = "none";
+          }
+        }
+      }
     }
     
     // Clear typing and stream the response
@@ -271,7 +287,11 @@ async function sendMessage() {
     console.error("RAG error:", error);
     const bodyDiv = document.getElementById(`body-${currentId}`);
     if (bodyDiv) {
-      bodyDiv.innerHTML = "Sorry, I had trouble connecting to the RAG database. Please check my contact details or try again later!";
+      if (error.message === "RATE_LIMIT_EXCEEDED") {
+        bodyDiv.innerHTML = "You have reached the maximum number of queries for this session (limited to prevent bot abuse). Please try again in 10 minutes!";
+      } else {
+        bodyDiv.innerHTML = "Sorry, I had trouble connecting to the RAG database. Please check my contact details or try again later!";
+      }
     }
   }
 }
