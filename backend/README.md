@@ -54,3 +54,29 @@ To run the backend server locally on your machine:
 * **CORS Restrictions**: The server only allows browser requests coming from `https://pwick15.github.io` and standard local ports (`http://localhost:5500`, `http://127.0.0.1:5500`).
 * **IP Rate Limiting**: The server limits client requests to a maximum of **20 queries per 10 minutes** per IP address to protect against bot abuse and sudden billing spikes.
 * **reCAPTCHA v3 Protection**: Every incoming message must carry a valid, high-score human interaction token validated directly against Google's verification API.
+
+---
+
+## 🔑 Credential Hygiene (Log in / Log out)
+
+To practice good security hygiene on your local machine, you should only authenticate your terminal when you are actively testing or deploying. Once you are finished making changes, log out of your GCP credentials immediately.
+
+### 1. Before making changes (Log in)
+To run the deployment command or configure permissions locally:
+```bash
+# Log in to your main gcloud CLI account
+gcloud auth login
+
+# Log in to generate Application Default Credentials (for local RAG testing)
+gcloud auth application-default login
+```
+
+### 2. After making changes (Log out / Clean up)
+To revoke all credentials from your local machine so that it is secure when idle:
+```bash
+# Log out of gcloud CLI
+gcloud auth revoke
+
+# Log out of local Application Default Credentials
+gcloud auth application-default revoke
+```
