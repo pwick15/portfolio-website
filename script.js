@@ -86,12 +86,12 @@ document.addEventListener("DOMContentLoaded", () => {
 const CONFIG = {
   USE_MOCK_RAG: false,
   API_ENDPOINT: "https://portfolio-chatbot-963557792569.us-central1.run.app/api/chat",
-  RECAPTCHA_SITE_KEY: "6LdZQxItAAAAAKMVpimaDUZESK3_SEO8u-XmZB7I"
+  RECAPTCHA_SITE_KEY: "6LdZQxItAAAAAKMVpimaDUZESK3_SEO8u-XmZB7I",
+  RESUME_PATH: "./assets/PW_resume_2025_white_v0_3.pdf"
 };
 
 let chatHistory = [];
 
-// Dynamically inject reCAPTCHA v3 script tag using site key
 function injectRecaptchaScript() {
   if (document.querySelector('script[src*="recaptcha/api.js"]')) return;
   const script = document.createElement("script");
@@ -103,6 +103,14 @@ function injectRecaptchaScript() {
 
 document.addEventListener("DOMContentLoaded", () => {
   injectRecaptchaScript();
+
+  // Set up Download CV click handler dynamically
+  const downloadCvBtn = document.getElementById("download-cv-btn");
+  if (downloadCvBtn) {
+    downloadCvBtn.addEventListener("click", () => {
+      window.open(CONFIG.RESUME_PATH, "_blank");
+    });
+  }
 });
 
 const RAG_DATABASE = [
