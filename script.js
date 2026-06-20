@@ -87,7 +87,7 @@ const CONFIG = {
   USE_MOCK_RAG: false,
   API_ENDPOINT: "https://portfolio-chatbot-963557792569.us-central1.run.app/api/chat",
   RECAPTCHA_SITE_KEY: "6LdZQxItAAAAAKMVpimaDUZESK3_SEO8u-XmZB7I",
-  RESUME_PATH: "./assets/PW_resume_2025_white_v0_3.pdf"
+  RESUME_PATH: "./assets/documents/doc-resume.pdf"
 };
 
 let chatHistory = [];
