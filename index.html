@@ -28,8 +28,8 @@
                 </li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Skills</a></li>
                 <li><a href="#honours">Honours</a></li>
+                <li><a href="#experience">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -162,45 +162,57 @@
             <p class="section__text__p1">Get To Know More</p>
             <h1 class="title">About Me</h1>
             <div class="section-container">
-                <div class="about__pic-container reveal">
-                    <img
-                        src="./assets/images/img-about.webp"
-                        alt="Profile picture"
-                        class="about-pic"
-                        loading="lazy"
-                    />
-                </div>
-                <div class="about-details-container">
-                    <div class="about-details-spec-containers reveal">
-                        <div class="details-container-centred">
-                            <img
-                                src="./assets/icons/icon-experience.png"
-                                alt="Experience icon"
-                                class="icon"
-                                loading="lazy"
-                            />
-                            <h3>Experience</h3>
-                            <p>
-                                Computer Vision & AI<br />Embedded Systems<br />Control
-                                Systems <br />Software Development<br />Data
-                                Analysis & Visualisation
-                            </p>
-                        </div>
-                        <div class="details-container-centred">
-                            <img
-                                src="./assets/icons/icon-education.png"
-                                alt="Education icon"
-                                class="icon"
-                                loading="lazy"
-                            />
-                            <h3>Education</h3>
-                            <p>
-                                BEng (R&D) @ ANU<br />Mechatronics | CS
-                                <br />First Class Honours<br />6.72/7 GPA |
-                                99.20 ATAR
-                            </p>
+                <div class="about-left-container reveal">
+                    <div class="about__pic-container">
+                        <img
+                            src="./assets/images/img-about.webp"
+                            alt="Profile picture"
+                            class="about-pic"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="about-education-card">
+                        <div class="education-card-content">
+                            <div class="edu-row">
+                                <span class="edu-badge degree-badge"
+                                    >Bachelor of Engineering (R&D)</span
+                                >
+                                <span class="edu-institution"
+                                    >Australian National University</span
+                                >
+                            </div>
+                            <div class="edu-row majors-row">
+                                <div class="edu-spec-item">
+                                    <span class="edu-label">Major</span>
+                                    <span class="edu-value">Mechatronics</span>
+                                </div>
+                                <div class="edu-spec-divider"></div>
+                                <div class="edu-spec-item">
+                                    <span class="edu-label">Minor</span>
+                                    <span class="edu-value"
+                                        >Computer Science</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="edu-row">
+                                <span class="edu-badge honours-badge"
+                                    >🥇 First Class Honours</span
+                                >
+                            </div>
+                            <div class="edu-row stats-row">
+                                <div class="stat-pill">
+                                    <span class="stat-label">GPA</span>
+                                    <span class="stat-val">6.72 / 7.0</span>
+                                </div>
+                                <div class="stat-pill">
+                                    <span class="stat-label">ATAR</span>
+                                    <span class="stat-val">99.20</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="about-details-container">
                     <div class="text-container reveal">
                         <div class="text-details-container">
                             <h2>
@@ -882,6 +894,135 @@
             </div>
         </section>
 
+        <!-- HONOURS SECTION -->
+        <section id="honours">
+            <p class="section__text__p1">Check Out My</p>
+            <h1 class="title">Honours & Academic Work</h1>
+            <div class="honours-layout">
+                <div class="honours-grid">
+                    <!-- AWARD 1 -->
+                    <div class="honour-card reveal">
+                        <div class="honour-icon-container">
+                            <img
+                                src="./assets/icons/icon-experience.png"
+                                alt="Award icon"
+                                class="icon"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="honour-info">
+                            <h3>Australian AI Awards Finalist 2024</h3>
+                            <p>
+                                Selected as a national finalist for
+                                <b
+                                    >AI Innovator in Defence and National
+                                    Security</b
+                                >.
+                            </p>
+                            <div class="btn-container">
+                                <button
+                                    class="btn btn-color-2"
+                                    onclick="
+                                        window.open(
+                                            'https://australianaiawards.com.au/winners/2024-winners-and-finalists',
+                                            '_blank',
+                                        )
+                                    "
+                                >
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AWARD 2 -->
+                    <div class="honour-card reveal">
+                        <div class="honour-icon-container">
+                            <img
+                                src="./assets/icons/icon-education.png"
+                                alt="Journal icon"
+                                class="icon"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="honour-info">
+                            <h3>European Journal of Control (Publication)</h3>
+                            <p>
+                                Co-authored:
+                                <i
+                                    >"Constructive synchronous observer design
+                                    for inertial navigation with delayed GNSS
+                                    measurements"</i
+                                >.
+                            </p>
+                            <div class="btn-container">
+                                <button
+                                    class="btn btn-color-2"
+                                    onclick="
+                                        window.open(
+                                            'https://www.sciencedirect.com/science/article/pii/S0947358024001079',
+                                            '_blank',
+                                        )
+                                    "
+                                >
+                                    View Publiaction
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AWARD 3 -->
+                    <div class="honour-card reveal">
+                        <div class="honour-icon-container">
+                            <img
+                                src="./assets/icons/icon-experience.png"
+                                alt="Scholarship icon"
+                                class="icon"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="honour-info">
+                            <h3>CECS R&D Excellence Scholarship</h3>
+                            <p>
+                                Awarded to high-performing research-stream
+                                engineering students at the Australian National
+                                University (ANU).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- AWARD 4 -->
+                    <div class="honour-card reveal">
+                        <div class="honour-icon-container">
+                            <img
+                                src="./assets/icons/icon-experience.png"
+                                alt="Scholarship icon"
+                                class="icon"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="honour-info">
+                            <h3>CECC Dickins Scholarship</h3>
+                            <p>
+                                Awarded to high-performing Engineering Honours
+                                students at the Australian National University
+                                (ANU).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="honours__pic-container reveal">
+                    <img
+                        src="./assets/images/img-awards.png"
+                        alt="AI Awards photo"
+                        class="awards-pic"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        </section>
+
         <!-- SKILLS SECTION -->
         <section id="experience">
             <p class="section__text__p1">Explore My</p>
@@ -1224,135 +1365,6 @@
             </div>
         </section>
 
-        <!-- HONOURS SECTION -->
-        <section id="honours">
-            <p class="section__text__p1">Check Out My</p>
-            <h1 class="title">Honours & Academic Work</h1>
-            <div class="honours-layout">
-                <div class="honours-grid">
-                    <!-- AWARD 1 -->
-                    <div class="honour-card reveal">
-                        <div class="honour-icon-container">
-                            <img
-                                src="./assets/icons/icon-experience.png"
-                                alt="Award icon"
-                                class="icon"
-                                loading="lazy"
-                            />
-                        </div>
-                        <div class="honour-info">
-                            <h3>Australian AI Awards Finalist 2024</h3>
-                            <p>
-                                Selected as a national finalist for
-                                <b
-                                    >AI Innovator in Defence and National
-                                    Security</b
-                                >.
-                            </p>
-                            <div class="btn-container">
-                                <button
-                                    class="btn btn-color-2"
-                                    onclick="
-                                        window.open(
-                                            'https://australianaiawards.com.au/winners/2024-winners-and-finalists',
-                                            '_blank',
-                                        )
-                                    "
-                                >
-                                    More Info
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- AWARD 2 -->
-                    <div class="honour-card reveal">
-                        <div class="honour-icon-container">
-                            <img
-                                src="./assets/icons/icon-education.png"
-                                alt="Journal icon"
-                                class="icon"
-                                loading="lazy"
-                            />
-                        </div>
-                        <div class="honour-info">
-                            <h3>European Journal of Control (Publication)</h3>
-                            <p>
-                                Co-authored:
-                                <i
-                                    >"Constructive synchronous observer design
-                                    for inertial navigation with delayed GNSS
-                                    measurements"</i
-                                >.
-                            </p>
-                            <div class="btn-container">
-                                <button
-                                    class="btn btn-color-2"
-                                    onclick="
-                                        window.open(
-                                            'https://www.sciencedirect.com/science/article/pii/S0947358024001079',
-                                            '_blank',
-                                        )
-                                    "
-                                >
-                                    View Publiaction
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- AWARD 3 -->
-                    <div class="honour-card reveal">
-                        <div class="honour-icon-container">
-                            <img
-                                src="./assets/icons/icon-experience.png"
-                                alt="Scholarship icon"
-                                class="icon"
-                                loading="lazy"
-                            />
-                        </div>
-                        <div class="honour-info">
-                            <h3>CECS R&D Excellence Scholarship</h3>
-                            <p>
-                                Awarded to high-performing research-stream
-                                engineering students at the Australian National
-                                University (ANU).
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- AWARD 4 -->
-                    <div class="honour-card reveal">
-                        <div class="honour-icon-container">
-                            <img
-                                src="./assets/icons/icon-experience.png"
-                                alt="Scholarship icon"
-                                class="icon"
-                                loading="lazy"
-                            />
-                        </div>
-                        <div class="honour-info">
-                            <h3>CECC Dickins Scholarship</h3>
-                            <p>
-                                Awarded to high-performing Engineering Honours
-                                students at the Australian National University
-                                (ANU).
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="honours__pic-container reveal">
-                    <img
-                        src="./assets/images/img-awards.png"
-                        alt="AI Awards photo"
-                        class="awards-pic"
-                        loading="lazy"
-                    />
-                </div>
-            </div>
-        </section>
-
         <!-- CONTACT SECTION -->
         <section id="contact">
             <p class="section__text__p1">Get in Touch</p>
@@ -1420,8 +1432,8 @@
                     </li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#projects">Projects</a></li>
-                    <li><a href="#experience">Skills</a></li>
                     <li><a href="#honours">Honours</a></li>
+                    <li><a href="#experience">Skills</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
