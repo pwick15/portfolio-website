@@ -81,6 +81,18 @@ body {
   transform: translateY(0);
 }
 
+/* Custom reveal transition specifically for project cards to add a subtle scale-up effect */
+.project-card.reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.97);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 /* TYPOGRAPHY */
 
 h1, h2, h3, h4 {
@@ -958,19 +970,19 @@ article p {
 
 .project-category-title {
   font-family: var(--font-title);
-  font-size: 1.7rem;
-  color: var(--text-primary);
-  margin-top: 4rem;
-  margin-bottom: 1.5rem;
-  text-align: left;
-  border-bottom: 1.1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 0.6rem;
+  font-size: 1.45rem;
+  color: var(--secondary);
+  margin-top: 4.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
   font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   width: 100%;
 }
 
 #projects h2.project-category-title:first-of-type {
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 .project-card .btn-journal {
@@ -1000,6 +1012,30 @@ article p {
   transform: translateY(-2px);
   border-color: rgba(0, 95, 115, 0.8);
   box-shadow: 0 0 20px rgba(0, 95, 115, 0.7);
+}
+
+.project-card .btn-github {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.project-card .btn-github img {
+  width: 18px;
+  height: 18px;
+  filter: invert(0.85);
+  transition: var(--transition-fast);
+}
+
+.project-card .btn-github:hover img {
+  filter: invert(1);
+  transform: scale(1.12);
 }
 
 /* HONOURS SECTION */
