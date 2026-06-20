@@ -141,14 +141,25 @@ const RAG_DATABASE = [
     response: "Punjaya graduated with a **Bachelor of Engineering (R&D) with First Class Honours** from the **Australian National University (ANU)**, majoring in Mechatronics and Computer Science. He achieved a **6.72/7.0 GPA** and had a **99.20 ATAR** entry rank."
   },
   {
-    keywords: ["projects", "project", "portfolio", "change detection", "lidar", "bms", "battery", "estimator", "airsim", "emotion", "acoustic", "mof", "combined xi", "games"],
-    response: "Punjaya has completed several key engineering projects:\n\n" +
-              "1. **AI Change Detection System**: Near real-time unsupervised deep learning change detection on the edge using fused LiDAR and camera images.\n" +
-              "2. **Battery Management System**: Embedded C firmware regulating safe battery charging/discharging using state machines and I2C/PMBus.\n" +
-              "3. **GPS-Denied Navigation Integration**: Integrated and tuned visual inertial state estimators in AirSim simulation environment.\n" +
-              "4. **Acoustic Emotion Recognition**: Deployed ML models to identify human emotions from audio spectrograms (published 2 research papers).\n" +
-              "5. **Combined XI Builder**: Web scraping and Flask web application for football fans (built with Python).\n" +
-              "You can browse through the cards in the **Projects** section to read more and access GitHub repositories!"
+    keywords: ["projects", "project", "portfolio", "change detection", "lidar", "bms", "battery", "estimator", "airsim", "emotion", "acoustic", "mof", "combined xi", "games", "workaway", "connections", "checkers", "agentic", "voice assistant"],
+    response: "Punjaya's portfolio is divided into two primary categories:\n\n" +
+              "**Academic & Professional Projects**:\n" +
+              "• **Agentic AI Solution**: Air-gapped multi-agent system for report generation, Q&A, and analytics.\n" +
+              "• **AI Voice Assistant**: Edge-optimized local assistant developed for underserved textile communities in India.\n" +
+              "• **AI Change Detection**: Unsupervised deep learning system detecting structural changes on the edge using LiDAR/camera fusion.\n" +
+              "• **Battery Management System (BMS)**: Embedded C firmware for safe charging/discharging using state machines.\n" +
+              "• **GPS-Denied Navigation**: Simulated visual-inertial state estimation in AirSim.\n" +
+              "• **Robust Inertial Navigation**: Developed a synchronous observer for INS with delayed GNSS (peer-reviewed in European Journal of Control).\n" +
+              "• **Acoustic Emotion Recognition**: Traditional and deep ML models classifying human emotion from audio.\n" +
+              "• **Acetone Sensing with MOFs**: Filtration membranes literature study for breath-based diabetic screening.\n\n" +
+              "**Personal Projects**:\n" +
+              "• **Trip Planner**: Visual travel route mapping tool.\n" +
+              "• **AI Workaway Scraper**: Web scraper utilizing an LLM to find ideal travel/volunteer hosts.\n" +
+              "• **Worldwide Connection App**: Discord bot and LLM parsing database system to map travel contacts.\n" +
+              "• **Checkers Simulator**: Educational game engine visualizing Minimax and alpha-beta pruning.\n" +
+              "• **Combined XI Builder**: Flask/Python web app generating combined starting lineups.\n" +
+              "• **Games in Python**: Pong, Connect 4, and Snake implemented in OOP Python.\n\n" +
+              "You can browse details and view documents/links in the **Projects** section of the website!"
   },
   {
     keywords: ["contact", "email", "mail", "linkedin", "github", "hire", "phone", "reach out"],
