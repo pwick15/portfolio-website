@@ -956,6 +956,52 @@ article p {
   flex-grow: 1;
 }
 
+.project-category-title {
+  font-family: var(--font-title);
+  font-size: 1.7rem;
+  color: var(--text-primary);
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  border-bottom: 1.1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.6rem;
+  font-weight: 600;
+  width: 100%;
+}
+
+#projects h2.project-category-title:first-of-type {
+  margin-top: 1.5rem;
+}
+
+.project-card .btn-journal {
+  background: linear-gradient(90deg, #0a1128, #005f73, #3a506b, #0a1128);
+  background-size: 300% 100%;
+  color: #ffffff !important;
+  border: 1px solid rgba(0, 95, 115, 0.4);
+  box-shadow: 0 0 12px rgba(0, 95, 115, 0.25);
+  animation: buttonShimmer 5s ease infinite;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+@keyframes buttonShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.project-card .btn-journal:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 95, 115, 0.8);
+  box-shadow: 0 0 20px rgba(0, 95, 115, 0.7);
+}
+
 /* HONOURS SECTION */
 
 #honours {

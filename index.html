@@ -303,9 +303,11 @@
         <section id="projects">
             <p class="section__text__p1">Browse My Recent</p>
             <h1 class="title">Projects</h1>
-            <div class="projects-grid">
-                <!-- PROJECT 1 -->
 
+            <!-- CATEGORY 1: Academic & Professional -->
+            <h2 class="project-category-title">Professional & Academic</h2>
+            <div class="projects-grid">
+                <!-- Project: Agentic AI -->
                 <div class="project-card reveal">
                     <div class="project-img-wrapper">
                         <img
@@ -332,20 +334,18 @@
                     </div>
                 </div>
 
+                <!-- Project: AI Voice Assistant -->
                 <div class="project-card reveal">
                     <div class="project-img-wrapper">
                         <img
                             src="./assets/projects/project-ai-voice-assistant.webp"
-                            alt="AI Voice Assistant for Underserved Communities in India"
+                            alt="AI Voice Assistant"
                             class="project-img"
                             loading="lazy"
                         />
                     </div>
                     <div class="project-info-wrapper">
-                        <h2 class="project-title">
-                            AI Voice Assistant for Underserved Communities in
-                            India
-                        </h2>
+                        <h2 class="project-title">AI Voice Assistant</h2>
                         <div class="skills-container">
                             <span class="skill">Human Centred Design</span>
                             <span class="skill">Resource-Constrained Dev</span>
@@ -360,31 +360,7 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
-                    <div class="project-img-wrapper">
-                        <img
-                            src="./assets/projects/project-trip-planner.webp"
-                            alt="Trip Planner"
-                            class="project-img"
-                            loading="lazy"
-                        />
-                    </div>
-                    <div class="project-info-wrapper">
-                        <h2 class="project-title">Trip Planner</h2>
-                        <div class="skills-container">
-                            <span class="skill">Iterative Testing</span>
-                            <span class="skill">UX Design</span>
-                            <span class="skill">Placeholder</span>
-                        </div>
-                        <p>
-                            Trip planner optimised for a seamless visual
-                            experience. Allows users to visualise the physical
-                            route they have planned on a dynamic map, and
-                            receive insights on the distribution of their time.
-                        </p>
-                    </div>
-                </div>
-
+                <!-- Project: AI Change Detection -->
                 <div class="project-card reveal">
                     <div class="project-img-wrapper">
                         <img
@@ -412,7 +388,7 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 2 -->
+                <!-- Project: Battery Management System -->
                 <div class="project-card reveal">
                     <div class="project-img-wrapper">
                         <img
@@ -437,7 +413,7 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 3 -->
+                <!-- Project: GPS-Denied Nav -->
                 <div class="project-card reveal">
                     <div class="project-img-wrapper">
                         <img
@@ -466,7 +442,47 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 4 -->
+                <!-- Project: Robust Inertial Nav -->
+                <div class="project-card reveal">
+                    <div class="project-img-wrapper">
+                        <img
+                            src="./assets/projects/project-cins.webp"
+                            alt="Robust Inertial Navigation System"
+                            class="project-img"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="project-info-wrapper">
+                        <h2 class="project-title">
+                            Robust Inertial Navigation
+                        </h2>
+                        <div class="skills-container">
+                            <span class="skill">Algorithm Implementation</span>
+                            <span class="skill">Sensor Fusion</span>
+                            <span class="skill">Math Derivations</span>
+                        </div>
+                        <p>
+                            The first observer for INS with delayed GNSS to
+                            feature almost global asymptotic and local
+                            exponential stability.
+                        </p>
+                        <div class="btn-container">
+                            <button
+                                class="btn btn-journal"
+                                onclick="
+                                    window.open(
+                                        './assets/documents/doc-paper-gps-denied-forest.pdf',
+                                        '_blank',
+                                    )
+                                "
+                            >
+                                View Publication
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project: Acoustic Emotion Rec -->
                 <div class="project-card reveal">
                     <div class="project-img-wrapper">
                         <img
@@ -500,7 +516,7 @@
                                     )
                                 "
                             >
-                                Paper 1
+                                Report 1
                             </button>
                             <button
                                 class="btn btn-color-2"
@@ -511,53 +527,13 @@
                                     )
                                 "
                             >
-                                Paper 2
+                                Report 2
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- PROJECT 5 -->
-                <div class="project-card reveal">
-                    <div class="project-img-wrapper">
-                        <img
-                            src="./assets/projects/project-cins.webp"
-                            alt="Robust Inertial Navigation System"
-                            class="project-img"
-                            loading="lazy"
-                        />
-                    </div>
-                    <div class="project-info-wrapper">
-                        <h2 class="project-title">
-                            Robust Inertial Navigation
-                        </h2>
-                        <div class="skills-container">
-                            <span class="skill">Algorithm Implementation</span>
-                            <span class="skill">Sensor Fusion</span>
-                            <span class="skill">Math Derivations</span>
-                        </div>
-                        <p>
-                            The first observer for INS with delayed GNSS to
-                            feature almost global asymptotic and local
-                            exponential stability.
-                        </p>
-                        <div class="btn-container">
-                            <button
-                                class="btn btn-color-2"
-                                onclick="
-                                    window.open(
-                                        './assets/documents/doc-paper-gps-denied-forest.pdf',
-                                        '_blank',
-                                    )
-                                "
-                            >
-                                View Paper
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECT 6 -->
+                <!-- Project: Acetone Sensing with MOFs -->
                 <div class="project-card reveal">
                     <div class="project-img-wrapper">
                         <img
@@ -589,13 +565,43 @@
                                     )
                                 "
                             >
-                                View Paper
+                                View Report
                             </button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- PROJECT 7 -->
+            <!-- CATEGORY 2: Personal Projects -->
+            <h2 class="project-category-title">Personal Projects</h2>
+            <div class="projects-grid">
+                <!-- Project: Trip Planner -->
+                <div class="project-card reveal">
+                    <div class="project-img-wrapper">
+                        <img
+                            src="./assets/projects/project-trip-planner.webp"
+                            alt="Trip Planner"
+                            class="project-img"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="project-info-wrapper">
+                        <h2 class="project-title">Trip Planner</h2>
+                        <div class="skills-container">
+                            <span class="skill">Iterative Testing</span>
+                            <span class="skill">UX Design</span>
+                            <span class="skill">Placeholder</span>
+                        </div>
+                        <p>
+                            Trip planner optimised for a seamless visual
+                            experience. Allows users to visualise the physical
+                            route they have planned on a dynamic map, and
+                            receive insights on the distribution of their time.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Project: Combined XI Builder -->
                 <div class="project-card reveal">
                     <div class="project-img-wrapper">
                         <img
@@ -633,7 +639,7 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 8 -->
+                <!-- Project: Games in Python -->
                 <div class="project-card reveal">
                     <div class="project-img-wrapper">
                         <img
@@ -671,7 +677,7 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 9 -->
+                <!-- Project: Portfolio Website -->
                 <div class="project-card reveal">
                     <div class="project-img-wrapper">
                         <img
@@ -1123,7 +1129,7 @@
                                         )
                                     "
                                 >
-                                    View Paper
+                                    View Publiaction
                                 </button>
                             </div>
                         </div>
