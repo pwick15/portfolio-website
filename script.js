@@ -389,7 +389,9 @@ async function sendMessage() {
   newExchange.id = `exchange-${currentId}`;
   newExchange.innerHTML = `
     <div class="chat-header-row" onclick="toggleExchange(${currentId})">
-      <span class="chat-header-q">${query}</span>
+      <div class="chat-header-q-wrapper">
+        <span class="chat-header-q">${query}</span>
+      </div>
       <button class="chat-toggle-btn">
         <svg class="chevron-icon" viewBox="0 0 24 24">
           <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
@@ -397,10 +399,18 @@ async function sendMessage() {
       </button>
     </div>
     <div class="chat-body" id="body-${currentId}">
-      <div class="typing-indicator">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="chat-text-container" id="text-${currentId}">
+        <div class="chat-body-status">
+          <span class="status-dot thinking" id="dot-${currentId}"></span>
+          <span class="status-text" id="status-${currentId}">Thinking...</span>
+        </div>
+        <div class="chat-text-content" id="content-${currentId}">
+          <div class="typing-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
       </div>
     </div>
   `;
@@ -478,20 +488,40 @@ async function sendMessage() {
     }
 
     // Clear typing and stream the response
-    const bodyDiv = document.getElementById(`body-${currentId}`);
-    if (bodyDiv) {
-      bodyDiv.innerHTML = "";
+    const statusDot = document.getElementById(`dot-${currentId}`);
+    const statusText = document.getElementById(`status-${currentId}`);
+    const contentDiv = document.getElementById(`content-${currentId}`);
+
+    if (statusDot) {
+      statusDot.classList.remove("thinking");
+      statusDot.classList.add("active");
+    }
+    if (statusText) {
+      statusText.innerText = "AI Assistant";
+    }
+    if (contentDiv) {
+      contentDiv.innerHTML = "";
       await streamResponse(answerText, currentId);
     }
   } catch (error) {
     console.error("RAG error:", error);
-    const bodyDiv = document.getElementById(`body-${currentId}`);
-    if (bodyDiv) {
+    const statusDot = document.getElementById(`dot-${currentId}`);
+    const statusText = document.getElementById(`status-${currentId}`);
+    const contentDiv = document.getElementById(`content-${currentId}`);
+
+    if (statusDot) {
+      statusDot.classList.remove("thinking");
+      statusDot.classList.add("error");
+    }
+    if (statusText) {
+      statusText.innerText = "System Error";
+    }
+    if (contentDiv) {
       if (error.message === "RATE_LIMIT_EXCEEDED") {
-        bodyDiv.innerHTML =
+        contentDiv.innerHTML =
           "You have reached the maximum number of queries for this session (limited to prevent bot abuse). Please try again in 10 minutes!";
       } else {
-        bodyDiv.innerHTML =
+        contentDiv.innerHTML =
           "Sorry, I had trouble connecting to the RAG database. Please check my contact details or try again later!";
       }
     }
@@ -499,8 +529,8 @@ async function sendMessage() {
 }
 
 async function streamResponse(fullText, exchangeId) {
-  const bodyDiv = document.getElementById(`body-${exchangeId}`);
-  if (!bodyDiv) return;
+  const contentDiv = document.getElementById(`content-${exchangeId}`);
+  if (!contentDiv) return;
 
   const wordsArray = fullText.split(" ");
   let currentHTML = "";
@@ -516,7 +546,7 @@ async function streamResponse(fullText, exchangeId) {
       .replace(/\n/g, "<br>")
       .replace(/• /g, "• ");
 
-    bodyDiv.innerHTML = tempText;
+    contentDiv.innerHTML = tempText;
 
     // Typing delay
     await new Promise((resolve) => setTimeout(resolve, 35));
