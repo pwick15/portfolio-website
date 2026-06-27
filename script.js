@@ -318,9 +318,14 @@ function clearResponse() {
   if (content) content.innerHTML = "";
   if (input) input.value = "";
 
-  // Move chat bar back above the response panel
-  if (chatBarContainer && panel) {
-    panel.parentNode.insertBefore(chatBarContainer, panel);
+  // Move chat bar back above the buttons container
+  const btnContainer = document.querySelector(".btn-container");
+  if (chatBarContainer) {
+    if (btnContainer) {
+      btnContainer.parentNode.insertBefore(chatBarContainer, btnContainer);
+    } else if (panel) {
+      panel.parentNode.insertBefore(chatBarContainer, panel);
+    }
     chatBarContainer.classList.remove("shifted");
   }
   exchangeCount = 0;
