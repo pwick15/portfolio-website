@@ -10,7 +10,7 @@ Here is the extracted and structured content of your CV, formatted cleanly in Ma
 * **Email:** punjayawick@gmail.com
 * **LinkedIn:** [linkedin.com/in/punjayawick15]
 * **GitHub:** [github.com/pwick15]
-* **Portfolio:** pwick15.github.io/portfolio-website
+* **Portfolio:** punjaya.com
 * **Location:** ACT, Australia
 
 

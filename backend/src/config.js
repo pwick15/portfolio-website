@@ -13,9 +13,13 @@ module.exports = {
   recaptchaSecret: process.env.RECAPTCHA_SECRET_KEY || "",
 
   // Allowed CORS Origins
-  allowedOrigins: [
-    'https://pwick15.github.io',
-    'http://localhost:5500',
-    'http://127.0.0.1:5500'
-  ]
+  allowedOrigins: process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(",").map((o) => o.trim())
+    : [
+      "https://pwick15.github.io",
+      "http://localhost:5500",
+      "http://127.0.0.1:5500",
+      "https://punjaya.com",
+      "https://www.punjaya.com",
+    ],
 };
