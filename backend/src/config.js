@@ -9,9 +9,6 @@ module.exports = {
   gcpProject: process.env.GOOGLE_CLOUD_PROJECT || "project-f3658b98-4d0a-4964-a7f",
   gcpLocation: process.env.GOOGLE_CLOUD_LOCATION || "us-central1",
 
-  // Google reCAPTCHA v3 Secret Key
-  recaptchaSecret: process.env.RECAPTCHA_SECRET_KEY || "",
-
   // Allowed CORS Origins
   allowedOrigins: process.env.ALLOWED_ORIGINS
     ? process.env.ALLOWED_ORIGINS.split(",").map((o) => o.trim())

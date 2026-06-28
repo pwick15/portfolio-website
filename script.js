@@ -92,24 +92,12 @@ const CONFIG = {
   USE_MOCK_RAG: false,
   API_ENDPOINT:
     "https://portfolio-chatbot-963557792569.us-central1.run.app/api/chat",
-  RECAPTCHA_SITE_KEY: "6LdZQxItAAAAAKMVpimaDUZESK3_SEO8u-XmZB7I",
   RESUME_PATH: "./assets/documents/doc-resume.pdf",
 };
 
 let chatHistory = [];
 
-function injectRecaptchaScript() {
-  if (document.querySelector('script[src*="recaptcha/api.js"]')) return;
-  const script = document.createElement("script");
-  script.src = `https://www.google.com/recaptcha/api.js?render=${CONFIG.RECAPTCHA_SITE_KEY}`;
-  script.async = true;
-  script.defer = true;
-  document.head.appendChild(script);
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  injectRecaptchaScript();
-
   // Set up Download CV click handler dynamically
   const downloadCvBtn = document.getElementById("download-cv-btn");
   if (downloadCvBtn) {
@@ -433,28 +421,6 @@ async function sendMessage() {
       answerText = queryMockRAG(query);
       await new Promise((resolve) => setTimeout(resolve, 800));
     } else {
-      // Get reCAPTCHA v3 token dynamically
-      let recaptchaToken = null;
-      try {
-        if (typeof grecaptcha !== "undefined") {
-          recaptchaToken = await new Promise((resolve) => {
-            grecaptcha.ready(() => {
-              grecaptcha
-                .execute(CONFIG.RECAPTCHA_SITE_KEY, { action: "submit" })
-                .then(resolve)
-                .catch((err) => {
-                  console.warn("reCAPTCHA execution failed:", err);
-                  resolve(null);
-                });
-            });
-          });
-        } else {
-          console.warn("reCAPTCHA script not loaded.");
-        }
-      } catch (e) {
-        console.error("reCAPTCHA error:", e);
-      }
-
       const response = await fetch(CONFIG.API_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -462,7 +428,6 @@ async function sendMessage() {
           message: query,
           history: chatHistory,
           webContext: scrapeWebsiteContent(),
-          recaptchaToken: recaptchaToken,
         }),
       });
       if (!response.ok) {
