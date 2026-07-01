@@ -1583,7 +1583,7 @@ footer p {
     box-sizing: border-box;
   }
   .nav-links a {
-    font-size: 0.82rem;
+    font-size: 0.75rem;
   }
   .nav-links::-webkit-scrollbar {
     display: block;
