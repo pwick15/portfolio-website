@@ -1036,8 +1036,8 @@ section {
 }
 
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
 }
 
@@ -1065,9 +1065,11 @@ section {
 }
 
 .article-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  gap: 1rem;
 }
 
 article {
@@ -1530,8 +1532,9 @@ footer p {
     font-size: 1.15rem;
   }
 
-  .skills-grid {
-    grid-template-columns: 1fr;
+  .article-container {
+    flex-direction: column;
+    gap: 1.2rem;
   }
   .projects-grid {
     grid-template-columns: 1fr;
