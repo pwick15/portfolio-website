@@ -1225,7 +1225,8 @@ article p {
   margin-top: 0.5rem;
 }
 
-.project-card .btn-journal {
+.project-card .btn-journal,
+.honour-card .btn-journal {
   background: linear-gradient(90deg, #0a1128, #005f73, #3a506b, #0a1128);
   background-size: 300% 100%;
   color: #ffffff !important;
@@ -1248,7 +1249,8 @@ article p {
   }
 }
 
-.project-card .btn-journal:hover {
+.project-card .btn-journal:hover,
+.honour-card .btn-journal:hover {
   transform: translateY(-2px);
   border-color: rgba(0, 95, 115, 0.8);
   box-shadow: 0 0 20px rgba(0, 95, 115, 0.7);
