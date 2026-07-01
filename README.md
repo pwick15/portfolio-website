@@ -1,4 +1,4 @@
-# Mechatronics & AI Engineer Portfolio
+# Portfolio Website
 
 A personal portfolio website showcasing information about me including my mission, passions, honours, projects and skills. It features an integrated AI Chatbot that can answer questions about my resume and anything on my portfolio website.
 
