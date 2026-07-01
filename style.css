@@ -218,14 +218,21 @@ nav#desktop-nav {
   transition: var(--transition-fast);
 }
 
-.nav-links a:hover,
 .nav-links a.active {
   color: var(--text-primary);
 }
 
-.nav-links a:hover::after,
 .nav-links a.active::after {
   width: 100%;
+}
+
+@media (hover: hover) {
+  .nav-links a:hover {
+    color: var(--text-primary);
+  }
+  .nav-links a:hover::after {
+    width: 100%;
+  }
 }
 
 /* Hamburger animations */
@@ -1225,8 +1232,7 @@ article p {
   margin-top: 0.5rem;
 }
 
-.project-card .btn-journal,
-.honour-card .btn-journal {
+.project-card .btn-journal {
   background: linear-gradient(90deg, #0a1128, #005f73, #3a506b, #0a1128);
   background-size: 300% 100%;
   color: #ffffff !important;
@@ -1235,6 +1241,37 @@ article p {
   animation: buttonShimmer 5s ease infinite;
   font-weight: 700;
   letter-spacing: 0.5px;
+}
+
+.honour-card .btn-journal {
+  background: rgba(66, 133, 244, 0.15);
+  color: #ffffff !important;
+  border: 1px solid rgba(66, 133, 244, 0.4);
+  box-shadow: 0 0 10px rgba(66, 133, 244, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  animation: blueGlassGlowPulse 4s ease infinite;
+  transition: var(--transition-smooth);
+}
+
+@keyframes blueGlassGlowPulse {
+  0% {
+    box-shadow: 0 0 6px rgba(66, 133, 244, 0.2);
+    border-color: rgba(66, 133, 244, 0.4);
+    background: rgba(66, 133, 244, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(66, 133, 244, 0.6);
+    border-color: rgba(66, 133, 244, 0.75);
+    background: rgba(66, 133, 244, 0.25);
+  }
+  100% {
+    box-shadow: 0 0 6px rgba(66, 133, 244, 0.2);
+    border-color: rgba(66, 133, 244, 0.4);
+    background: rgba(66, 133, 244, 0.15);
+  }
 }
 
 @keyframes buttonShimmer {
@@ -1249,11 +1286,18 @@ article p {
   }
 }
 
-.project-card .btn-journal:hover,
-.honour-card .btn-journal:hover {
+.project-card .btn-journal:hover {
   transform: translateY(-2px);
   border-color: rgba(0, 95, 115, 0.8);
   box-shadow: 0 0 20px rgba(0, 95, 115, 0.7);
+}
+
+.honour-card .btn-journal:hover {
+  transform: translateY(-2px);
+  background: rgba(66, 133, 244, 0.45);
+  border-color: rgba(66, 133, 244, 0.85);
+  box-shadow: 0 5px 20px rgba(66, 133, 244, 0.55);
+  color: #ffffff !important;
 }
 
 .project-card .btn-github {
