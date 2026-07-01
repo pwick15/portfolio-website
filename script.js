@@ -220,8 +220,8 @@ const RAG_DATABASE = [
       "• **Acetone Sensing with MOFs**: Filtration membranes literature study for breath-based diabetic screening.\n\n" +
       "**Personal Projects**:\n" +
       "• **Trip Planner**: Visual travel route mapping tool.\n" +
-      "• **AI Workaway Scraper**: Web scraper utilizing an LLM to find ideal travel/volunteer hosts.\n" +
-      "• **Worldwide Connection App**: Discord bot and LLM parsing database system to map travel contacts.\n" +
+      "• **workaway.ai**: Web scraper utilizing an LLM to find ideal travel/volunteer hosts.\n" +
+      "• **travelbuddy.**: Discord bot and LLM parsing database system to map travel contacts.\n" +
       "• **Checkers Simulator**: Educational game engine visualizing Minimax and alpha-beta pruning.\n" +
       "• **Combined XI Builder**: Flask/Python web app generating combined starting lineups.\n" +
       "• **Games in Python**: Pong, Connect 4, and Snake implemented in OOP Python.\n\n" +

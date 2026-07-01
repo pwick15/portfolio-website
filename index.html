@@ -1,1085 +1,1390 @@
 <!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-        Hi, I'm Punjaya 
-    </title>
-    <meta name="description"
-        content="Portfolio of Punjaya Wickramasinghe - Mechatronics & Software Engineer. First Class Honours from ANU. Australian AI Awards Finalist 2024." />
+    <title>Hi, I'm Punjaya</title>
+    <meta
+      name="description"
+      content="Portfolio of Punjaya Wickramasinghe - Mechatronics & Software Engineer. First Class Honours from ANU. Australian AI Awards Finalist 2024."
+    />
     <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- DESKTOP NAVIGATION -->
     <nav id="desktop-nav">
-        <ul class="nav-links">
-            <li>
-                <a href="#profile" class="ask-ai-nav" onclick="focusChat(event)">Ask AI</a>
-            </li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#honours">Honours</a></li>
-            <li><a href="#experience">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+      <ul class="nav-links">
+        <li>
+          <a href="#profile" class="ask-ai-nav" onclick="focusChat(event)"
+            >Ask AI</a
+          >
+        </li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#honours">Honours</a></li>
+        <li><a href="#experience">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
 
     <!-- HERO / PROFILE SECTION -->
     <section id="profile">
-        <div class="hero-container reveal">
-            <div class="section__pic-container">
-                <img src="./assets/images/img-profile.webp" alt="Punjaya Wickramasinghe Profile Picture" />
-            </div>
-            <p class="section__text__p1">Hi, I'm</p>
-            <h1 class="title">Punjaya</h1>
-            <p class="section__text__p2" id="typed-text">
-                <span class="typing-cursor"></span>
-            </p>
+      <div class="hero-container reveal">
+        <div class="section__pic-container">
+          <img
+            src="./assets/images/img-profile.webp"
+            alt="Punjaya Wickramasinghe Profile Picture"
+          />
+        </div>
+        <p class="section__text__p1">Hi, I'm</p>
+        <h1 class="title">Punjaya</h1>
+        <p class="section__text__p2" id="typed-text">
+          <span class="typing-cursor"></span>
+        </p>
 
-            <!-- MINIMALIST GLOWING CHAT BAR -->
-            <div class="ai-chat-bar-container">
-                <div class="ai-chat-bar">
-                    <input type="text" class="chat-bar-input" id="chat-input"
-                        placeholder="Ask any question about my work..." onkeypress="handleKeyPress(event)" />
-                    <button class="chat-bar-send" onclick="sendMessage()">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
-                        </svg>
-                    </button>
-                </div>
+        <!-- MINIMALIST GLOWING CHAT BAR -->
+        <div class="ai-chat-bar-container">
+          <div class="ai-chat-bar">
+            <input
+              type="text"
+              class="chat-bar-input"
+              id="chat-input"
+              placeholder="Ask any question about my work..."
+              onkeypress="handleKeyPress(event)"
+            />
+            <button class="chat-bar-send" onclick="sendMessage()">
+              <svg viewBox="0 0 24 24">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+              </svg>
+            </button>
+          </div>
 
-                <!-- Minimal Starter Prompts -->
-                <div class="starter-links" id="starter-chips">
-                    <span class="starter-link" onclick="
+          <!-- Minimal Starter Prompts -->
+          <div class="starter-links" id="starter-chips">
+            <span
+              class="starter-link"
+              onclick="
                                 sendPrompt(
                                     'What are Punjaya's AI & Computer Vision skills?',
                                 )
-                            ">What are your AI & Computer Vision skills?</span>
-                    <span class="divider">•</span>
-                    <span class="starter-link" onclick="
-                                sendPrompt(
-                                    'What robotics projects have you built?',
-                                )
-                            ">What robotics projects have you built?</span>
-                </div>
+                            "
+              >What are your AI & Computer Vision skills?</span
+            >
+            <span class="divider">•</span>
+            <span
+              class="starter-link"
+              onclick="sendPrompt('What robotics projects have you built?')"
+              >What robotics projects have you built?</span
+            >
+          </div>
 
-                <!-- Rate Limit Warning (Hidden by default) -->
-                <div id="rate-limit-warning" class="rate-limit-warning" style="
-                            display: none;
-                            text-align: center;
-                            font-size: 0.85rem;
-                            color: #ff6b6b;
-                            margin-top: 10px;
-                            font-weight: 500;
-                        "></div>
-            </div>
-
-            <div class="btn-container">
-                <button class="btn btn-color-1" id="download-cv-btn">
-                    Download CV
-                </button>
-                <button class="btn btn-color-2" onclick="location.href = '#contact'">
-                    Contact Info
-                </button>
-            </div>
-
-            <div id="socials-container">
-                <img src="./assets/icons/icon-linkedin.png" alt="My LinkedIn profile" class="icon" onclick="
-                            window.open(
-                                'https://www.linkedin.com/in/punjayawick15/',
-                                '_blank',
-                            )
-                        " />
-                <img src="./assets/icons/icon-github.png" alt="My GitHub profile" class="icon" onclick="
-                            window.open('https://github.com/pwick15', '_blank')
-                        " />
-            </div>
-
-            <!-- TYPOGRAPHIC AI RESPONSE PANEL -->
-            <div class="ai-response-panel" id="ai-response-panel">
-                <div class="response-content" id="chat-history">
-                    <!-- Streaming RAG response goes here -->
-                </div>
-            </div>
+          <!-- Rate Limit Warning (Hidden by default) -->
+          <div
+            id="rate-limit-warning"
+            class="rate-limit-warning"
+            style="
+              display: none;
+              text-align: center;
+              font-size: 0.85rem;
+              color: #ff6b6b;
+              margin-top: 10px;
+              font-weight: 500;
+            "
+          ></div>
         </div>
+
+        <div class="btn-container">
+          <button class="btn btn-color-1" id="download-cv-btn">
+            Download CV
+          </button>
+          <button class="btn btn-color-2" onclick="location.href = '#contact'">
+            Contact Info
+          </button>
+        </div>
+
+        <div id="socials-container">
+          <img
+            src="./assets/icons/icon-linkedin.png"
+            alt="My LinkedIn profile"
+            class="icon"
+            onclick="
+              window.open(
+                'https://www.linkedin.com/in/punjayawick15/',
+                '_blank',
+              )
+            "
+          />
+          <img
+            src="./assets/icons/icon-github.png"
+            alt="My GitHub profile"
+            class="icon"
+            onclick="window.open('https://github.com/pwick15', '_blank')"
+          />
+        </div>
+
+        <!-- TYPOGRAPHIC AI RESPONSE PANEL -->
+        <div class="ai-response-panel" id="ai-response-panel">
+          <div class="response-content" id="chat-history">
+            <!-- Streaming RAG response goes here -->
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ABOUT SECTION -->
     <section id="about">
-        <p class="section__text__p1">Get To Know More</p>
-        <h1 class="title">About Me</h1>
-        <div class="section-container">
-            <div class="about-left-container reveal">
-                <div class="about__pic-container">
-                    <img src="./assets/images/img-about.webp" alt="Profile picture" class="about-pic" loading="lazy" />
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+      <div class="section-container">
+        <div class="about-left-container reveal">
+          <div class="about__pic-container">
+            <img
+              src="./assets/images/img-about.webp"
+              alt="Profile picture"
+              class="about-pic"
+              loading="lazy"
+            />
+          </div>
+          <div class="about-education-card">
+            <div class="education-card-content">
+              <div class="edu-row">
+                <span class="edu-badge degree-badge"
+                  >BEng (R&D) @ ANU (First Class Hons.)</span
+                >
+              </div>
+              <div class="edu-row majors-row">
+                <div class="edu-spec-item">
+                  <span class="edu-label">Major</span>
+                  <span class="edu-value">Mechatronics</span>
                 </div>
-                <div class="about-education-card">
-                    <div class="education-card-content">
-                        <div class="edu-row">
-                            <span class="edu-badge degree-badge">BEng (R&D) @ ANU (First Class Hons.)</span>
-                        </div>
-                        <div class="edu-row majors-row">
-                            <div class="edu-spec-item">
-                                <span class="edu-label">Major</span>
-                                <span class="edu-value">Mechatronics</span>
-                            </div>
-                            <div class="edu-spec-divider"></div>
-                            <div class="edu-spec-item">
-                                <span class="edu-label">Minor</span>
-                                <span class="edu-value">Computer Science</span>
-                            </div>
-                        </div>
-                        <div class="edu-row stats-row">
-                            <div class="stat-pill">
-                                <span class="stat-label">GPA</span>
-                                <span class="stat-val">6.72 / 7.0</span>
-                            </div>
-                            <div class="stat-pill">
-                                <span class="stat-label">ATAR</span>
-                                <span class="stat-val">99.20</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="edu-spec-divider"></div>
+                <div class="edu-spec-item">
+                  <span class="edu-label">Minor</span>
+                  <span class="edu-value">Computer Science</span>
                 </div>
+              </div>
+              <div class="edu-row stats-row">
+                <div class="stat-pill">
+                  <span class="stat-label">GPA</span>
+                  <span class="stat-val">6.72 / 7.0</span>
+                </div>
+                <div class="stat-pill">
+                  <span class="stat-label">ATAR</span>
+                  <span class="stat-val">99.20</span>
+                </div>
+              </div>
             </div>
-            <div class="about-details-container">
-                <div class="text-container reveal">
-                    <div class="text-details-container">
-                        <h2>
-                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
-                                fill="none" stroke-linecap="round" stroke-linejoin="round" style="
-                                        display: inline-block;
-                                        vertical-align: middle;
-                                    ">
-                                <path
-                                    d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A7.5 7.5 0 0 0 9 2.5a7.5 7.5 0 0 0-1.5 5c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5">
-                                </path>
-                                <path d="M9 18h6"></path>
-                                <path d="M10 22h4"></path>
-                            </svg>
-                            Introduction
-                        </h2>
-                        <p>
-                            Fascinated by
-                            <b>robotics</b> systems—specifically how
-                            automated systems can help create a
-                            more <b>sustainable and fair future</b> for all.
-                            Fueled by curiosity, a love for learning and a commitment to 
-                            building lasting partnerships.
-                        </p>
-                    </div>
-                    <div class="text-details-container">
-                        <h2>
-                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
-                                fill="none" stroke-linecap="round" stroke-linejoin="round" style="
-                                        display: inline-block;
-                                        vertical-align: middle;
-                                    ">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <circle cx="12" cy="12" r="6"></circle>
-                                <circle cx="12" cy="12" r="2"></circle>
-                            </svg>
-                            Mission
-                        </h2>
-                        <p>
-                            Dedicated to creating robotics/software
-                            solutions to improve lives and tackle challenges
-                            aligned with the
-                            <b>UN Sustainable Development Goals</b>. My ultimate 
-                            dream is helping to uplift my home country, Sri Lanka, through
-                            <b>humanitarian engineering efforts</b>.
-                        </p>
-                    </div>
-                    <div class="text-details-container">
-                        <h2>
-                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
-                                fill="none" stroke-linecap="round" stroke-linejoin="round" style="
-                                        display: inline-block;
-                                        vertical-align: middle;
-                                    ">
-                                <path
-                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                                </path>
-                            </svg>
-                            Interests
-                        </h2>
-                        <p>
-                            Hugely <b>football</b> lover (Visca Barça!) 
-                            and sports phenatic more generally, alongside
-                            music and travel.
-                            Otherwise, I spend most of my spare time exploring new ideas in
-                            technology, human psychology, history etc. to broaden my
-                            perspective.
-                        </p>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="about-details-container">
+          <div class="text-container reveal">
+            <div class="text-details-container">
+              <h2>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="display: inline-block; vertical-align: middle"
+                >
+                  <path
+                    d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A7.5 7.5 0 0 0 9 2.5a7.5 7.5 0 0 0-1.5 5c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"
+                  ></path>
+                  <path d="M9 18h6"></path>
+                  <path d="M10 22h4"></path>
+                </svg>
+                Introduction
+              </h2>
+              <p>
+                Fascinated by
+                <b>robotics</b> systems—specifically how automated systems can
+                help create a more <b>sustainable and fair future</b> for all.
+                Fueled by curiosity, a love for learning and a commitment to
+                building lasting partnerships.
+              </p>
+            </div>
+            <div class="text-details-container">
+              <h2>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="display: inline-block; vertical-align: middle"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="6"></circle>
+                  <circle cx="12" cy="12" r="2"></circle>
+                </svg>
+                Mission
+              </h2>
+              <p>
+                Dedicated to creating robotics/software solutions to improve
+                lives and tackle challenges aligned with the
+                <b>UN Sustainable Development Goals</b>. My ultimate dream is
+                helping to uplift my home country, Sri Lanka, through
+                <b>humanitarian engineering efforts</b>.
+              </p>
+            </div>
+            <div class="text-details-container">
+              <h2>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="display: inline-block; vertical-align: middle"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  ></path>
+                </svg>
+                Interests
+              </h2>
+              <p>
+                Hugely <b>football</b> lover (Visca Barça!) and sports phenatic
+                more generally, alongside music and travel. Otherwise, I spend
+                most of my spare time exploring new ideas in technology, human
+                psychology, history etc. to broaden my perspective.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- PROJECTS SECTION -->
     <section id="projects">
-        <p class="section__text__p1">Browse My Recent</p>
-        <h1 class="title">Projects</h1>
+      <p class="section__text__p1">Browse My Recent</p>
+      <h1 class="title">Projects</h1>
 
-        <!-- CATEGORY 1: Academic & Professional -->
-        <h2 class="project-category-title">Professional & Academic</h2>
-        <div class="projects-grid">
-            <!-- Project: Agentic AI -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-air-gapped-ai-agentic-solution.webp"
-                        alt="Air Gapped Agentic AI Solution" class="project-img" loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">
-                        Air Gapped Agentic AI Solution
-                    </h2>
-                    <div class="skills-container">
-                        <span class="skill">System Design</span>
-                        <span class="skill">Product Ownership</span>
-                        <span class="skill">Airgapped Deployment</span>
-                    </div>
-                    <p>
-                        Multi-purpose AI agent-enabled system, capable of
-                        question answering, analytics, figure generation,
-                        report generation
-                    </p>
-                </div>
+      <!-- CATEGORY 1: Academic & Professional -->
+      <h2 class="project-category-title">Professional & Academic</h2>
+      <div class="projects-grid">
+        <!-- Project: Agentic AI -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-air-gapped-ai-agentic-solution.webp"
+              alt="Air Gapped Agentic AI Solution"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Air Gapped Agentic AI Solution</h2>
+            <div class="skills-container">
+              <span class="skill">System Design</span>
+              <span class="skill">Product Ownership</span>
+              <span class="skill">Airgapped Deployment</span>
             </div>
-
-            <!-- Project: AI Voice Assistant -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-ai-voice-assistant.webp" alt="AI Voice Assistant"
-                        class="project-img" loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">AI Voice Assistant</h2>
-                    <div class="skills-container">
-                        <span class="skill">Human Centred Design</span>
-                        <span class="skill">Resource-Constrained Dev</span>
-                        <span class="skill">System Design</span>
-                    </div>
-                    <p>
-                        Lightweight edge-optimised AI voice assistant for a
-                        textile marketplace app in India to help users
-                        better manage their digital literacy limitations and
-                        improve autonomy
-                    </p>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2" onclick="
-                                    window.open(
-                                        'https://www.engineeringforchange.org/projects/voice-recognition-feature-for-rural-textile-producers',
-                                        '_blank',
-                                    )
-                                ">
-                            View Details
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project: AI Change Detection -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-change-detection.webp" alt="AI Change Detection System"
-                        class="project-img" loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">
-                        AI Change Detection System
-                    </h2>
-                    <div class="skills-container">
-                        <span class="skill">Unsupervised Deep Learning</span>
-                        <span class="skill">Data Pipeline</span>
-                        <span class="skill">Image Processing</span>
-                    </div>
-                    <p>
-                        Near real-time AI change detection on the edge using
-                        both camera and LiDAR fused measurements.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Project: Battery Management System -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-bms.webp" alt="Battery Management System" class="project-img"
-                        loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">Battery Management System</h2>
-                    <div class="skills-container">
-                        <span class="skill">State Machines</span>
-                        <span class="skill">Embedded Firmware Dev</span>
-                        <span class="skill">I2C/PMBus</span>
-                    </div>
-                    <p>
-                        Intelligent charging/discharging of batteries
-                        through precise monitoring and regulation to ensure
-                        safe and efficient operation.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Project: GPS-Denied Nav -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-gps-denied.webp" alt="GPS-Denied Navigation Integration"
-                        class="project-img" loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">
-                        GPS-Denied Navigation Integration
-                    </h2>
-                    <div class="skills-container">
-                        <span class="skill">Visual Inertial Navigation</span>
-                        <span class="skill">Data Driven Evaluation</span>
-                        <span class="skill">DevOps</span>
-                    </div>
-                    <p>
-                        Successfully tuned and integrated an open-source
-                        state estimator into AirSim simulator for accurate
-                        navigation without GPS signals.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Project: Robust Inertial Nav -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-cins.webp" alt="Robust Inertial Navigation System"
-                        class="project-img" loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">
-                        Robust Inertial Navigation
-                    </h2>
-                    <div class="skills-container">
-                        <span class="skill">Algorithm Implementation</span>
-                        <span class="skill">Sensor Fusion</span>
-                        <span class="skill">Math Derivations</span>
-                    </div>
-                    <p>
-                        The first observer for INS with delayed GNSS to
-                        feature almost global asymptotic and local
-                        exponential stability.
-                    </p>
-                    <div class="btn-container">
-                        <button class="btn btn-journal" onclick="
-                                    window.open(
-                                        './assets/documents/doc-paper-gps-denied-forest.pdf',
-                                        '_blank',
-                                    )
-                                ">
-                            View Publication
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project: Acoustic Emotion Rec -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-acoustic-emotion.webp"
-                        alt="Acoustic Emotion Recognition with AI" class="project-img" loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">
-                        Acoustic Emotion Recognition
-                    </h2>
-                    <div class="skills-container">
-                        <span class="skill">Machine Learning</span>
-                        <span class="skill">Dataset Creation</span>
-                        <span class="skill">Data Visualisation</span>
-                    </div>
-                    <p>
-                        Deep and traditional machine learning algorithms
-                        deployed to detect human emotions through audio
-                        signals.
-                    </p>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2" onclick="
-                                    window.open(
-                                        './assets/documents/doc-paper-acoustic-emotion.pdf',
-                                        '_blank',
-                                    )
-                                ">
-                            Report 1
-                        </button>
-                        <button class="btn btn-color-2" onclick="
-                                    window.open(
-                                        './assets/documents/doc-paper-cins-thesis.pdf',
-                                        '_blank',
-                                    )
-                                ">
-                            Report 2
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project: Acetone Sensing with MOFs -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-mofs.webp" alt="Acetone Sensing with MOFs" class="project-img"
-                        loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">Acetone Sensing with MOFs</h2>
-                    <div class="skills-container">
-                        <span class="skill">Meta-Analysis</span>
-                        <span class="skill">Literature Review</span>
-                        <span class="skill">Research Comms</span>
-                    </div>
-                    <p>
-                        Use of MOFs as filtration membranes to improve
-                        acetone detection in breath for non-invasive
-                        diabetic monitoring.
-                    </p>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2" onclick="
-                                    window.open(
-                                        './assets/documents/doc-paper-mofs-thesis.pdf',
-                                        '_blank',
-                                    )
-                                ">
-                            View Report
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <p>
+              Multi-purpose AI agent-enabled system, capable of question
+              answering, analytics, figure generation, report generation
+            </p>
+          </div>
         </div>
 
-        <!-- CATEGORY 2: Personal Projects -->
-        <h2 class="project-category-title">Personal Projects</h2>
-        <div class="projects-grid">
-            <!-- Project: Trip Planner -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-trip-planner.webp" alt="Trip Planner" class="project-img"
-                        loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">Trip Planner</h2>
-                    <div class="skills-container">
-                        <span class="skill">Iterative Testing</span>
-                        <span class="skill">UX Design</span>
-                        <span class="skill">Placeholder</span>
-                    </div>
-                    <p>
-                        Trip planner optimised for a seamless visual
-                        experience. Allows users to visualise the physical
-                        route they have planned on a dynamic map, and
-                        receive insights on the distribution of their time.
-                    </p>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 btn-github" onclick="
-                                    window.open(
-                                        'https://github.com/pwick15/trip-planner',
-                                        '_blank',
-                                    )
-                                " aria-label="GitHub Repository">
-                            <img src="./assets/icons/icon-github.png" alt="GitHub" />
-                        </button>
-                    </div>
-                </div>
+        <!-- Project: AI Voice Assistant -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-ai-voice-assistant.webp"
+              alt="AI Voice Assistant"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">AI Voice Assistant</h2>
+            <div class="skills-container">
+              <span class="skill">Human Centred Design</span>
+              <span class="skill">Resource-Constrained Dev</span>
+              <span class="skill">System Design</span>
             </div>
-
-            <!-- Project: AI Workaway Scraper -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-workaway-scraper.webp" alt="AI Workaway Scraper"
-                        class="project-img" loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">AI Workaway Scraper</h2>
-                    <div class="skills-container">
-                        <span class="skill">Web Scraping</span>
-                        <span class="skill">LLM Processing</span>
-                        <span class="skill">Automation</span>
-                    </div>
-                    <p>
-                        AI-based scraper for the Workaway website, designed
-                        to fast-track host selection by filtering
-                        opportunities that match specific travel preferences
-                        and criteria.
-                    </p>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 btn-github" onclick="
-                                    window.open(
-                                        'https://github.com/pwick15/workaway-explorer',
-                                        '_blank',
-                                    )
-                                " aria-label="GitHub Repository">
-                            <img src="./assets/icons/icon-github.png" alt="GitHub" />
-                        </button>
-                    </div>
-                </div>
+            <p>
+              Lightweight edge-optimised AI voice assistant for a textile
+              marketplace app in India to help users better manage their digital
+              literacy limitations and improve autonomy
+            </p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2"
+                onclick="
+                  window.open(
+                    'https://www.engineeringforchange.org/projects/voice-recognition-feature-for-rural-textile-producers',
+                    '_blank',
+                  )
+                "
+              >
+                View Details
+              </button>
             </div>
-
-            <!-- Project: EKF-SLAM Interactive 2D Simulator -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-ekf-slam-sim.webp" alt="EKF-SLAM Interactive 2D Simulator"
-                        class="project-img" loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">EKF-SLAM Simulator</h2>
-                    <div class="skills-container">
-                        <span class="skill">EKF-SLAM</span>
-                        <span class="skill">FastAPI / NumPy</span>
-                        <span class="skill">Interactive Canvas 2D</span>
-                    </div>
-                    <p>
-                        An EKF-SLAM simulator, made for educational purposes. Real-time and web-based simulation with many interactive elements, ideal for anyone trying to develop an intuitive understanding of the algorithm. Models a ground rover traversing a course, following a track, and detecting landmarks to map its environment and estimate its pose under process and measurement noise.
-                    </p>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 btn-github" onclick="
-                                    window.open(
-                                        'https://github.com/pwick15/ekf-slam-sim',
-                                        '_blank',
-                                    )
-                                " aria-label="GitHub Repository">
-                            <img src="./assets/icons/icon-github.png" alt="GitHub" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project: Worldwide Connection App -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-worldwide-connections.webp" alt="Worldwide Connection App"
-                        class="project-img" loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">Worldwide Connection App</h2>
-                    <div class="skills-container">
-                        <span class="skill">Discord Bot Dev</span>
-                        <span class="skill">LLM Parsing</span>
-                        <span class="skill">Database Visualisation</span>
-                    </div>
-                    <p>
-                        An application connected to Discord that parses
-                        notes on newly met contacts using an LLM,
-                        automatically populating a database to visualize and
-                        recall connections globally.
-                    </p>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 btn-github" onclick="window.open('#', '_blank')"
-                            aria-label="GitHub Repository">
-                            <img src="./assets/icons/icon-github.png" alt="GitHub" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project: Checkers Simulator -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-checkers-simulator.webp" alt="Checkers Simulator"
-                        class="project-img" loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">Checkers Simulator</h2>
-                    <div class="skills-container">
-                        <span class="skill">Algorithm Visualization</span>
-                        <span class="skill">Minimax / Alpha-Beta</span>
-                        <span class="skill">Educational Tool</span>
-                    </div>
-                    <p>
-                        An educational checkers simulator developed to help
-                        users visualize and understand game engine
-                        decision-making algorithms, including Minimax search
-                        and alpha-beta pruning.
-                    </p>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 btn-github" onclick="
-                                    window.open(
-                                        'https://github.com/pwick15/checkers-sim',
-                                        '_blank',
-                                    )
-                                " aria-label="GitHub Repository">
-                            <img src="./assets/icons/icon-github.png" alt="GitHub" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project: Combined XI Builder -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-combined-xi-builder.webp" alt="Combined XI Builder"
-                        class="project-img" loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">Combined XI Builder</h2>
-                    <div class="skills-container">
-                        <span class="skill">Web Scraping</span>
-                        <span class="skill">Flask / Python</span>
-                        <span class="skill">Web Dev</span>
-                    </div>
-                    <p>
-                        A fan-centric tool allowing users to generate
-                        combined XI starting lineups from two custom
-                        football teams.
-                    </p>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 btn-github" onclick="
-                                    window.open(
-                                        'https://github.com/pwick15/combined-xi-builder',
-                                        '_blank',
-                                    )
-                                " aria-label="GitHub Repository">
-                            <img src="./assets/icons/icon-github.png" alt="GitHub" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project: Games in Python -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-connect4-snake.webp" alt="Games in Python" class="project-img"
-                        loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">Games in Python</h2>
-                    <div class="skills-container">
-                        <span class="skill">Game Dev</span>
-                        <span class="skill">OOP</span>
-                        <span class="skill">Python GUI</span>
-                    </div>
-                    <p>
-                        Classic games (Connect 4, Pong, and Snake)
-                        implemented in Python to demonstrate solid OOP
-                        fundamentals.
-                    </p>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 btn-github" onclick="
-                                    window.open(
-                                        'https://github.com/pwick15/games',
-                                        '_blank',
-                                    )
-                                " aria-label="GitHub Repository">
-                            <img src="./assets/icons/icon-github.png" alt="GitHub" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project: Portfolio Website -->
-            <div class="project-card reveal">
-                <div class="project-img-wrapper">
-                    <img src="./assets/projects/project-portfolio.webp" alt="Portfolio Website" class="project-img"
-                        loading="lazy" />
-                </div>
-                <div class="project-info-wrapper">
-                    <h2 class="project-title">Portfolio Website</h2>
-                    <div class="skills-container">
-                        <span class="skill">HTML5 / CSS3</span>
-                        <span class="skill">Vanilla JS</span>
-                        <span class="skill">Responsive Web</span>
-                    </div>
-                    <p>
-                        A premium portfolio website designed and developed
-                        using HTML, CSS, and modern interactive JavaScript.
-                    </p>
-                    <div class="btn-container">
-                        <button class="btn btn-color-2 btn-github" onclick="
-                                    window.open(
-                                        'https://github.com/pwick15/portfolio-website',
-                                        '_blank',
-                                    )
-                                " aria-label="GitHub Repository">
-                            <img src="./assets/icons/icon-github.png" alt="GitHub" />
-                        </button>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <!-- Project: AI Change Detection -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-change-detection.webp"
+              alt="AI Change Detection System"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">AI Change Detection System</h2>
+            <div class="skills-container">
+              <span class="skill">Unsupervised Deep Learning</span>
+              <span class="skill">Data Pipeline</span>
+              <span class="skill">Image Processing</span>
+            </div>
+            <p>
+              Near real-time AI change detection on the edge using both camera
+              and LiDAR fused measurements.
+            </p>
+          </div>
+        </div>
+
+        <!-- Project: Battery Management System -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-bms.webp"
+              alt="Battery Management System"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Battery Management System</h2>
+            <div class="skills-container">
+              <span class="skill">State Machines</span>
+              <span class="skill">Embedded Firmware Dev</span>
+              <span class="skill">I2C/PMBus</span>
+            </div>
+            <p>
+              Intelligent charging/discharging of batteries through precise
+              monitoring and regulation to ensure safe and efficient operation.
+            </p>
+          </div>
+        </div>
+
+        <!-- Project: GPS-Denied Nav -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-gps-denied.webp"
+              alt="GPS-Denied Navigation Integration"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">GPS-Denied Navigation Integration</h2>
+            <div class="skills-container">
+              <span class="skill">Visual Inertial Navigation</span>
+              <span class="skill">Data Driven Evaluation</span>
+              <span class="skill">DevOps</span>
+            </div>
+            <p>
+              Successfully tuned and integrated an open-source state estimator
+              into AirSim simulator for accurate navigation without GPS signals.
+            </p>
+          </div>
+        </div>
+
+        <!-- Project: Robust Inertial Nav -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-cins.webp"
+              alt="Robust Inertial Navigation System"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Robust Inertial Navigation</h2>
+            <div class="skills-container">
+              <span class="skill">Algorithm Implementation</span>
+              <span class="skill">Sensor Fusion</span>
+              <span class="skill">Math Derivations</span>
+            </div>
+            <p>
+              The first observer for INS with delayed GNSS to feature almost
+              global asymptotic and local exponential stability.
+            </p>
+            <div class="btn-container">
+              <button
+                class="btn btn-journal"
+                onclick="
+                  window.open(
+                    './assets/documents/doc-paper-gps-denied-forest.pdf',
+                    '_blank',
+                  )
+                "
+              >
+                View Publication
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: Acoustic Emotion Rec -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-acoustic-emotion.webp"
+              alt="Acoustic Emotion Recognition with AI"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Acoustic Emotion Recognition</h2>
+            <div class="skills-container">
+              <span class="skill">Machine Learning</span>
+              <span class="skill">Dataset Creation</span>
+              <span class="skill">Data Visualisation</span>
+            </div>
+            <p>
+              Deep and traditional machine learning algorithms deployed to
+              detect human emotions through audio signals.
+            </p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2"
+                onclick="
+                  window.open(
+                    './assets/documents/doc-paper-acoustic-emotion.pdf',
+                    '_blank',
+                  )
+                "
+              >
+                Report 1
+              </button>
+              <button
+                class="btn btn-color-2"
+                onclick="
+                  window.open(
+                    './assets/documents/doc-paper-cins-thesis.pdf',
+                    '_blank',
+                  )
+                "
+              >
+                Report 2
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: Acetone Sensing with MOFs -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-mofs.webp"
+              alt="Acetone Sensing with MOFs"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Acetone Sensing with MOFs</h2>
+            <div class="skills-container">
+              <span class="skill">Meta-Analysis</span>
+              <span class="skill">Literature Review</span>
+              <span class="skill">Research Comms</span>
+            </div>
+            <p>
+              Use of MOFs as filtration membranes to improve acetone detection
+              in breath for non-invasive diabetic monitoring.
+            </p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2"
+                onclick="
+                  window.open(
+                    './assets/documents/doc-paper-mofs-thesis.pdf',
+                    '_blank',
+                  )
+                "
+              >
+                View Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATEGORY 2: Personal Projects -->
+      <h2 class="project-category-title">Personal Projects</h2>
+      <div class="projects-grid">
+        <!-- Project: Trip Planner -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-trip-planner.webp"
+              alt="Trip Planner"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Trip Planner</h2>
+            <div class="skills-container">
+              <span class="skill">Iterative Testing</span>
+              <span class="skill">UX Design</span>
+              <span class="skill">Placeholder</span>
+            </div>
+            <p>
+              Trip planner optimised for a seamless visual experience. Allows
+              users to visualise the physical route they have planned on a
+              dynamic map, and receive insights on the distribution of their
+              time.
+            </p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 btn-github"
+                onclick="
+                  window.open(
+                    'https://github.com/pwick15/trip-planner',
+                    '_blank',
+                  )
+                "
+                aria-label="GitHub Repository"
+              >
+                <img src="./assets/icons/icon-github.png" alt="GitHub" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: workaway.ai -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-workaway-dot-ai.webp"
+              alt="workaway.ai"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">workaway.ai</h2>
+            <div class="skills-container">
+              <span class="skill">Web Scraping</span>
+              <span class="skill">LLM Processing</span>
+              <span class="skill">Automation</span>
+            </div>
+            <p>
+              AI-based scraper for the Workaway website, designed to fast-track
+              host selection by filtering opportunities that match specific
+              travel preferences and criteria.
+            </p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 btn-github"
+                onclick="
+                  window.open(
+                    'https://github.com/pwick15/workaway.ai',
+                    '_blank',
+                  )
+                "
+                aria-label="GitHub Repository"
+              >
+                <img src="./assets/icons/icon-github.png" alt="GitHub" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: EKF-SLAM Interactive 2D Simulator -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-ekf-slam-sim.webp"
+              alt="EKF-SLAM Interactive 2D Simulator"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">EKF-SLAM Simulator</h2>
+            <div class="skills-container">
+              <span class="skill">EKF-SLAM</span>
+              <span class="skill">FastAPI / NumPy</span>
+              <span class="skill">Interactive Canvas 2D</span>
+            </div>
+            <p>
+              An EKF-SLAM simulator, made for educational purposes. Real-time
+              and web-based simulation with many interactive elements, ideal for
+              anyone trying to develop an intuitive understanding of the
+              algorithm. Models a ground rover traversing a course, following a
+              track, and detecting landmarks to map its environment and estimate
+              its pose under process and measurement noise.
+            </p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 btn-github"
+                onclick="
+                  window.open(
+                    'https://github.com/pwick15/ekf-slam-sim',
+                    '_blank',
+                  )
+                "
+                aria-label="GitHub Repository"
+              >
+                <img src="./assets/icons/icon-github.png" alt="GitHub" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: travelbuddy. App -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-travelbuddy-dot.webp"
+              alt="travelbuddy."
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">travelbuddy.</h2>
+            <div class="skills-container">
+              <span class="skill">Discord Bot Dev</span>
+              <span class="skill">LLM Parsing</span>
+              <span class="skill">Database Visualisation</span>
+            </div>
+            <p>
+              An application connected to Discord that parses notes on newly met
+              contacts using an LLM, automatically populating a database to
+              visualize and recall connections globally.
+            </p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 btn-github"
+                onclick="
+                  window.open(
+                    'https://github.com/pwick15/travelbuddy.',
+                    '_blank',
+                  )
+                "
+                aria-label="GitHub Repository"
+              >
+                <img src="./assets/icons/icon-github.png" alt="GitHub" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: Checkers Simulator -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-checkers-simulator.webp"
+              alt="Checkers Simulator"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Checkers Simulator</h2>
+            <div class="skills-container">
+              <span class="skill">Algorithm Visualization</span>
+              <span class="skill">Minimax / Alpha-Beta</span>
+              <span class="skill">Educational Tool</span>
+            </div>
+            <p>
+              An educational checkers simulator developed to help users
+              visualize and understand game engine decision-making algorithms,
+              including Minimax search and alpha-beta pruning.
+            </p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 btn-github"
+                onclick="
+                  window.open(
+                    'https://github.com/pwick15/checkers-sim',
+                    '_blank',
+                  )
+                "
+                aria-label="GitHub Repository"
+              >
+                <img src="./assets/icons/icon-github.png" alt="GitHub" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: Combined XI Builder -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-combined-xi-builder.webp"
+              alt="Combined XI Builder"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Combined XI Builder</h2>
+            <div class="skills-container">
+              <span class="skill">Web Scraping</span>
+              <span class="skill">Flask / Python</span>
+              <span class="skill">Web Dev</span>
+            </div>
+            <p>
+              A fan-centric tool allowing users to generate combined XI starting
+              lineups from two custom football teams.
+            </p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 btn-github"
+                onclick="
+                  window.open(
+                    'https://github.com/pwick15/combined-xi-builder',
+                    '_blank',
+                  )
+                "
+                aria-label="GitHub Repository"
+              >
+                <img src="./assets/icons/icon-github.png" alt="GitHub" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: Games in Python -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-connect4-snake.webp"
+              alt="Games in Python"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Games in Python</h2>
+            <div class="skills-container">
+              <span class="skill">Game Dev</span>
+              <span class="skill">OOP</span>
+              <span class="skill">Python GUI</span>
+            </div>
+            <p>
+              Classic games (Connect 4, Pong, and Snake) implemented in Python
+              to demonstrate solid OOP fundamentals.
+            </p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 btn-github"
+                onclick="
+                  window.open('https://github.com/pwick15/games', '_blank')
+                "
+                aria-label="GitHub Repository"
+              >
+                <img src="./assets/icons/icon-github.png" alt="GitHub" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project: Portfolio Website -->
+        <div class="project-card reveal">
+          <div class="project-img-wrapper">
+            <img
+              src="./assets/projects/project-portfolio.webp"
+              alt="Portfolio Website"
+              class="project-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info-wrapper">
+            <h2 class="project-title">Portfolio Website</h2>
+            <div class="skills-container">
+              <span class="skill">HTML5 / CSS3</span>
+              <span class="skill">Vanilla JS</span>
+              <span class="skill">Responsive Web</span>
+            </div>
+            <p>
+              A premium portfolio website designed and developed using HTML,
+              CSS, and modern interactive JavaScript.
+            </p>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 btn-github"
+                onclick="
+                  window.open(
+                    'https://github.com/pwick15/portfolio-website',
+                    '_blank',
+                  )
+                "
+                aria-label="GitHub Repository"
+              >
+                <img src="./assets/icons/icon-github.png" alt="GitHub" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- HONOURS SECTION -->
     <section id="honours">
-        <p class="section__text__p1">Check Out My</p>
-        <h1 class="title">Honours & Academic Work</h1>
-        <div class="honours-layout">
-            <div class="honours-grid">
-                <!-- AWARD 1 -->
-                <div class="honour-card reveal">
-                    <div class="honour-icon-container">
-                        <img src="./assets/icons/icon-experience.png" alt="Award icon" class="icon" loading="lazy" />
-                    </div>
-                    <div class="honour-info">
-                        <h3>Australian AI Awards Finalist 2024</h3>
-                        <p>
-                            Selected as a national finalist for
-                            <b>AI Innovator in Defence and National
-                                Security</b>.
-                        </p>
-                        <div class="btn-container">
-                            <button class="btn btn-color-2" onclick="
-                                        window.open(
-                                            'https://australianaiawards.com.au/winners/2024-winners-and-finalists',
-                                            '_blank',
-                                        )
-                                    ">
-                                More Info
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AWARD 2 -->
-                <div class="honour-card reveal">
-                    <div class="honour-icon-container">
-                        <img src="./assets/icons/icon-education.png" alt="Journal icon" class="icon" loading="lazy" />
-                    </div>
-                    <div class="honour-info">
-                        <h3>European Journal of Control (Publication)</h3>
-                        <p>
-                            Co-authored:
-                            <i>"Constructive synchronous observer design
-                                for inertial navigation with delayed GNSS
-                                measurements"</i>.
-                        </p>
-                        <div class="btn-container">
-                            <button class="btn btn-color-2" onclick="
-                                        window.open(
-                                            'https://www.sciencedirect.com/science/article/pii/S0947358024001079',
-                                            '_blank',
-                                        )
-                                    ">
-                                View Publiaction
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AWARD 3 -->
-                <div class="honour-card reveal">
-                    <div class="honour-icon-container">
-                        <img src="./assets/icons/icon-experience.png" alt="Scholarship icon" class="icon"
-                            loading="lazy" />
-                    </div>
-                    <div class="honour-info">
-                        <h3>CECS R&D Excellence Scholarship</h3>
-                        <p>
-                            Awarded to high-performing research-stream
-                            engineering students at the Australian National
-                            University (ANU).
-                        </p>
-                    </div>
-                </div>
-
-                <!-- AWARD 4 -->
-                <div class="honour-card reveal">
-                    <div class="honour-icon-container">
-                        <img src="./assets/icons/icon-experience.png" alt="Scholarship icon" class="icon"
-                            loading="lazy" />
-                    </div>
-                    <div class="honour-info">
-                        <h3>CECC Dickins Scholarship</h3>
-                        <p>
-                            Awarded to high-performing Engineering Honours
-                            students at the Australian National University
-                            (ANU).
-                        </p>
-                    </div>
-                </div>
+      <p class="section__text__p1">Check Out My</p>
+      <h1 class="title">Honours & Academic Work</h1>
+      <div class="honours-layout">
+        <div class="honours-grid">
+          <!-- AWARD 1 -->
+          <div class="honour-card reveal">
+            <div class="honour-icon-container">
+              <img
+                src="./assets/icons/icon-experience.png"
+                alt="Award icon"
+                class="icon"
+                loading="lazy"
+              />
             </div>
-
-            <div class="honours__pic-container reveal">
-                <img src="./assets/images/img-awards.png" alt="AI Awards photo" class="awards-pic" loading="lazy" />
+            <div class="honour-info">
+              <h3>Australian AI Awards Finalist 2024</h3>
+              <p>
+                Selected as a national finalist for
+                <b>AI Innovator in Defence and National Security</b>.
+              </p>
+              <div class="btn-container">
+                <button
+                  class="btn btn-color-2"
+                  onclick="
+                    window.open(
+                      'https://australianaiawards.com.au/winners/2024-winners-and-finalists',
+                      '_blank',
+                    )
+                  "
+                >
+                  More Info
+                </button>
+              </div>
             </div>
+          </div>
+
+          <!-- AWARD 2 -->
+          <div class="honour-card reveal">
+            <div class="honour-icon-container">
+              <img
+                src="./assets/icons/icon-education.png"
+                alt="Journal icon"
+                class="icon"
+                loading="lazy"
+              />
+            </div>
+            <div class="honour-info">
+              <h3>European Journal of Control (Publication)</h3>
+              <p>
+                Co-authored:
+                <i
+                  >"Constructive synchronous observer design for inertial
+                  navigation with delayed GNSS measurements"</i
+                >.
+              </p>
+              <div class="btn-container">
+                <button
+                  class="btn btn-color-2"
+                  onclick="
+                    window.open(
+                      'https://www.sciencedirect.com/science/article/pii/S0947358024001079',
+                      '_blank',
+                    )
+                  "
+                >
+                  View Publiaction
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- AWARD 3 -->
+          <div class="honour-card reveal">
+            <div class="honour-icon-container">
+              <img
+                src="./assets/icons/icon-experience.png"
+                alt="Scholarship icon"
+                class="icon"
+                loading="lazy"
+              />
+            </div>
+            <div class="honour-info">
+              <h3>CECS R&D Excellence Scholarship</h3>
+              <p>
+                Awarded to high-performing research-stream engineering students
+                at the Australian National University (ANU).
+              </p>
+            </div>
+          </div>
+
+          <!-- AWARD 4 -->
+          <div class="honour-card reveal">
+            <div class="honour-icon-container">
+              <img
+                src="./assets/icons/icon-experience.png"
+                alt="Scholarship icon"
+                class="icon"
+                loading="lazy"
+              />
+            </div>
+            <div class="honour-info">
+              <h3>CECC Dickins Scholarship</h3>
+              <p>
+                Awarded to high-performing Engineering Honours students at the
+                Australian National University (ANU).
+              </p>
+            </div>
+          </div>
         </div>
+
+        <div class="honours__pic-container reveal">
+          <img
+            src="./assets/images/img-awards.png"
+            alt="AI Awards photo"
+            class="awards-pic"
+            loading="lazy"
+          />
+        </div>
+      </div>
     </section>
 
     <!-- SKILLS SECTION -->
     <section id="experience">
-        <p class="section__text__p1">Explore My</p>
-        <h1 class="title">Skills</h1>
-        <div class="skills-grid">
-            <!-- CATEGORY 1 -->
-            <div class="details-container reveal">
-                <h2 class="experience-sub-title">Computer Vision & AI</h2>
-                <div class="article-container">
-                    <article>
-                        <img src="./assets/icons/tech-cpp.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>C++</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-opencv.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>OpenCV</h3>
-                            <p>Experienced</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-python.png" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>Python</h3>
-                            <p>Experienced</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-pytorch.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>PyTorch</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-tensorflow.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>TensorFlow</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-
-            <!-- CATEGORY 2 -->
-            <div class="details-container reveal">
-                <h2 class="experience-sub-title">Embedded Systems</h2>
-                <div class="article-container">
-                    <article>
-                        <img src="./assets/icons/tech-ros.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>ROS / ROS2</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-c.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>C</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-comms-protocol.png" alt="Skill icon" class="icon"
-                            loading="lazy" />
-                        <div>
-                            <h3>UART | I2C | CAN | UDP</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-hdl.png" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>Verilog (FPGA)</h3>
-                            <p>Entry-Level</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-altium.png" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>Altium Designer</h3>
-                            <p>Entry-Level</p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-
-            <!-- CATEGORY 3 -->
-            <div class="details-container reveal">
-                <h2 class="experience-sub-title">Control Systems</h2>
-                <div class="article-container">
-                    <article>
-                        <img src="./assets/icons/tech-gps-denied.png" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>GPS-Denied Nav</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-algorithm.png" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>State Estimation</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-slam.png" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>SLAM</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-ardupilot.png" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>ArduPilot</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-state-machine.png" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>State Machines</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-
-            <!-- CATEGORY 4 -->
-            <div class="details-container reveal">
-                <h2 class="experience-sub-title">Software Development</h2>
-                <div class="article-container">
-                    <article>
-                        <img src="./assets/icons/tech-git.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>Git</h3>
-                            <p>Experienced</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-linux.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>Linux</h3>
-                            <p>Experienced</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-html-css-js.webp" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>HTML | CSS | JS</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-docker.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>Docker</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-vim.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>Vim / Neovim</h3>
-                            <p>Experienced</p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-
-            <!-- CATEGORY 5 -->
-            <div class="details-container reveal">
-                <h2 class="experience-sub-title">Data Analysis</h2>
-                <div class="article-container">
-                    <article>
-                        <img src="./assets/icons/tech-pandas.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>Pandas</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-seaborn.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>Seaborn</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-plotly.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>Plotly</h3>
-                            <p>Experienced</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-matplotlib.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>Matplotlib</h3>
-                            <p>Experienced</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img src="./assets/icons/tech-numpy.svg" alt="Skill icon" class="icon" loading="lazy" />
-                        <div>
-                            <h3>NumPy</h3>
-                            <p>Experienced</p>
-                        </div>
-                    </article>
-                </div>
-            </div>
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Skills</h1>
+      <div class="skills-grid">
+        <!-- CATEGORY 1 -->
+        <div class="details-container reveal">
+          <h2 class="experience-sub-title">Computer Vision & AI</h2>
+          <div class="article-container">
+            <article>
+              <img
+                src="./assets/icons/tech-cpp.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>C++</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-opencv.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>OpenCV</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-python.png"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>Python</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-pytorch.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>PyTorch</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-tensorflow.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>TensorFlow</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+          </div>
         </div>
+
+        <!-- CATEGORY 2 -->
+        <div class="details-container reveal">
+          <h2 class="experience-sub-title">Embedded Systems</h2>
+          <div class="article-container">
+            <article>
+              <img
+                src="./assets/icons/tech-ros.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>ROS / ROS2</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-c.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>C</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-comms-protocol.png"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>UART | I2C | CAN | UDP</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-hdl.png"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>Verilog (FPGA)</h3>
+                <p>Entry-Level</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-altium.png"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>Altium Designer</h3>
+                <p>Entry-Level</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- CATEGORY 3 -->
+        <div class="details-container reveal">
+          <h2 class="experience-sub-title">Control Systems</h2>
+          <div class="article-container">
+            <article>
+              <img
+                src="./assets/icons/tech-gps-denied.png"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>GPS-Denied Nav</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-algorithm.png"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>State Estimation</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-slam.png"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>SLAM</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-ardupilot.png"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>ArduPilot</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-state-machine.png"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>State Machines</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- CATEGORY 4 -->
+        <div class="details-container reveal">
+          <h2 class="experience-sub-title">Software Development</h2>
+          <div class="article-container">
+            <article>
+              <img
+                src="./assets/icons/tech-git.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>Git</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-linux.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>Linux</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-html-css-js.webp"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>HTML | CSS | JS</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-docker.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>Docker</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-vim.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>Vim / Neovim</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- CATEGORY 5 -->
+        <div class="details-container reveal">
+          <h2 class="experience-sub-title">Data Analysis</h2>
+          <div class="article-container">
+            <article>
+              <img
+                src="./assets/icons/tech-pandas.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>Pandas</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-seaborn.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>Seaborn</h3>
+                <p>Intermediate</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-plotly.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>Plotly</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-matplotlib.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>Matplotlib</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="./assets/icons/tech-numpy.svg"
+                alt="Skill icon"
+                class="icon"
+                loading="lazy"
+              />
+              <div>
+                <h3>NumPy</h3>
+                <p>Experienced</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- CONTACT SECTION -->
     <section id="contact">
-        <p class="section__text__p1">Get in Touch</p>
-        <h1 class="title">Contact Me</h1>
-        <div class="contact-card reveal">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-card reveal">
+        <p>
+          I am open to discuss new opportunities in robotics, computer vision,
+          embedded engineering, and AI systems. Feel free to reach out!
+        </p>
+        <div class="contact-info-upper-container">
+          <div class="contact-info-container">
+            <img
+              src="./assets/icons/icon-email.png"
+              alt="Email icon"
+              class="icon"
+            />
             <p>
-                I am open to discuss new opportunities in robotics, computer
-                vision, embedded engineering, and AI systems. Feel free to
-                reach out!
+              <a href="mailto:punjayawick@gmail.com">punjayawick@gmail.com</a>
             </p>
-            <div class="contact-info-upper-container">
-                <div class="contact-info-container">
-                    <img src="./assets/icons/icon-email.png" alt="Email icon" class="icon" />
-                    <p>
-                        <a href="mailto:punjayawick@gmail.com">punjayawick@gmail.com</a>
-                    </p>
-                </div>
-                <div class="contact-info-container">
-                    <img src="./assets/icons/icon-linkedin.png" alt="LinkedIn icon" class="icon" />
-                    <p>
-                        <a href="https://www.linkedin.com/in/punjayawick15/" target="_blank">punjayawick15</a>
-                    </p>
-                </div>
-                <div class="contact-info-container">
-                    <img src="./assets/icons/icon-github.png" alt="GitHub icon" class="icon" />
-                    <p>
-                        <a href="https://github.com/pwick15" target="_blank">pwick15</a>
-                    </p>
-                </div>
-            </div>
+          </div>
+          <div class="contact-info-container">
+            <img
+              src="./assets/icons/icon-linkedin.png"
+              alt="LinkedIn icon"
+              class="icon"
+            />
+            <p>
+              <a
+                href="https://www.linkedin.com/in/punjayawick15/"
+                target="_blank"
+                >punjayawick15</a
+              >
+            </p>
+          </div>
+          <div class="contact-info-container">
+            <img
+              src="./assets/icons/icon-github.png"
+              alt="GitHub icon"
+              class="icon"
+            />
+            <p>
+              <a href="https://github.com/pwick15" target="_blank">pwick15</a>
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-        <nav>
-            <ul class="nav-links">
-                <li>
-                    <a href="#profile" class="ask-ai-nav" onclick="focusChat(event)">Ask AI</a>
-                </li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#honours">Honours</a></li>
-                <li><a href="#experience">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <p>
-            Copyright &#169; 2026 Punjaya Wickramasinghe. All Rights
-            Reserved.
-        </p>
-        <p>
-            Icons credit: icons8, techicons, flaticon. Images credit:
-            DALL-E, Copilot.
-        </p>
+      <nav>
+        <ul class="nav-links">
+          <li>
+            <a href="#profile" class="ask-ai-nav" onclick="focusChat(event)"
+              >Ask AI</a
+            >
+          </li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#honours">Honours</a></li>
+          <li><a href="#experience">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <p>Copyright &#169; 2026 Punjaya Wickramasinghe. All Rights Reserved.</p>
+      <p>
+        Icons credit: icons8, techicons, flaticon. Images credit: DALL-E,
+        Copilot.
+      </p>
     </footer>
 
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
